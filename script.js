@@ -1,4 +1,4 @@
-// script.js — koristi HR ili EN pool neovisno (EN ne mora odgovarati HR indeksu)
+// script.js — HR/EN pools + UI text switching + cache-bust for sphinx image
 
 let language = "hr";
 let riddles_hr = [];
@@ -135,7 +135,6 @@ async function loadRiddles() {
 /* Show daily riddle:
    - if language === 'en' and riddles_en available -> select from EN pool
    - else select from HR pool
-   - if window.SPHINX_CONFIG.forceRiddleIndex is set, use it (modulo pool length)
 */
 function showDailyRiddle() {
   updateUIText();
@@ -154,7 +153,6 @@ function showDailyRiddle() {
   let pool = riddles_hr;
   if (language === "en" && riddles_en.length > 0) pool = riddles_en;
 
-  // Determine index: prefer forced index if provided, else day-based rotation
   let index;
   const cfgIndex = (window.SPHINX_CONFIG && Number.isInteger(window.SPHINX_CONFIG.forceRiddleIndex)) ? window.SPHINX_CONFIG.forceRiddleIndex : null;
   if (cfgIndex !== null) {
@@ -239,6 +237,22 @@ function updateVisitors() {
     });
 }
 
+/* Cache-bust for sphinx image: forces browser to fetch the latest file */
+function bustSphinxCache() {
+  const img = document.getElementById('sphinxImg') || document.querySelector('.sphinx img');
+  if (!img) return;
+
+  // get base path (strip existing query)
+  const base = (img.getAttribute('data-src') || img.getAttribute('src') || '').split('?')[0];
+  if (!base) return;
+
+  // store original base once
+  if (!img.getAttribute('data-src')) img.setAttribute('data-src', base);
+
+  // set src with timestamp to bypass cache
+  img.src = base + '?v=' + Date.now();
+}
+
 /* Enter-to-submit when focus is on input */
 (function attachEnter() {
   document.addEventListener("keydown", function (e) {
@@ -252,13 +266,17 @@ function updateVisitors() {
   });
 }());
 
-/* On load: restore language if saved and update UI */
+/* On load: restore language if saved, bust cache for sphinx image, update UI & auto-start if needed */
 window.onload = function () {
   try {
     const saved = localStorage.getItem("language");
     if (saved) language = saved;
   } catch (e) { console.error("LocalStorage error:", e); }
+
   updateUIText();
+  // Ensure we load fresh SVG/PNG for the sphinx image
+  try { bustSphinxCache(); } catch (e) { /* ignore */ }
+
   try {
     if (localStorage.getItem("language")) startGame(language);
   } catch (e) {}
