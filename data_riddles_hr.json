@@ -1,0 +1,752 @@
+[
+  {
+    "category": "logika",
+    "question": "Imam kazaljke, ali ne pokazujem put. Imam lice, ali ne govorim. Što sam?",
+    "answers": ["sat"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Što ima ključeve, ali ne može otvoriti nijedna vrata?",
+    "answers": ["klavir"]
+  },
+  {
+    "category": "priroda",
+    "question": "Danju me vidiš na nebu, noću nestajem. Dajem svjetlost i toplinu. Što sam?",
+    "answers": ["sunce"]
+  },
+  {
+    "category": "životinje",
+    "question": "Imam četiri noge ujutro, dvije u podne i tri navečer. Tko sam?",
+    "answers": ["čovjek"]
+  },
+  {
+    "category": "priroda",
+    "question": "Nemam noge, ali putujem. Nemam usta, ali šumim. Često dodirujem obalu. Što sam?",
+    "answers": ["val", "more"]
+  },
+  {
+    "category": "egipat",
+    "question": "Čuvam tajne pustinje, imam tijelo lava i lice čovjeka. Tko sam?",
+    "answers": ["sfinga"]
+  },
+  {
+    "category": "egipat",
+    "question": "Visoka sam građevina od kamena, stara tisućama godina i čuvam priče faraona. Što sam?",
+    "answers": ["piramida"]
+  },
+  {
+    "category": "otok",
+    "question": "Dug sam otok, ali nisam cesta. Okružen sam morem, a poznat po maslinama, stijenama i uvalama. Tko sam?",
+    "answers": ["dugi otok"]
+  },
+  {
+    "category": "otok",
+    "question": "Moje ime je kratko, ali moja pomorska priča je duga. Nalazim se na Dugom otoku, a poznajem miris mora i ribarskih brodova. Koje sam mjesto?",
+    "answers": ["sali"]
+  },
+  {
+    "category": "otok",
+    "question": "Imam stotine kamenih otoka, more me okružuje sa svih strana, a poznat sam po jedinstvenoj ljepoti. Tko sam?",
+    "answers": ["kornati"]
+  },
+  {
+    "category": "more",
+    "question": "Ne možeš me zadržati u ruci, ali mogu nositi najveće brodove. Što sam?",
+    "answers": ["more"]
+  },
+  {
+    "category": "životinje",
+    "question": "Nosim svoju kuću na leđima i nikamo ne žurim. Tko sam?",
+    "answers": ["puž"]
+  },
+  {
+    "category": "humor",
+    "question": "Što ima zube, a ne može ugristi?",
+    "answers": ["češalj"]
+  },
+  {
+    "category": "logika",
+    "question": "Što više uzimaš od mene, ja postajem veći. Što sam?",
+    "answers": ["rupa"]
+  },
+  {
+    "category": "priroda",
+    "question": "Bijela sam zimi, padam s neba i djeca me vole. Što sam?",
+    "answers": ["snijeg"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam vrat, ali nemam glavu. Imam tijelo, ali ne hodam. Što sam?",
+    "answers": ["boca"]
+  },
+  {
+    "category": "znanost",
+    "question": "Ne vidiš me, ali me osjetiš. Pokrećem lišće i jedra. Što sam?",
+    "answers": ["vjetar"]
+  },
+  {
+    "category": "životinje",
+    "question": "Živim u moru, imam osam ruku i mogu mijenjati boju. Tko sam?",
+    "answers": ["hobotnica"]
+  },
+  {
+    "category": "povijest",
+    "question": "Pišem bez olovke i pričam bez glasa. Čuvam prošlost ljudi. Što sam?",
+    "answers": ["knjiga"]
+  },
+  {
+    "category": "egipat",
+    "question": "Tečem kroz pustinju i tisućama godina donosim život ljudima. Tko sam?",
+    "answers": ["nil"]
+  },
+  {
+    "category": "životinje",
+    "question": "Imam krila, ali nisam avion. Letim noću i volim tamu. Tko sam?",
+    "answers": ["šišmiš"]
+  },
+  {
+    "category": "priroda",
+    "question": "Imam grane, ali nemam ruke. Imam listove, ali ne čitam. Što sam?",
+    "answers": ["stablo", "drvo"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Što uvijek ide gore, ali se nikada ne vraća dolje?",
+    "answers": ["godine", "starost"]
+  },
+  {
+    "category": "logika",
+    "question": "Ako me imaš, želiš me podijeliti. Ako me podijeliš, više me nemaš. Što sam?",
+    "answers": ["tajna"]
+  },
+  {
+    "category": "humor",
+    "question": "Što ima jednu nogu, a nosi šešir?",
+    "answers": ["gljiva"]
+  },
+  {
+    "category": "more",
+    "question": "Što putuje morem, a nikada se ne smoči?",
+    "answers": ["sjena"]
+  },
+  {
+    "category": "otok",
+    "question": "Na otoku sam rođen, more mi je susjed, a brodovi mi donose priče. Što sam?",
+    "answers": ["otok"]
+  },
+  {
+    "category": "otok",
+    "question": "Na Dugom otoku raste drvo koje pamti stotine godina i daje plod od kojeg nastaje zlato Mediterana. Koje je to drvo?",
+    "answers": ["maslina"]
+  },
+  {
+    "category": "more",
+    "question": "Što mornar vidi svaki dan, a nikada ga ne može uhvatiti?",
+    "answers": ["horizont"]
+  },
+  {
+    "category": "egipat",
+    "question": "Imam krunu, ali nisam kralj. Živio sam uz Nil i vladao velikim kraljevstvom. Tko sam?",
+    "answers": ["faraon"]
+  },
+  {
+    "category": "povijest",
+    "question": "Čuvam riječi ljudi koji su živjeli prije mene. Mogu biti stara ili nova. Što sam?",
+    "answers": ["knjiga"]
+  },
+  {
+    "category": "znanost",
+    "question": "Ne možeš me vidjeti, ali bez mene nema života. Što sam?",
+    "answers": ["zrak"]
+  },
+  {
+    "category": "životinje",
+    "question": "Imam bodlje na leđima, ali nisam trn. Tko sam?",
+    "answers": ["jež"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Što ima prozore, ali nema kuću?",
+    "answers": ["računalo"]
+  },
+  {
+    "category": "logika",
+    "question": "Imam gradove, ali nemam kuće. Imam rijeke, ali nemam vode. Što sam?",
+    "answers": ["karta"]
+  },
+  {
+    "category": "priroda",
+    "question": "Dolazim nakon kiše i imam sedam boja. Što sam?",
+    "answers": ["duga"]
+  },
+  {
+    "category": "humor",
+    "question": "Što može napuniti sobu, a ne zauzima prostor?",
+    "answers": ["svjetlost"]
+  },
+  {
+    "category": "more",
+    "question": "Bijela sam ptica koja prati brodove. Tko sam?",
+    "answers": ["galeb"]
+  },
+  {
+    "category": "povijest",
+    "question": "Putujem kroz vrijeme, iako nemam noge. Čuvam priče ljudi. Što sam?",
+    "answers": ["povijest"]
+  },
+  {
+    "category": "znanost",
+    "question": "Što je lakše od pera, ali ga nitko ne može dugo držati?",
+    "answers": ["dah"]
+  },
+  {
+    "category": "humor",
+    "question": "Koji ključ ne otvara vrata?",
+    "answers": ["ključ za glazbu", "klavirski ključ"]
+  },
+  {
+    "category": "egipat",
+    "question": "Stara sam tisućama godina, pisana slikama i znakove skrivam u kamenu. Što sam?",
+    "answers": ["hijeroglif", "hijeroglifi"]
+  },
+  {
+    "category": "logika",
+    "question": "Imam glavu i rep, ali nemam tijelo. Što sam?",
+    "answers": ["novčić", "kovanica"]
+  },
+  {
+    "category": "logika",
+    "question": "Što možeš slomiti, a nikada ne dodirnuti?",
+    "answers": ["obećanje"]
+  },
+  {
+    "category": "logika",
+    "question": "Što ide kroz cijeli svijet, a ostaje u kutu?",
+    "answers": ["poštanska marka", "marka"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam stranice, ali nisam zgrada. Imam korice, ali nisam vrata. Što sam?",
+    "answers": ["knjiga"]
+  },
+  {
+    "category": "logika",
+    "question": "Što je tvoje, ali ga drugi ljudi koriste više nego ti?",
+    "answers": ["ime"]
+  },
+  {
+    "category": "priroda",
+    "question": "Pojavim se na nebu kad se smrači i nestanem kad svane. Što sam?",
+    "answers": ["mjesec"]
+  },
+  {
+    "category": "more",
+    "question": "Imam rep, ali nisam životinja. Vozim ljude preko mora. Što sam?",
+    "answers": ["brod"]
+  },
+  {
+    "category": "humor",
+    "question": "Što ide gore i dolje, a ostaje na istom mjestu?",
+    "answers": ["stube", "stepenice"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam ekran, ali nisam prozor. Imam memoriju, ali nisam čovjek. Što sam?",
+    "answers": ["računalo", "mobitel"]
+  },
+  {
+    "category": "znanost",
+    "question": "Ne vidiš me, ali pokrećem vjetrenjače i jedra. Što sam?",
+    "answers": ["vjetar"]
+  },
+  {
+    "category": "životinje",
+    "question": "Mogu nositi kuću na leđima, ali nisam arhitekt. Tko sam?",
+    "answers": ["puž"]
+  },
+  {
+    "category": "priroda",
+    "question": "Rađam se u oblacima, padam na zemlju i hranim prirodu. Što sam?",
+    "answers": ["kiša"]
+  },
+  {
+    "category": "humor",
+    "question": "Koja riba može pisati?",
+    "answers": ["sipa"]
+  },
+  {
+    "category": "egipat",
+    "question": "Čuvar sam pustinjskog mira. Tijelo mi pripada lavu, a lice čovjeku. Tko sam?",
+    "answers": ["sfinga"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam tipke, ali nemam brave. Što sam?",
+    "answers": ["tipkovnica", "klavir"]
+  },
+  {
+    "category": "priroda",
+    "question": "Imam korijen, deblo i krošnju. Što sam?",
+    "answers": ["drvo", "stablo"]
+  },
+  {
+    "category": "životinje",
+    "question": "Imam osam nogu i živim u moru. Tko sam?",
+    "answers": ["hobotnica"]
+  },
+  {
+    "category": "humor",
+    "question": "Što ima oči, a ne vidi?",
+    "answers": ["krumpir"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam jednu nogu, a nosim šešir. Što sam?",
+    "answers": ["gljiva"]
+  },
+  {
+    "category": "logika",
+    "question": "Što raste kada se dijeli?",
+    "answers": ["znanje"]
+  },
+  {
+    "category": "priroda",
+    "question": "Imam lice, ali ne mogu govoriti. Vraćam tvoj lik. Što sam?",
+    "answers": ["ogledalo"]
+  },
+  {
+    "category": "egipat",
+    "question": "Tečem kroz pustinju i donosim život zemlji. Tko sam?",
+    "answers": ["nil"]
+  },
+  {
+    "category": "povijest",
+    "question": "Čuvam tragove prošlosti u kamenu, papiru i pričama. Što sam?",
+    "answers": ["povijest"]
+  },
+  {
+    "category": "životinje",
+    "question": "Mogu biti kralj džungle, imam grivu i snažan sam. Tko sam?",
+    "answers": ["lav"]
+  },
+  {
+    "category": "otok",
+    "question": "Moje obale gledaju prema plavetnilu, a moje masline prema suncu. Što sam?",
+    "answers": ["dalmatinski otok", "otok"]
+  },
+  {
+    "category": "more",
+    "question": "Mornar me prati, ali nikada ne stiže do mene. Što sam?",
+    "answers": ["horizont"]
+  },
+  {
+    "category": "logika",
+    "question": "Ako me imaš, želiš me sakriti. Ako me kažeš, više nisam ono što jesam. Što sam?",
+    "answers": ["tajna"]
+  },
+  {
+    "category": "humor",
+    "question": "Što ima četiri noge ujutro, ali ne hoda?",
+    "answers": ["stol"]
+  },
+  {
+    "category": "egipat",
+    "question": "Čuvala sam tijela kraljeva, a danas sam simbol stare civilizacije. Što sam?",
+    "answers": ["mumija"]
+  },
+  {
+    "category": "more",
+    "question": "Bijela sam, letim iznad mora i često pratim brodove. Tko sam?",
+    "answers": ["galeb"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam ekran i mogu pokazivati slike. Stanujem u džepu mnogih ljudi. Što sam?",
+    "answers": ["mobitel", "telefon"]
+  },
+  {
+    "category": "znanost",
+    "question": "Najveći sam prijatelj čovjeka, ali me čovjek ne može vidjeti. Što sam?",
+    "answers": ["zrak"]
+  },
+  {
+    "category": "priroda",
+    "question": "Bijela sam zimi, topim se na suncu. Što sam?",
+    "answers": ["snijeg"]
+  },
+  {
+    "category": "humor",
+    "question": "Što može ispuniti prostoriju, a ne zauzima mjesto?",
+    "answers": ["svjetlost"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam stranice i korice, ali nisam vrata. Što sam?",
+    "answers": ["knjiga"]
+  },
+  {
+    "category": "logika",
+    "question": "Što pripada tebi, ali ga drugi ljudi koriste više nego ti?",
+    "answers": ["ime"]
+  },
+  {
+    "category": "more",
+    "question": "Što ima puno očiju, ali ne može gledati?",
+    "answers": ["mreža"]
+  },
+  {
+    "category": "životinje",
+    "question": "Imam oklop, hodam polako i nosim svoju kuću. Tko sam?",
+    "answers": ["kornjača"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Što ima tipke, ali nije košulja?",
+    "answers": ["tipkovnica"]
+  },
+  {
+    "category": "logika",
+    "question": "Što možeš slomiti samo jednom riječju?",
+    "answers": ["obećanje"]
+  },
+  {
+    "category": "more",
+    "question": "Pomažem brodovima pronaći put u noći. Što sam?",
+    "answers": ["svjetionik"]
+  },
+  {
+    "category": "more",
+    "question": "Nemam kotače, ali putujem daleko. Nemam noge, ali prelazim mora. Što sam?",
+    "answers": ["brod"]
+  },
+  {
+    "category": "otok",
+    "question": "Imam tisuće kamenih priča, more me okružuje, a svaka moja stijena gleda prema pučini. Tko sam?",
+    "answers": ["kornati"]
+  },
+  {
+    "category": "logika",
+    "question": "Što možeš vidjeti jednom u minuti, dvaput u trenutku, ali nijednom u tisuću godina?",
+    "answers": ["slovo t", "slovo t"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam stranice, ali nemam noge. Što sam?",
+    "answers": ["knjiga"]
+  },
+  {
+    "category": "priroda",
+    "question": "Pojavim se poslije oluje i šaren sam na nebu. Što sam?",
+    "answers": ["duga"]
+  },
+  {
+    "category": "životinje",
+    "question": "Ljeti pjevam na drvetu, a nisam glazbenik. Tko sam?",
+    "answers": ["cvrčak"]
+  },
+  {
+    "category": "humor",
+    "question": "Koja riba može pisati?",
+    "answers": ["sipa"]
+  },
+  {
+    "category": "priroda",
+    "question": "Imam lice, ali ne mogu govoriti. Vraćam tvoj lik. Što sam?",
+    "answers": ["ogledalo"]
+  },
+  {
+    "category": "priroda",
+    "question": "Imam lišće, ali ne živim u gradu. Što sam?",
+    "answers": ["stablo"]
+  },
+  {
+    "category": "znanost",
+    "question": "Što je bez oblika, ali ga svi trebamo za život?",
+    "answers": ["voda"]
+  },
+  {
+    "category": "životinje",
+    "question": "Imam kljun i perje i često letim nad morima. Što sam?",
+    "answers": ["ptica"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam kotače i vozim ljude. Što sam?",
+    "answers": ["automobil", "auto"]
+  },
+  {
+    "category": "egipat",
+    "question": "Moje tijelo je sačuvano tisućama godina. Nekad sam bio čovjek, a danas sam povijesna tajna. Što sam?",
+    "answers": ["mumija"]
+  },
+  {
+    "category": "logika",
+    "question": "Imam lice i dvije strane, ali nemam tijelo. Što sam?",
+    "answers": ["novčić", "kovanica"]
+  },
+  {
+    "category": "more",
+    "question": "Što mornar vidi ispred sebe, ali nikad ne može do njega doploviti?",
+    "answers": ["horizont"]
+  },
+  {
+    "category": "otok",
+    "question": "Na Dugom otoku stojim uz more. Moje ulice pamte ribare, a moje luke dočekuju brodove. Koje sam mjesto?",
+    "answers": ["sali"]
+  },
+  {
+    "category": "more",
+    "question": "Danju blistam, noću se skrivam. Brodovima pokazujem put, ali nisam zvijezda. Što sam?",
+    "answers": ["svjetionik"]
+  },
+  {
+    "category": "priroda",
+    "question": "Pada s neba, ali se nikad ne ozlijedi. Što je to?",
+    "answers": ["kiša"]
+  },
+  {
+    "category": "znanost",
+    "question": "Ne vidiš me, ali me osjetiš. Mogu biti blag ili snažan. Što sam?",
+    "answers": ["vjetar"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam stranice i korice, ali nisam vrata. Što sam?",
+    "answers": ["knjiga"]
+  },
+  {
+    "category": "logika",
+    "question": "Što više uzimaš od mene, ja postajem veći?",
+    "answers": ["rupa"]
+  },
+  {
+    "category": "humor",
+    "question": "Što ima vrat, ali nema glavu?",
+    "answers": ["boca"]
+  },
+  {
+    "category": "more",
+    "question": "Imam rep, ali nisam životinja. Vozim ljude preko mora. Što sam?",
+    "answers": ["brod", "čamac"]
+  },
+  {
+    "category": "otok",
+    "question": "Maslina, kamen i more tri su moja prijatelja. Gdje sam?",
+    "answers": ["dalmacija", "otok"]
+  },
+  {
+    "category": "logika",
+    "question": "Što raste kada se dijeli?",
+    "answers": ["znanje"]
+  },
+  {
+    "category": "priroda",
+    "question": "Noću svijetlim na nebu, ali nisam sunce. Što sam?",
+    "answers": ["mjesec"]
+  },
+  {
+    "category": "životinje",
+    "question": "Imam bodlje, ali nisam biljka. Tko sam?",
+    "answers": ["jež"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam ekran i mogu pokazivati slike. Stanujem u džepu mnogih ljudi. Što sam?",
+    "answers": ["mobitel", "telefon"]
+  },
+  {
+    "category": "more",
+    "question": "Pomažem brodovima pronaći put u noći. Što sam?",
+    "answers": ["svjetionik"]
+  },
+  {
+    "category": "humor",
+    "question": "Što može napuniti sobu, a ne zauzima mjesto?",
+    "answers": ["svjetlost"]
+  },
+  {
+    "category": "priroda",
+    "question": "Bijela sam zimi, topim se na suncu. Što sam?",
+    "answers": ["snijeg"]
+  },
+  {
+    "category": "more",
+    "question": "Mogu biti mirno kao ogledalo ili nemirno poput oluje. Što sam?",
+    "answers": ["more"]
+  },
+  {
+    "category": "more",
+    "question": "Nemam noge, ali putujem do obale. Nemam ruke, ali grlim stijene. Što sam?",
+    "answers": ["val"]
+  },
+  {
+    "category": "egipat",
+    "question": "Moje su tajne zapisane slikama, a ljudi su ih stoljećima pokušavali razumjeti. Što sam?",
+    "answers": ["hijeroglifi", "hijeroglif"]
+  },
+  {
+    "category": "priroda",
+    "question": "Imam korijen, ali ne pijem vodu kao čovjek. Imam krošnju, ali nemam glavu. Što sam?",
+    "answers": ["stablo", "drvo"]
+  },
+  {
+    "category": "životinje",
+    "question": "Mogu nositi kuću na leđima, ali nisam arhitekt. Tko sam?",
+    "answers": ["puž"]
+  },
+  {
+    "category": "humor",
+    "question": "Što ima vrat, a nema glavu?",
+    "answers": ["boca"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam tipke, ali nemam brave. Što sam?",
+    "answers": ["tipkovnica", "klavir"]
+  },
+  {
+    "category": "logika",
+    "question": "Što možeš slomiti, a nikada ne dodirnuti?",
+    "answers": ["obećanje"]
+  },
+  {
+    "category": "more",
+    "question": "Imam rep, ali nisam životinja. Plovim morem i prevozom ljude. Što sam?",
+    "answers": ["brod"]
+  },
+  {
+    "category": "otok",
+    "question": "Imam tisuće kamenih priča, more me okružuje, a svaka moja stijena gleda prema pučini. Tko sam?",
+    "answers": ["kornati"]
+  },
+  {
+    "category": "logika",
+    "question": "Ako me imaš, želiš me podijeliti. Ako me podijeliš, više me nemaš. Što sam?",
+    "answers": ["tajna"]
+  },
+  {
+    "category": "more",
+    "question": "Što ima puno očiju, ali ne može gledati?",
+    "answers": ["mreža"]
+  },
+  {
+    "category": "priroda",
+    "question": "Imam lice, ali ne mogu govoriti. Vraćam tvoj lik. Što sam?",
+    "answers": ["ogledalo"]
+  },
+  {
+    "category": "povijest",
+    "question": "Čuvam događaje iz prošlosti i učim ljude o onome što je bilo. Što sam?",
+    "answers": ["povijest"]
+  },
+  {
+    "category": "životinje",
+    "question": "Imam osam ruku i pametan sam lovac. Tko sam?",
+    "answers": ["hobotnica"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam prozore i programe, ali nisam zgrada. Što sam?",
+    "answers": ["računalo"]
+  },
+  {
+    "category": "more",
+    "question": "Bijela sam ptica uz more i često pratim brodove. Tko sam?",
+    "answers": ["galeb"]
+  },
+  {
+    "category": "priroda",
+    "question": "Imam listove koji šušte na vjetru. Što sam?",
+    "answers": ["stablo", "drvo"]
+  },
+  {
+    "category": "humor",
+    "question": "Što ima zube, ali ne jede?",
+    "answers": ["češalj"]
+  },
+  {
+    "category": "povijest",
+    "question": "Pišem bez olovke i pričam bez glasa. Čuvam prošlost ljudi. Što sam?",
+    "answers": ["knjiga"]
+  },
+  {
+    "category": "egipat",
+    "question": "Nisam planina, ali imam vrh. Nisam kuća, ali imam komore. Stvoren sam od kamena. Što sam?",
+    "answers": ["piramida"]
+  },
+  {
+    "category": "logika",
+    "question": "Što ima jedno oko, a ne može vidjeti?",
+    "answers": ["igla"]
+  },
+  {
+    "category": "predmeti",
+    "question": "Imam ruke, ali ne mogu zagrliti. Imam lice, ali ne mogu govoriti. Što sam?",
+    "answers": ["sat"]
+  },
+  {
+    "category": "more",
+    "question": "Što može prijeći ocean, a ostati na istom mjestu?",
+    "answers": ["karta", "zemljovid"]
+  },
+  {
+    "category": "otok",
+    "question": "Dug sam otok u Jadranu, poznat po prirodi, maslinama i mjestu Sali. Tko sam?",
+    "answers": ["dugi otok"]
+  },
+  {
+    "category": "otok",
+    "question": "Moje ime je kratko, ali moja povijest uz more je duga. Nalazim se na Dugom otoku. Koje sam mjesto?",
+    "answers": ["sali"]
+  },
+  {
+    "category": "more",
+    "question": "Nemam noge, ali plešem. Nemam glas, ali pjevam uz obalu. Što sam?",
+    "answers": ["val", "more"]
+  },
+  {
+    "category": "egipat",
+    "question": "Čuvam ulaz u pustinju i postavljam pitanja putnicima. Imam tijelo lava i glavu čovjeka. Tko sam?",
+    "answers": ["sfinga"]
+  },
+  {
+    "category": "egipat",
+    "question": "Velika sam kamena građevina iz vremena faraona. Imam oblik trokuta. Što sam?",
+    "answers": ["piramida"]
+  },
+  {
+    "category": "životinje",
+    "question": "Imam oklop, hodam polako i nosim svoju kuću. Tko sam?",
+    "answers": ["kornjača"]
+  },
+  {
+    "category": "priroda",
+    "question": "Vidim tebe, ali nemam oči. Vraćam tvoj lik. Što sam?",
+    "answers": ["ogledalo"]
+  },
+  {
+    "category": "logika",
+    "question": "Što više uzimaš od mene, ja postajem veći?",
+    "answers": ["rupa"]
+  },
+  {
+    "category": "humor",
+    "question": "Što ima zube, ali ne jede?",
+    "answers": ["češalj"]
+  },
+  {
+    "category": "životinje",
+    "question": "Imam osam nogu i živim u moru. Tko sam?",
+    "answers": ["hobotnica"]
+  },
+  {
+    "category": "more",
+    "question": "Bijela sam ptica koja prati brodove. Tko sam?",
+    "answers": ["galeb"]
+  },
+  {
+    "category": "otok",
+    "question": "Na meni rastu masline, oko mene je more, a kamen mi je prijatelj. Što sam?",
+    "answers": ["otok"]
+  }
+]
