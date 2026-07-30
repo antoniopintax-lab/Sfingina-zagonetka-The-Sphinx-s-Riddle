@@ -1,0 +1,308 @@
+* {
+    box-sizing: border-box;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+    linear-gradient(
+        rgba(30,18,5,0.65),
+        rgba(30,18,5,0.85)
+    ),
+    url("images/sand-bg.svg");
+
+    background-size: cover;
+    background-position: center;
+
+    color: #f7d774;
+    text-align: center;
+
+    overflow-x: hidden;
+}
+
+
+/* animirani pijesak */
+
+.sand {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    background:
+    radial-gradient(circle, rgba(255,220,120,.15) 2px, transparent 3px);
+
+    background-size: 60px 60px;
+
+    animation: sandMove 25s linear infinite;
+
+}
+
+
+@keyframes sandMove {
+
+from {
+    background-position:0 0;
+}
+
+to {
+    background-position:200px 400px;
+}
+
+}
+
+
+
+header {
+
+padding: 25px 10px;
+
+}
+
+
+h1 {
+
+font-size: clamp(32px,6vw,55px);
+
+text-shadow:
+0 0 10px #d6a82f,
+0 0 20px #8b5a00;
+
+}
+
+
+
+button {
+
+background:
+linear-gradient(
+#f5d77a,
+#b8860b
+);
+
+border:none;
+
+color:#241500;
+
+padding:15px 25px;
+
+margin:10px;
+
+border-radius:15px;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.5);
+
+transition:.3s;
+
+}
+
+
+button:hover {
+
+transform:scale(1.08);
+
+box-shadow:
+0 0 25px #ffd700;
+
+}
+
+
+
+.hidden {
+
+display:none;
+
+}
+
+
+
+main {
+
+max-width:700px;
+
+margin:auto;
+
+padding:20px;
+
+}
+
+
+
+.sphinx img {
+
+width:180px;
+
+max-width:60%;
+
+animation:
+
+float 4s ease-in-out infinite;
+
+filter:
+drop-shadow(0 0 20px gold);
+
+}
+
+
+
+@keyframes float {
+
+0%,100% {
+
+transform:translateY(0);
+
+}
+
+50% {
+
+transform:translateY(-15px);
+
+}
+
+}
+
+
+
+.visitor {
+
+margin:15px;
+
+font-size:20px;
+
+color:white;
+
+}
+
+
+
+.riddleBox {
+
+background:
+
+rgba(0,0,0,.65);
+
+border:
+
+2px solid #d4af37;
+
+border-radius:25px;
+
+padding:25px;
+
+box-shadow:
+
+0 0 30px rgba(212,175,55,.5);
+
+}
+
+
+
+#riddle {
+
+font-size:24px;
+
+line-height:1.5;
+
+color:white;
+
+}
+
+
+
+input {
+
+width:90%;
+
+padding:15px;
+
+border-radius:10px;
+
+border:none;
+
+font-size:18px;
+
+margin:15px;
+
+text-align:center;
+
+}
+
+
+
+.check {
+
+background:
+
+linear-gradient(
+#5cb85c,
+#267326
+);
+
+color:white;
+
+}
+
+
+
+#result {
+
+margin-top:25px;
+
+font-size:22px;
+
+font-weight:bold;
+
+min-height:50px;
+
+}
+
+
+
+footer {
+
+padding:30px;
+
+font-size:18px;
+
+}
+
+
+
+/* mobiteli */
+
+@media(max-width:600px){
+
+h1 {
+
+font-size:34px;
+
+}
+
+#riddle {
+
+font-size:20px;
+
+}
+
+button {
+
+width:85%;
+
+}
+
+.sphinx img {
+
+width:130px;
+
+}
+
+}
