@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sfingin izazov</title>
+<title id="pageTitle">Sfingin izazov</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="sand"></div>
 <header>
-    <h1>𓂀 Sfingin izazov</h1>
+    <h1 id="appTitle">𓂀 Sfingin izazov</h1>
     <p id="subtitle">Riješi zagonetku i otkrij tajnu ulaza</p>
 </header>
 
 <section id="languageBox">
-    <h2>Odaberi jezik</h2>
-    <button onclick="startGame('hr')">🇭🇷 Hrvatski</button>
-    <button onclick="startGame('en')">🇬🇧 English</button>
+    <h2 id="languageBoxTitle">Odaberi jezik</h2>
+    <button id="btnHR" onclick="startGame('hr')">🇭🇷 Hrvatski</button>
+    <button id="btnEN" onclick="startGame('en')">🇬🇧 English</button>
 </section>
 
 <main id="game" class="hidden">
@@ -26,7 +26,7 @@
 
     <div class="visitor">
         👤 <span id="visitorCount">0</span>
-        <p>posjetitelja danas</p>
+        <p id="visitorLabel">posjetitelja danas</p>
     </div>
 
     <div class="riddleBox">
@@ -34,14 +34,14 @@
         <p id="riddle"></p>
 
         <input id="answer" type="text" placeholder="Upiši odgovor" aria-label="Odgovor na zagonetku">
-        <button onclick="checkAnswer()" class="check">Provjeri odgovor</button>
+        <button id="checkBtn" onclick="checkAnswer()" class="check">Provjeri odgovor</button>
 
         <div id="result" aria-live="polite"></div>
     </div>
 </main>
 
 <footer>
-<p>𓆣  Samo mudri prolaze pokraj Sfinge 𓆣</p>
+<p id="footerText">𓆣  Samo mudri prolaze pokraj Sfinge 𓆣</p>
 </footer>
 
 <script src="config.js"></script>
