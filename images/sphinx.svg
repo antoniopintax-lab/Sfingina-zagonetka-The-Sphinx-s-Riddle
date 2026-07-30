@@ -1,13 +1,69 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 200 200">
-  <g fill="#d4af37" stroke="#8b5a00" stroke-width="2">
-    <ellipse cx="100" cy="135" rx="70" ry="24" />
-    <rect x="45" y="70" width="110" height="50" rx="12" />
-  </g>
-  <g fill="#241500">
-    <circle cx="75" cy="95" r="4" />
-    <circle cx="125" cy="95" r="4" />
-  </g>
-  <g stroke="#8b5a00" stroke-width="3" fill="none">
-    <path d="M40 135 L60 110 L80 132" />
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+
+  <!-- pozadina -->
+  <rect width="800" height="600" fill="#f7e7c6"/>
+
+  <!-- pijesak -->
+  <path d="M0 500 Q200 450 400 500 T800 500 V600 H0Z" fill="#d9b36c"/>
+
+  <!-- tijelo sfinge -->
+  <path d="
+    M180 430
+    C220 330 300 300 430 320
+    C560 340 650 420 680 500
+    L120 500
+    C130 470 150 450 180 430Z"
+    fill="#c89b5b"
+    stroke="#7a5428"
+    stroke-width="8"/>
+
+  <!-- lavlje noge -->
+  <path d="M200 430 L140 520 H270 L300 430Z"
+        fill="#b8894a" stroke="#7a5428" stroke-width="8"/>
+  <path d="M500 430 L540 520 H670 L610 430Z"
+        fill="#b8894a" stroke="#7a5428" stroke-width="8"/>
+
+  <!-- glava -->
+  <ellipse cx="380" cy="210" rx="95" ry="110"
+           fill="#c89b5b" stroke="#7a5428" stroke-width="8"/>
+
+  <!-- nemes pokrivalo -->
+  <path d="
+    M280 170
+    Q380 60 480 170
+    L520 330
+    Q450 290 380 300
+    Q310 290 240 330
+    Z"
+    fill="#d4b06a" stroke="#7a5428" stroke-width="8"/>
+
+  <!-- pruge na pokrivalu -->
+  <path d="M300 140 L270 290 M350 100 L340 290 M410 100 L420 290 M460 140 L490 290"
+        stroke="#7a5428" stroke-width="10"/>
+
+  <!-- lice -->
+  <ellipse cx="345" cy="215" rx="12" ry="8" fill="#222"/>
+  <ellipse cx="415" cy="215" rx="12" ry="8" fill="#222"/>
+
+  <!-- nos -->
+  <path d="M380 220 L360 260 L400 260Z"
+        fill="#9b6b35"/>
+
+  <!-- osmijeh -->
+  <path d="M330 285 Q380 320 430 285"
+        fill="none" stroke="#5b3517" stroke-width="8"/>
+
+  <!-- brada -->
+  <path d="M340 300 L380 360 L420 300"
+        fill="#8b5a2b"/>
+
+  <!-- kraljevska kruna -->
+  <path d="
+    M300 110 L330 40 L380 90 L430 40 L460 110Z"
+    fill="#e5c34f" stroke="#7a5428" stroke-width="8"/>
+
+  <!-- rep -->
+  <path d="M650 420 Q760 350 720 280"
+        fill="none" stroke="#c89b5b" stroke-width="35"/>
+
 </svg>
