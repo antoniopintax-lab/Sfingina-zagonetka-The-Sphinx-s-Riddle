@@ -1,6 +1,1066 @@
 [
   {
     "category": "logic",
+    "question": "I have hands but I don't point the way. I have a face but I don't speak. What am I?",
+    "answers": ["clock"]
+  },
+  {
+    "category": "objects",
+    "question": "What has keys but can't open any doors?",
+    "answers": ["piano"]
+  },
+  {
+    "category": "nature",
+    "question": "You see me during the day; at night I disappear. I give light and warmth. What am I?",
+    "answers": ["sun"]
+  },
+  {
+    "category": "animals",
+    "question": "I have four legs in the morning, two at noon and three in the evening. Who am I?",
+    "answers": ["human"]
+  },
+  {
+    "category": "nature",
+    "question": "I have no legs but I travel. I have no mouth but I make a sound. I often touch the shore. What am I?",
+    "answers": ["wave", "sea"]
+  },
+  {
+    "category": "egypt",
+    "question": "I guard the secrets of the desert; I have the body of a lion and the face of a human. Who am I?",
+    "answers": ["sfinga"]
+  },
+  {
+    "category": "egypt",
+    "question": "I am a tall stone structure thousands of years old and keeper of pharaohs' stories. What am I?",
+    "answers": ["pyramid"]
+  },
+  {
+    "category": "island",
+    "question": "I am a long island, not a road. Surrounded by the sea and known for olives, rocks and coves. Who am I?",
+    "answers": ["Dugi Otok"]
+  },
+  {
+    "category": "island",
+    "question": "My name is short, but my maritime story is long. I'm on Dugi Otok and smell of the sea and fishing boats. Which place am I?",
+    "answers": ["Sali"]
+  },
+  {
+    "category": "island",
+    "question": "I have hundreds of rocky islets, the sea surrounds me and I am known for unique beauty. Who am I?",
+    "answers": ["Kornati"]
+  },
+  {
+    "category": "sea",
+    "question": "You cannot hold me in your hand, but I can carry the largest ships. What am I?",
+    "answers": ["sea"]
+  },
+  {
+    "category": "animals",
+    "question": "I carry my house on my back and I never hurry. Who am I?",
+    "answers": ["snail"]
+  },
+  {
+    "category": "humor",
+    "question": "What has teeth but cannot bite?",
+    "answers": ["comb"]
+  },
+  {
+    "category": "logic",
+    "question": "The more you take from me, the bigger I become. What am I?",
+    "answers": ["hole"]
+  },
+  {
+    "category": "nature",
+    "question": "I am white in winter, I fall from the sky and children love me. What am I?",
+    "answers": ["snow"]
+  },
+  {
+    "category": "objects",
+    "question": "I have a neck but no head. I have a body but I don't walk. What am I?",
+    "answers": ["bottle"]
+  },
+  {
+    "category": "science",
+    "question": "You can't see me but you can feel me. I move leaves and sails. What am I?",
+    "answers": ["wind"]
+  },
+  {
+    "category": "animals",
+    "question": "I live in the sea, I have eight arms and I can change color. Who am I?",
+    "answers": ["octopus"]
+  },
+  {
+    "category": "history",
+    "question": "I write without a pen and speak without a voice. I keep the past of people. What am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "egypt",
+    "question": "I run through the desert and for thousands of years I have brought life to people. Who am I?",
+    "answers": ["Nil"]
+  },
+  {
+    "category": "animals",
+    "question": "I have wings but I'm not an airplane. I fly at night and I like the dark. Who am I?",
+    "answers": ["bat"]
+  },
+  {
+    "category": "nature",
+    "question": "I have branches but no arms. I have leaves but I don't read. What am I?",
+    "answers": ["tree"]
+  },
+  {
+    "category": "objects",
+    "question": "What always goes up but never comes down?",
+    "answers": ["age"]
+  },
+  {
+    "category": "logic",
+    "question": "If you have me you want to share me; if you share me you no longer have me. What am I?",
+    "answers": ["secret"]
+  },
+  {
+    "category": "humor",
+    "question": "What has one leg and wears a hat?",
+    "answers": ["mushroom"]
+  },
+  {
+    "category": "sea",
+    "question": "What travels the sea but never gets wet?",
+    "answers": ["shadow"]
+  },
+  {
+    "category": "island",
+    "question": "I was born on an island, the sea is my neighbor and ships bring me stories. What am I?",
+    "answers": ["island"]
+  },
+  {
+    "category": "island",
+    "question": "On the island grows a tree that remembers centuries and produces the Mediterranean's gold. What tree is it?",
+    "answers": ["olive tree"]
+  },
+  {
+    "category": "sea",
+    "question": "What does a sailor see every day but can never catch?",
+    "answers": ["horizon"]
+  },
+  {
+    "category": "egypt",
+    "question": "I wear a crown but I'm not a king. I lived by the Nile and ruled a great kingdom. Who am I?",
+    "answers": ["pharaoh"]
+  },
+  {
+    "category": "history",
+    "question": "I keep the words of people who lived before me. I can be old or new. What am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "science",
+    "question": "You cannot see me, but without me there is no life. What am I?",
+    "answers": ["air"]
+  },
+  {
+    "category": "animals",
+    "question": "I have spines on my back, but I'm not a thorn. Who am I?",
+    "answers": ["hedgehog"]
+  },
+  {
+    "category": "objects",
+    "question": "What has windows but not a house?",
+    "answers": ["computer"]
+  },
+  {
+    "category": "logic",
+    "question": "I have cities but no houses. I have rivers but no water. What am I?",
+    "answers": ["map"]
+  },
+  {
+    "category": "nature",
+    "question": "I appear after rain and I have seven colors. What am I?",
+    "answers": ["rainbow"]
+  },
+  {
+    "category": "humor",
+    "question": "What can fill a room but takes up no space?",
+    "answers": ["light"]
+  },
+  {
+    "category": "sea",
+    "question": "I am a white bird that follows ships. Who am I?",
+    "answers": ["seagull"]
+  },
+  {
+    "category": "history",
+    "question": "I travel through time although I have no legs. I keep people's stories. What am I?",
+    "answers": ["history"]
+  },
+  {
+    "category": "science",
+    "question": "What is lighter than a feather but no one can hold it for long?",
+    "answers": ["breath"]
+  },
+  {
+    "category": "humor",
+    "question": "Which key doesn't open a door?",
+    "answers": ["musical key", "clef"]
+  },
+  {
+    "category": "egypt",
+    "question": "I am thousands of years old, written in pictures and hiding signs in stone. What am I?",
+    "answers": ["hieroglyph", "hieroglyphs"]
+  },
+  {
+    "category": "logic",
+    "question": "I have a head and a tail but no body. What am I?",
+    "answers": ["coin"]
+  },
+  {
+    "category": "logic",
+    "question": "What can you break without touching it?",
+    "answers": ["promise"]
+  },
+  {
+    "category": "logic",
+    "question": "What goes all over the world but stays in a corner?",
+    "answers": ["postage stamp"]
+  },
+  {
+    "category": "objects",
+    "question": "I have pages but I'm not a building. I have a cover but I'm not a door. What am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "logic",
+    "question": "What is yours but others use it more than you?",
+    "answers": ["name"]
+  },
+  {
+    "category": "nature",
+    "question": "I appear in the sky when it gets dark and I disappear at dawn. What am I?",
+    "answers": ["moon"]
+  },
+  {
+    "category": "sea",
+    "question": "I have a tail but I'm not an animal. I carry people across the sea. What am I?",
+    "answers": ["boat"]
+  },
+  {
+    "category": "humor",
+    "question": "What goes up and down but stays in the same place?",
+    "answers": ["stairs"]
+  },
+  {
+    "category": "objects",
+    "question": "I have a screen but I'm not a window. I have memory but I'm not a person. What am I?",
+    "answers": ["computer", "phone"]
+  },
+  {
+    "category": "science",
+    "question": "I drive windmills and sails though you cannot see me. What am I?",
+    "answers": ["wind"]
+  },
+  {
+    "category": "animals",
+    "question": "I can carry a house on my back but I'm not an architect. Who am I?",
+    "answers": ["snail"]
+  },
+  {
+    "category": "nature",
+    "question": "I am born in clouds, fall to the earth and feed the land. What am I?",
+    "answers": ["rain"]
+  },
+  {
+    "category": "humor",
+    "question": "Which fish can write?",
+    "answers": ["cuttlefish", "squid"]
+  },
+  {
+    "category": "egypt",
+    "question": "I guard the desert's peace. My body belongs to a lion and my face to a human. Who am I?",
+    "answers": ["sfinga"]
+  },
+  {
+    "category": "objects",
+    "question": "I have keys but no locks. What am I?",
+    "answers": ["keyboard", "piano"]
+  },
+  {
+    "category": "nature",
+    "question": "I have roots, a trunk and a crown. What am I?",
+    "answers": ["tree"]
+  },
+  {
+    "category": "animals",
+    "question": "I have eight legs and I live in the sea. Who am I?",
+    "answers": ["octopus"]
+  },
+  {
+    "category": "humor",
+    "question": "What has eyes but cannot see?",
+    "answers": ["potato"]
+  },
+  {
+    "category": "objects",
+    "question": "I have one leg and I wear a hat. What am I?",
+    "answers": ["mushroom"]
+  },
+  {
+    "category": "nature",
+    "question": "I reflect your image but I cannot speak. What am I?",
+    "answers": ["mirror"]
+  },
+  {
+    "category": "history",
+    "question": "I keep traces of the past on stone, paper and in stories. What am I?",
+    "answers": ["history"]
+  },
+  {
+    "category": "animals",
+    "question": "I can be the king of the jungle, I have a mane and I am strong. Who am I?",
+    "answers": ["lion"]
+  },
+  {
+    "category": "island",
+    "question": "My coasts face the blue and my olives face the sun. What am I?",
+    "answers": ["a Dalmatian island", "island"]
+  },
+  {
+    "category": "sea",
+    "question": "A sailor follows me but never reaches me. What am I?",
+    "answers": ["horizon"]
+  },
+  {
+    "category": "logic",
+    "question": "If you have me you want to hide me. If you tell me I'm no longer what I am. What am I?",
+    "answers": ["a secret"]
+  },
+  {
+    "category": "humor",
+    "question": "What has four legs in the morning but does not walk?",
+    "answers": ["table"]
+  },
+  {
+    "category": "egypt",
+    "question": "I guarded the bodies of kings and today I am a symbol of an ancient civilization. What am I?",
+    "answers": ["mummy"]
+  },
+  {
+    "category": "sea",
+    "question": "I am white and I fly above the sea, often following ships. Who am I?",
+    "answers": ["seagull"]
+  },
+  {
+    "category": "objects",
+    "question": "I have a screen and show images. I fit into many pockets. What am I?",
+    "answers": ["mobile", "phone"]
+  },
+  {
+    "category": "science",
+    "question": "My greatest friend is invisible; without me life couldn't exist. What am I?",
+    "answers": ["air"]
+  },
+  {
+    "category": "nature",
+    "question": "I am white in winter and I melt in the sun. What am I?",
+    "answers": ["snow"]
+  },
+  {
+    "category": "humor",
+    "question": "What can fill a room but takes up no space?",
+    "answers": ["light"]
+  },
+  {
+    "category": "objects",
+    "question": "I have pages and covers but I'm not a door. What am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "logic",
+    "question": "What belongs to you but others use it more than you do?",
+    "answers": ["your name"]
+  },
+  {
+    "category": "sea",
+    "question": "What has many eyes but cannot see?",
+    "answers": ["a net"]
+  },
+  {
+    "category": "animals",
+    "question": "I have a shell, I walk slowly and I carry my house. Who am I?",
+    "answers": ["turtle"]
+  },
+  {
+    "category": "objects",
+    "question": "What has keys but is not a shirt?",
+    "answers": ["keyboard"]
+  },
+  {
+    "category": "logic",
+    "question": "What can you break with only one word?",
+    "answers": ["a promise"]
+  },
+  {
+    "category": "sea",
+    "question": "I help ships find their way in the night. What am I?",
+    "answers": ["lighthouse"]
+  },
+  {
+    "category": "sea",
+    "question": "I have no wheels, but I travel far. I have no legs, but I cross seas. What am I?",
+    "answers": ["ship"]
+  },
+  {
+    "category": "island",
+    "question": "I have thousands of stone stories, the sea surrounds me and each rock faces the open sea. Who am I?",
+    "answers": ["Kornati"]
+  },
+  {
+    "category": "logic",
+    "question": "What appears once in a minute, twice in a moment, but never in a thousand years?",
+    "answers": ["the letter 'm'"]
+  },
+  {
+    "category": "objects",
+    "question": "I have pages but I don't have legs. What am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "nature",
+    "question": "I appear after a storm and I paint the sky with colors. What am I?",
+    "answers": ["rainbow"]
+  },
+  {
+    "category": "animals",
+    "question": "I sing in the trees during warm evenings. Who am I?",
+    "answers": ["cicada"]
+  },
+  {
+    "category": "humor",
+    "question": "Which fish can write?",
+    "answers": ["cuttlefish"]
+  },
+  {
+    "category": "nature",
+    "question": "I have a face but cannot speak. I show your image. What am I?",
+    "answers": ["mirror"]
+  },
+  {
+    "category": "nature",
+    "question": "I have leaves but I don't live in the city. What am I?",
+    "answers": ["tree"]
+  },
+  {
+    "category": "science",
+    "question": "What has no shape, but everyone needs it for life?",
+    "answers": ["water"]
+  },
+  {
+    "category": "animals",
+    "question": "I have a beak and feathers and often fly over seas. What am I?",
+    "answers": ["bird"]
+  },
+  {
+    "category": "objects",
+    "question": "I have wheels and carry people. What am I?",
+    "answers": ["car"]
+  },
+  {
+    "category": "egypt",
+    "question": "I have been preserved for thousands of years. Once I was a person, now I'm an ancient mystery. What am I?",
+    "answers": ["mummy"]
+  },
+  {
+    "category": "logic",
+    "question": "I have a face and two sides but no body. What am I?",
+    "answers": ["coin"]
+  },
+  {
+    "category": "sea",
+    "question": "What does a sailor see ahead but can never reach?",
+    "answers": ["horizon"]
+  },
+  {
+    "category": "island",
+    "question": "I stand by the sea on Dugi Otok. My streets remember fishermen and my harbors welcome ships. What place am I?",
+    "answers": ["Sali"]
+  },
+  {
+    "category": "sea",
+    "question": "By day I shine; at night I hide. I guide ships but I'm not a star. What am I?",
+    "answers": ["lighthouse"]
+  },
+  {
+    "category": "nature",
+    "question": "I fall from the sky but I never get hurt. What am I?",
+    "answers": ["rain"]
+  },
+  {
+    "category": "science",
+    "question": "You cannot see me but you can feel me. I can be gentle or strong. What am I?",
+    "answers": ["wind"]
+  },
+  {
+    "category": "objects",
+    "question": "I have pages and covers but I am not a door. What am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "logic",
+    "question": "The more you take from me the larger I become. What am I?",
+    "answers": ["hole"]
+  },
+  {
+    "category": "humor",
+    "question": "What has a neck but no head?",
+    "answers": ["bottle"]
+  },
+  {
+    "category": "sea",
+    "question": "I have a tail but I am not an animal. I sail and carry people across waters. What am I?",
+    "answers": ["boat", "ship"]
+  },
+  {
+    "category": "island",
+    "question": "Olive, stone and the sea are my friends. Where am I?",
+    "answers": ["Dalmatia", "island"]
+  },
+  {
+    "category": "logic",
+    "question": "What grows when shared?",
+    "answers": ["knowledge"]
+  },
+  {
+    "category": "nature",
+    "question": "I light the night and disappear at dawn. What am I?",
+    "answers": ["moon"]
+  },
+  {
+    "category": "animals",
+    "question": "I have spines but I'm not a plant. Who am I?",
+    "answers": ["hedgehog"]
+  },
+  {
+    "category": "objects",
+    "question": "I have a screen and can show pictures; I live in pockets. What am I?",
+    "answers": ["mobile", "phone"]
+  },
+  {
+    "category": "sea",
+    "question": "I help ships find their way at night. What am I?",
+    "answers": ["lighthouse"]
+  },
+  {
+    "category": "humor",
+    "question": "What can fill a room but doesn't use space?",
+    "answers": ["light"]
+  },
+  {
+    "category": "nature",
+    "question": "I am white in winter and I melt in the sun. What am I?",
+    "answers": ["snow"]
+  },
+  {
+    "category": "sea",
+    "question": "I can be calm like a mirror or wild like a storm. What am I?",
+    "answers": ["sea"]
+  },
+  {
+    "category": "sea",
+    "question": "I have no legs but I travel to the shore. I have no hands but I embrace the rocks. What am I?",
+    "answers": ["wave"]
+  },
+  {
+    "category": "egypt",
+    "question": "My secrets are written in pictures and people have tried to understand me for centuries. What am I?",
+    "answers": ["hieroglyphs"]
+  },
+  {
+    "category": "nature",
+    "question": "I have roots but I don't drink like a human. I have a crown but no head. What am I?",
+    "answers": ["tree"]
+  },
+  {
+    "category": "animals",
+    "question": "I can carry my house on my back but I'm not an architect. Who am I?",
+    "answers": ["snail"]
+  },
+  {
+    "category": "humor",
+    "question": "What has a neck but no head?",
+    "answers": ["bottle"]
+  },
+  {
+    "category": "objects",
+    "question": "I have keys but no locks. What am I?",
+    "answers": ["keyboard", "piano"]
+  },
+  {
+    "category": "logic",
+    "question": "What can you break without touching it?",
+    "answers": ["promise"]
+  },
+  {
+    "category": "sea",
+    "question": "I have a tail but I'm not an animal. I sail the sea and transport people. What am I?",
+    "answers": ["ship"]
+  },
+  {
+    "category": "island",
+    "question": "I have thousands of stone stories; the sea surrounds me and every rock faces the open sea. Who am I?",
+    "answers": ["Kornati"]
+  },
+  {
+    "category": "logic",
+    "question": "If you have me you want to share me; if you share me you no longer have me. What am I?",
+    "answers": ["secret"]
+  },
+  {
+    "category": "sea",
+    "question": "What has many eyes but cannot see?",
+    "answers": ["net"]
+  },
+  {
+    "category": "nature",
+    "question": "I have a face but I cannot speak. I reflect your image. What am I?",
+    "answers": ["mirror"]
+  },
+  {
+    "category": "history",
+    "question": "I keep events of the past and teach people about what happened. What am I?",
+    "answers": ["history"]
+  },
+  {
+    "category": "animals",
+    "question": "I have eight arms and I'm a clever hunter. Who am I?",
+    "answers": ["octopus"]
+  },
+  {
+    "category": "objects",
+    "question": "I have windows and programs but I'm not a building. What am I?",
+    "answers": ["computer"]
+  },
+  {
+    "category": "sea",
+    "question": "I am a white bird by the sea and I often follow ships. Who am I?",
+    "answers": ["seagull"]
+  },
+  {
+    "category": "nature",
+    "question": "I have leaves that rustle in the wind. What am I?",
+    "answers": ["tree"]
+  },
+  {
+    "category": "humor",
+    "question": "What has teeth but does not eat?",
+    "answers": ["comb"]
+  },
+  {
+    "category": "history",
+    "question": "I write without a pen and speak without a voice. I keep the past of people. What am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "egypt",
+    "question": "I am a guardian of the desert and I pose riddles to travelers. I have a lion's body and a human head. Who am I?",
+    "answers": ["sfinga"]
+  },
+  {
+    "category": "objects",
+    "question": "I have buttons but I am not clothing. What am I?",
+    "answers": ["keyboard", "piano"]
+  },
+  {
+    "category": "nature",
+    "question": "I have roots, a trunk and a crown. What am I?",
+    "answers": ["tree"]
+  },
+  {
+    "category": "animals",
+    "question": "I have eight legs and I live in the sea. Who am I?",
+    "answers": ["octopus"]
+  },
+  {
+    "category": "humor",
+    "question": "What has eyes but cannot see?",
+    "answers": ["potato"]
+  },
+  {
+    "category": "objects",
+    "question": "I have one leg and I wear a hat. What am I?",
+    "answers": ["mushroom"]
+  },
+  {
+    "category": "logic",
+    "question": "What grows when shared?",
+    "answers": ["knowledge"]
+  },
+  {
+    "category": "nature",
+    "question": "I have a face but I cannot speak; I return your likeness. What am I?",
+    "answers": ["mirror"]
+  },
+  {
+    "category": "egypt",
+    "question": "I flow through the desert and bring life to the land. Who am I?",
+    "answers": ["Nil"]
+  },
+  {
+    "category": "history",
+    "question": "I keep traces of the past in stone, on paper and in stories. What am I?",
+    "answers": ["history"]
+  },
+  {
+    "category": "animals",
+    "question": "I can be king of the jungle; I have a mane and I'm powerful. Who am I?",
+    "answers": ["lion"]
+  },
+  {
+    "category": "island",
+    "question": "My coasts meet the blue sea and my olive trees face the sun. What am I?",
+    "answers": ["a Dalmatian island", "island"]
+  },
+  {
+    "category": "sea",
+    "question": "A sailor sees me every day but never reaches me. What am I?",
+    "answers": ["horizon"]
+  },
+  {
+    "category": "logic",
+    "question": "If you have me you want to hide me; if you tell me I'm no longer what I am. What am I?",
+    "answers": ["a secret"]
+  },
+  {
+    "category": "humor",
+    "question": "What has four legs in the morning but doesn't walk?",
+    "answers": ["table"]
+  },
+  {
+    "category": "egypt",
+    "question": "I guarded royal bodies and today I stand as a symbol of an ancient civilization. What am I?",
+    "answers": ["mummy"]
+  },
+  {
+    "category": "sea",
+    "question": "I am white and fly above the sea and often follow ships. Who am I?",
+    "answers": ["seagull"]
+  },
+  {
+    "category": "objects",
+    "question": "I have a screen that shows images. I fit into a pocket. What am I?",
+    "answers": ["phone", "mobile"]
+  },
+  {
+    "category": "science",
+    "question": "An invisible friend that makes life possible. What am I?",
+    "answers": ["air"]
+  },
+  {
+    "category": "nature",
+    "question": "I am white in winter and melt under the sun. What am I?",
+    "answers": ["snow"]
+  },
+  {
+    "category": "humor",
+    "question": "What can fill a room without taking up space?",
+    "answers": ["light"]
+  },
+  {
+    "category": "objects",
+    "question": "I have pages and covers but I am not a door. What am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "logic",
+    "question": "What is yours but others use it more than you?",
+    "answers": ["name"]
+  },
+  {
+    "category": "sea",
+    "question": "What has many eyes but cannot see?",
+    "answers": ["net"]
+  },
+  {
+    "category": "animals",
+    "question": "I carry my house on my back and move slowly. Who am I?",
+    "answers": ["turtle", "snail"]
+  },
+  {
+    "category": "objects",
+    "question": "What has keys but is not an article of clothing?",
+    "answers": ["keyboard"]
+  },
+  {
+    "category": "logic",
+    "question": "What can you break with just one word?",
+    "answers": ["a promise"]
+  },
+  {
+    "category": "sea",
+    "question": "I help ships find their way at night. What am I?",
+    "answers": ["lighthouse"]
+  },
+  {
+    "category": "sea",
+    "question": "I have no wheels yet travel far; I have no legs yet cross the seas. What am I?",
+    "answers": ["ship", "boat"]
+  },
+  {
+    "category": "island",
+    "question": "I have thousands of stone stories and the sea surrounds me; every rock faces the open sea. Who am I?",
+    "answers": ["Kornati"]
+  },
+  {
+    "category": "logic",
+    "question": "What appears once in a minute, twice in a moment, but never in a thousand years?",
+    "answers": ["the letter 'm'"]
+  },
+  {
+    "category": "objects",
+    "question": "I have pages but I do not have legs. What am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "nature",
+    "question": "I appear after a storm and paint the sky with colors. What am I?",
+    "answers": ["rainbow"]
+  },
+  {
+    "category": "animals",
+    "question": "I sing in the trees on warm evenings. What am I?",
+    "answers": ["cicada", "bird"]
+  },
+  {
+    "category": "humor",
+    "question": "Which fish can write?",
+    "answers": ["cuttlefish", "squid"]
+  },
+  {
+    "category": "nature",
+    "question": "I have a face but cannot speak; I return your image. What am I?",
+    "answers": ["mirror"]
+  },
+  {
+    "category": "nature",
+    "question": "I have leaves but I don't live in the city. What am I?",
+    "answers": ["tree"]
+  },
+  {
+    "category": "science",
+    "question": "What has no fixed shape but is essential for life?",
+    "answers": ["water"]
+  },
+  {
+    "category": "animals",
+    "question": "I have a beak, feathers and often fly above the seas. Who am I?",
+    "answers": ["bird"]
+  },
+  {
+    "category": "objects",
+    "question": "I have wheels and carry people. What am I?",
+    "answers": ["car"]
+  },
+  {
+    "category": "egypt",
+    "question": "Preserved for thousands of years; once human, now an ancient mystery. What am I?",
+    "answers": ["mummy"]
+  },
+  {
+    "category": "logic",
+    "question": "I have a face and two sides but no body. What am I?",
+    "answers": ["coin"]
+  },
+  {
+    "category": "sea",
+    "question": "What lies ahead of a sailor but can never be reached?",
+    "answers": ["horizon"]
+  },
+  {
+    "category": "island",
+    "question": "I stand by the sea on Dugi Otok; my streets remember fishermen and my harbours welcome ships. What place am I?",
+    "answers": ["Sali"]
+  },
+  {
+    "category": "sea",
+    "question": "By day I shine, at night I hide; I guide ships but I am not a star. What am I?",
+    "answers": ["lighthouse"]
+  },
+  {
+    "category": "nature",
+    "question": "I fall from the sky but never get hurt. What am I?",
+    "answers": ["rain"]
+  },
+  {
+    "category": "science",
+    "question": "Invisible but felt; I can be soft or strong. What am I?",
+    "answers": ["wind"]
+  },
+  {
+    "category": "objects",
+    "question": "I have pages and covers. What am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "logic",
+    "question": "The more you take from me, the larger I become. What am I?",
+    "answers": ["hole"]
+  },
+  {
+    "category": "humor",
+    "question": "What has a neck but no head?",
+    "answers": ["bottle"]
+  },
+  {
+    "category": "sea",
+    "question": "I have a tail but I'm not an animal; I sail the sea and carry people. What am I?",
+    "answers": ["boat", "ship"]
+  },
+  {
+    "category": "island",
+    "question": "Olive, stone and sea are my friends — where am I?",
+    "answers": ["Dalmatia", "island"]
+  },
+  {
+    "category": "logic",
+    "question": "What increases when you share it?",
+    "answers": ["knowledge"]
+  },
+  {
+    "category": "nature",
+    "question": "I glow at night and vanish at dawn. What am I?",
+    "answers": ["moon"]
+  },
+  {
+    "category": "animals",
+    "question": "I have spines but I'm not a plant. Who am I?",
+    "answers": ["hedgehog"]
+  },
+  {
+    "category": "objects",
+    "question": "I have a screen and I show pictures; I live in many pockets. What am I?",
+    "answers": ["phone"]
+  },
+  {
+    "category": "sea",
+    "question": "I help ships find their path at night. What am I?",
+    "answers": ["lighthouse"]
+  },
+  {
+    "category": "humor",
+    "question": "What can fill a room but take up no space?",
+    "answers": ["light"]
+  },
+  {
+    "category": "nature",
+    "question": "I am white in winter and melt in the sun. What am I?",
+    "answers": ["snow"]
+  },
+  {
+    "category": "sea",
+    "question": "I can be as calm as a mirror or as wild as a storm. What am I?",
+    "answers": ["sea"]
+  },
+  {
+    "category": "sea",
+    "question": "I have no legs but I travel to the shore; I have no arms but I embrace the rocks. What am I?",
+    "answers": ["wave"]
+  },
+  {
+    "category": "egypt",
+    "question": "My secrets are carved in pictures; scholars have studied me for centuries. What am I?",
+    "answers": ["hieroglyphs"]
+  },
+  {
+    "category": "nature",
+    "question": "I have roots but I don't drink like a person. I have a crown but no head. What am I?",
+    "answers": ["tree"]
+  },
+  {
+    "category": "animals",
+    "question": "I carry my house on my back and move slowly. Who am I?",
+    "answers": ["snail", "turtle"]
+  },
+  {
+    "category": "humor",
+    "question": "What has a neck but no head?",
+    "answers": ["bottle"]
+  },
+  {
+    "category": "objects",
+    "question": "I have keys but no locks. What am I?",
+    "answers": ["keyboard", "piano"]
+  },
+  {
+    "category": "logic",
+    "question": "What can you break without touching it?",
+    "answers": ["promise"]
+  },
+  {
+    "category": "sea",
+    "question": "I have a tail but I am not an animal; I carry people across water. What am I?",
+    "answers": ["ship", "boat"]
+  },
+  {
+    "category": "island",
+    "question": "I have many stony stories and the sea around me; who am I?",
+    "answers": ["Kornati"]
+  },
+  {
+    "category": "logic",
+    "question": "If you have me you want to share me; if you share me you no longer have me. What am I?",
+    "answers": ["secret"]
+  },
+  {
+    "category": "sea",
+    "question": "What has many eyes but cannot see?",
+    "answers": ["net"]
+  },
+  {
+    "category": "nature",
+    "question": "I have a face but I cannot speak. I reflect your image. What am I?",
+    "answers": ["mirror"]
+  },
+  {
+    "category": "history",
+    "question": "I keep stories of the past and teach people about what happened. What am I?",
+    "answers": ["history"]
+  },
+  {
+    "category": "animals",
+    "question": "A clever hunter with eight arms — who am I?",
+    "answers": ["octopus"]
+  },
+  {
+    "category": "objects",
+    "question": "I have windows and programs but I am not a building. What am I?",
+    "answers": ["computer"]
+  },
+  {
+    "category": "sea",
+    "question": "A white bird often seen near ships — who am I?",
+    "answers": ["seagull"]
+  },
+  {
+    "category": "nature",
+    "question": "I have leaves that whisper in the wind. What am I?",
+    "answers": ["tree"]
+  },
+  {
+    "category": "humor",
+    "question": "What has teeth but does not eat?",
+    "answers": ["comb"]
+  },
+  {
+    "category": "history",
+    "question": "I write without a pen and speak without a voice; I keep the past of people. What am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "egypt",
+    "question": "I am not a mountain but I have a peak; not a house but I have chambers. Made of stone, who am I?",
+    "answers": ["pyramid"]
+  },
+  {
+    "category": "logic",
     "question": "What has one eye but cannot see?",
     "answers": ["needle"]
   },
@@ -11,1343 +1071,123 @@
   },
   {
     "category": "sea",
-    "question": "What can cross an ocean while staying in the same place?",
+    "question": "What can cross the ocean while staying in the same place?",
     "answers": ["map"]
   },
   {
     "category": "island",
-    "question": "I am a long island in the Adriatic Sea, known for nature, olives and the village of Sali. Who am I?",
-    "answers": ["Dugi Otok", "dugi otok"]
-  },
-  {
-    "category": "island",
-    "question": "I am a small place on Dugi Otok, famous for fishermen and the sea. Who am I?",
-    "answers": ["Sali", "sali"]
-  },
-  {
-    "category": "sea",
-    "question": "I have no legs but I dance. I have no voice but I sing near the shore. What am I?",
-    "answers": ["wave"]
-  },
-  {
-    "category": "egypt",
-    "question": "I guard the desert. I have a lion's body and a human face. Who am I?",
-    "answers": ["sphinx"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am a giant stone structure built by pharaohs. What am I?",
-    "answers": ["pyramid"]
-  },
-  {
-    "category": "animals",
-    "question": "I carry my house on my back. Who am I?",
-    "answers": ["snail"]
-  },
-  {
-    "category": "nature",
-    "question": "I can show your face but I have no eyes. What am I?",
-    "answers": ["mirror"]
-  },
-  {
-    "category": "logic",
-    "question": "The more you take away from me, the bigger I become. What am I?",
-    "answers": ["hole"]
-  },
-  {
-    "category": "objects",
-    "question": "I have teeth but I cannot eat. What am I?",
-    "answers": ["comb"]
-  },
-  {
-    "category": "animals",
-    "question": "I live in the sea and have eight arms. Who am I?",
-    "answers": ["octopus"]
-  },
-  {
-    "category": "sea",
-    "question": "I am a white bird that follows ships. Who am I?",
-    "answers": ["seagull"]
-  },
-  {
-    "category": "island",
-    "question": "I have olive trees, stones and the sea around me. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "nature",
-    "question": "I fall from the sky but never get hurt. What am I?",
-    "answers": ["rain"]
-  },
-  {
-    "category": "science",
-    "question": "You cannot see me, but you can feel me. What am I?",
-    "answers": ["wind"]
-  },
-  {
-    "category": "objects",
-    "question": "I have pages and a cover but I am not a door. What am I?",
-    "answers": ["book"]
-  },
-  {
-    "category": "logic",
-    "question": "What belongs to you but other people use it more often?",
-    "answers": ["name"]
-  },
-  {
-    "category": "animals",
-    "question": "I sleep during the day and fly at night. Who am I?",
-    "answers": ["bat"]
-  },
-  {
-    "category": "sea",
-    "question": "I travel across the sea without legs. What am I?",
-    "answers": ["boat", "ship"]
-  },
-  {
-    "category": "island",
-    "question": "I am surrounded by water but I am not a fish. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "egypt",
-    "question": "I brought life to the desert of Egypt. What am I?",
-    "answers": ["Nile", "river Nile"]
-  },
-  {
-    "category": "egypt",
-    "question": "Ancient Egyptians used me as written symbols. What am I?",
-    "answers": ["hieroglyph", "hieroglyphs"]
-  },
-  {
-    "category": "egypt",
-    "question": "I was the ruler of ancient Egypt. Who am I?",
-    "answers": ["pharaoh"]
-  },
-  {
-    "category": "nature",
-    "question": "I have roots, branches and a crown. What am I?",
-    "answers": ["tree"]
-  },
-  {
-    "category": "nature",
-    "question": "I appear after rain and have many colors. What am I?",
-    "answers": ["rainbow"]
-  },
-  {
-    "category": "animals",
-    "question": "I have a shell and move slowly. Who am I?",
-    "answers": ["turtle"]
-  },
-  {
-    "category": "humor",
-    "question": "What has a neck but no head?",
-    "answers": ["bottle"]
-  },
-  {
-    "category": "objects",
-    "question": "I have keys but I cannot open doors. What am I?",
-    "answers": ["piano"]
-  },
-  {
-    "category": "science",
-    "question": "You cannot live without me, but you cannot see me. What am I?",
-    "answers": ["oxygen", "air"]
-  },
-  {
-    "category": "sea",
-    "question": "I show sailors the way at night. What am I?",
-    "answers": ["lighthouse"]
-  },
-  {
-    "category": "island",
-    "question": "I am home to olives, fishermen and the sound of waves. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "logic",
-    "question": "What can be broken without touching it?",
-    "answers": ["promise"]
-  },
-  {
-    "category": "humor",
-    "question": "What has an ear but cannot hear?",
-    "answers": ["cup"]
-  },
-  {
-    "category": "history",
-    "question": "I tell stories of the past. What am I?",
-    "answers": ["history"]
-  },
-  {
-    "category": "science",
-    "question": "I keep planets moving around me. What am I?",
-    "answers": ["gravity"]
-  },
-  {
-    "category": "objects",
-    "question": "I have a screen and many people carry me in their pocket. What am I?",
-    "answers": ["phone", "mobile phone"]
-  },
-  {
-    "category": "sea",
-    "question": "I can be calm like glass or angry like a storm. What am I?",
-    "answers": ["sea"]
-  },
-  {
-    "category": "egypt",
-    "question": "I protected the secrets of kings after death. What am I?",
-    "answers": ["mummy"]
-  },
-  {
-    "category": "animals",
-    "question": "I have eight legs and live in the sea. Who am I?",
-    "answers": ["octopus"]
-  },
-  {
-    "category": "logic",
-    "question": "What always comes but never arrives?",
-    "answers": ["tomorrow"]
-  },
-  {
-    "category": "nature",
-    "question": "I shine at night but I am not a lamp. What am I?",
-    "answers": ["star"]
-  },
-  {
-    "category": "sea",
-    "question": "Sailors follow me but never reach me. What am I?",
-    "answers": ["horizon"]
-  },
-  {
-    "category": "objects",
-    "question": "I measure time but I cannot walk. What am I?",
-    "answers": ["clock"]
-  },
-  {
-    "category": "island",
-    "question": "I am land surrounded by water. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "egypt",
-    "question": "I stand in the desert and watch travelers pass. Who am I?",
-    "answers": ["sphinx"]
-  },
-  {
-    "category": "logic",
-    "question": "What gets wetter the more it dries?",
-    "answers": ["towel"]
-  },
-  {
-    "category": "logic",
-    "question": "What has many holes but can still hold water?",
-    "answers": ["sponge"]
-  },
-  {
-    "category": "logic",
-    "question": "What can you catch but not throw?",
-    "answers": ["cold"]
-  },
-  {
-    "category": "logic",
-    "question": "What has a beginning and an end but no middle?",
-    "answers": ["letter"]
-  },
-  {
-    "category": "logic",
-    "question": "What goes up but never comes down?",
-    "answers": ["age"]
-  },
-  {
-    "category": "sea",
-    "question": "I rise and fall but never leave my place. What am I?",
-    "answers": ["tide"]
-  },
-  {
-    "category": "sea",
-    "question": "I have a bed but never sleep. What am I?",
-    "answers": ["river"]
-  },
-  {
-    "category": "sea",
-    "question": "I have waves but no hands. What am I?",
-    "answers": ["sea"]
-  },
-  {
-    "category": "island",
-    "question": "I am surrounded by blue, but I am not the sky. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "island",
-    "question": "I have beaches but no sand inside me. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "island",
-    "question": "My name means I am long. I am in the Adriatic Sea. What am I?",
+    "question": "A long Adriatic island known for nature, olives and Sali. What am I?",
     "answers": ["Dugi Otok"]
   },
   {
     "category": "island",
-    "question": "A famous village on Dugi Otok where fishermen keep traditions alive. What is it?",
+    "question": "My name is short but my maritime history is long. I am on Dugi Otok. What place am I?",
     "answers": ["Sali"]
   },
   {
     "category": "island",
-    "question": "A protected nature area on Dugi Otok with cliffs and a salt lake. What is it?",
-    "answers": ["Telašćica"]
-  },
-  {
-    "category": "island",
-    "question": "A group of islands famous for stone, sea and beauty near Dugi Otok. What are they?",
-    "answers": ["Kornati"]
-  },
-  {
-    "category": "nature",
-    "question": "I have branches but no hands. I have leaves but no book. What am I?",
-    "answers": ["tree"]
-  },
-  {
-    "category": "nature",
-    "question": "I disappear when the sun comes up. What am I?",
-    "answers": ["shadow"]
-  },
-  {
-    "category": "nature",
-    "question": "I am born in clouds and return to the earth. What am I?",
-    "answers": ["rain"]
-  },
-  {
-    "category": "nature",
-    "question": "I have colors but no paintbrush. What am I?",
-    "answers": ["rainbow"]
-  },
-  {
-    "category": "nature",
-    "question": "I move without legs and whisper through trees. What am I?",
-    "answers": ["wind"]
-  },
-  {
-    "category": "animals",
-    "question": "I make honey and live in a hive. Who am I?",
-    "answers": ["bee"]
-  },
-  {
-    "category": "animals",
-    "question": "I am slow and carry my home. Who am I?",
-    "answers": ["snail"]
-  },
-  {
-    "category": "animals",
-    "question": "I have stripes and run fast. Who am I?",
-    "answers": ["zebra"]
-  },
-  {
-    "category": "animals",
-    "question": "I am the king of the jungle. Who am I?",
-    "answers": ["lion"]
-  },
-  {
-    "category": "animals",
-    "question": "I change colors to hide. Who am I?",
-    "answers": ["chameleon"]
-  },
-  {
-    "category": "animals",
-    "question": "I have a trunk and big ears. Who am I?",
-    "answers": ["elephant"]
-  },
-  {
-    "category": "egypt",
-    "question": "I was built from stone and point toward the sky. What am I?",
-    "answers": ["pyramid"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am a symbol of eternal life in ancient Egypt. What am I?",
-    "answers": ["ankh"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am the writing of ancient Egypt. What am I?",
-    "answers": ["hieroglyphs"]
-  },
-  {
-    "category": "egypt",
-    "question": "I ruled Egypt and lived in great palaces. Who am I?",
-    "answers": ["pharaoh"]
-  },
-  {
-    "category": "egypt",
-    "question": "I carry water through the desert. What am I?",
-    "answers": ["Nile"]
-  },
-  {
-    "category": "objects",
-    "question": "I have teeth and remove knots from hair. What am I?",
-    "answers": ["comb"]
-  },
-  {
-    "category": "objects",
-    "question": "I have wheels but I am not a bicycle. What am I?",
-    "answers": ["car"]
-  },
-  {
-    "category": "objects",
-    "question": "I have pages but I am not a tree. What am I?",
-    "answers": ["book"]
-  },
-  {
-    "category": "objects",
-    "question": "I have a face and hands but no arms. What am I?",
-    "answers": ["clock"]
-  },
-  {
-    "category": "objects",
-    "question": "I show your reflection but I cannot smile. What am I?",
-    "answers": ["mirror"]
-  },
-  {
-    "category": "humor",
-    "question": "Why did the computer go to the doctor?",
-    "answers": ["it had a virus"]
-  },
-  {
-    "category": "humor",
-    "question": "What kind of room has no doors or windows?",
-    "answers": ["mushroom"]
-  },
-  {
-    "category": "humor",
-    "question": "Why don't fish use computers?",
-    "answers": ["they are afraid of the net"]
-  },
-  {
-    "category": "humor",
-    "question": "What has a head and a tail but no body?",
-    "answers": ["coin"]
-  },
-  {
-    "category": "science",
-    "question": "I keep you on the ground. What am I?",
-    "answers": ["gravity"]
-  },
-  {
-    "category": "science",
-    "question": "I give Earth light and warmth. What am I?",
-    "answers": ["sun"]
-  },
-  {
-    "category": "science",
-    "question": "I can be solid, liquid or gas. What am I?",
-    "answers": ["water"]
-  },
-  {
-    "category": "science",
-    "question": "You breathe me but cannot see me. What am I?",
-    "answers": ["air"]
-  },
-  {
-    "category": "history",
-    "question": "I preserve stories and objects from the past. What am I?",
-    "answers": ["museum"]
-  },
-  {
-    "category": "history",
-    "question": "I tell what happened before today. What am I?",
-    "answers": ["history"]
-  },
-  {
-    "category": "history",
-    "question": "Archaeologists search for me underground. What am I?",
-    "answers": ["artifact"]
-  },
-  {
-    "category": "sea",
-    "question": "I guide ships safely through darkness. What am I?",
-    "answers": ["lighthouse"]
+    "question": "On me grow olive trees, the sea surrounds me and stone is my friend. What am I?",
+    "answers": ["island"]
   },
   {
     "category": "logic",
-    "question": "What can travel around the world while staying in one corner?",
-    "answers": ["stamp"]
+    "question": "The more you take from me, the bigger I become. What am I?",
+    "answers": ["hole"]
   },
   {
-    "category": "logic",
-    "question": "What has cities, rivers and mountains but no houses, water or trees?",
-    "answers": ["map"]
-  },
-  {
-    "category": "logic",
-    "question": "What becomes smaller when it gets older?",
-    "answers": ["candle"]
-  },
-  {
-    "category": "logic",
+    "category": "humor",
     "question": "What has a neck but no head?",
     "answers": ["bottle"]
   },
   {
-    "category": "logic",
-    "question": "What has a thumb and four fingers but is not alive?",
-    "answers": ["glove"]
-  },
-  {
-    "category": "sea",
-    "question": "I am salty, deep and full of life. What am I?",
-    "answers": ["sea"]
-  },
-  {
-    "category": "sea",
-    "question": "I move boats but have no hands. What am I?",
-    "answers": ["water"]
-  },
-  {
-    "category": "sea",
-    "question": "I touch the shore but never walk on land. What am I?",
-    "answers": ["wave"]
-  },
-  {
-    "category": "sea",
-    "question": "I am the line where the sea seems to meet the sky. What am I?",
-    "answers": ["horizon"]
-  },
-  {
-    "category": "sea",
-    "question": "I can be calm or stormy. What am I?",
-    "answers": ["sea"]
-  },
-  {
-    "category": "island",
-    "question": "I have no roads to other lands, only water around me. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "island",
-    "question": "I keep secrets in caves and bays. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "island",
-    "question": "I am home to olive trees and fishermen. What am I?",
-    "answers": ["Adriatic island"]
-  },
-  {
-    "category": "island",
-    "question": "My cliffs look over the Adriatic Sea and my name means 'long island'. Who am I?",
-    "answers": ["Dugi Otok"]
-  },
-  {
-    "category": "island",
-    "question": "My village Sali is known for fishermen and tradition. What island am I on?",
-    "answers": ["Dugi Otok"]
-  },
-  {
-    "category": "nature",
-    "question": "I fall but I never get tired. What am I?",
-    "answers": ["rain"]
-  },
-  {
-    "category": "nature",
-    "question": "I have no mouth but I can roar. What am I?",
-    "answers": ["storm"]
-  },
-  {
-    "category": "nature",
-    "question": "I can be seen after rain and have many colors. What am I?",
-    "answers": ["rainbow"]
-  },
-  {
-    "category": "nature",
-    "question": "I grow from the ground and reach toward the sky. What am I?",
-    "answers": ["tree"]
-  },
-  {
-    "category": "nature",
-    "question": "I disappear when darkness comes. What am I?",
-    "answers": ["shadow"]
-  },
-  {
     "category": "animals",
-    "question": "I have wings but I am not a bird. I make honey. Who am I?",
-    "answers": ["bee"]
-  },
-  {
-    "category": "animals",
-    "question": "I live in water and have many arms. Who am I?",
+    "question": "I have eight legs and I live in the sea. Who am I?",
     "answers": ["octopus"]
   },
   {
-    "category": "animals",
-    "question": "I am white, I fly near the sea and I follow ships. Who am I?",
+    "category": "sea",
+    "question": "I am a white bird that often follows ships. Who am I?",
     "answers": ["seagull"]
   },
   {
-    "category": "animals",
-    "question": "I carry my house and leave a shiny path behind me. Who am I?",
-    "answers": ["snail"]
-  },
-  {
-    "category": "animals",
-    "question": "I have a long neck and eat leaves from tall trees. Who am I?",
-    "answers": ["giraffe"]
-  },
-  {
-    "category": "egypt",
-    "question": "I was built for kings who wanted eternity. What am I?",
-    "answers": ["pyramid"]
-  },
-  {
-    "category": "egypt",
-    "question": "I have the body of a lion and the face of a human. Who am I?",
-    "answers": ["sphinx"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am a river that made the desert bloom. What am I?",
-    "answers": ["Nile"]
-  },
-  {
-    "category": "egypt",
-    "question": "I was used to write in ancient Egypt. What am I?",
-    "answers": ["papyrus"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am a symbol that represents life forever. What am I?",
-    "answers": ["ankh"]
-  },
-  {
-    "category": "objects",
-    "question": "I open when it rains but I am not a flower. What am I?",
-    "answers": ["umbrella"]
-  },
-  {
-    "category": "objects",
-    "question": "I have keys but no locks. What am I?",
-    "answers": ["keyboard"]
-  },
-  {
-    "category": "objects",
-    "question": "I can take pictures but I cannot remember them. What am I?",
-    "answers": ["camera"]
-  },
-  {
-    "category": "objects",
-    "question": "I have wheels and carry people on roads. What am I?",
-    "answers": ["car"]
-  },
-  {
-    "category": "objects",
-    "question": "I tell stories but I cannot speak. What am I?",
-    "answers": ["book"]
+    "category": "island",
+    "question": "My shores meet the blue and my olives face the sun. Where am I?",
+    "answers": ["island", "Dalmatia"]
   },
   {
     "category": "humor",
-    "question": "What has a head and a tail but no body?",
-    "answers": ["coin"]
+    "question": "What has teeth but doesn't eat?",
+    "answers": ["comb"]
   },
   {
-    "category": "humor",
-    "question": "What has four legs but cannot walk?",
-    "answers": ["table"]
-  },
-  {
-    "category": "humor",
-    "question": "What kind of tree can you carry in your hand?",
-    "answers": ["palm"]
-  },
-  {
-    "category": "humor",
-    "question": "What has ears but cannot hear?",
-    "answers": ["corn"]
+    "category": "objects",
+    "question": "I have a screen and can show images. I live in many pockets. What am I?",
+    "answers": ["phone", "mobile"]
   },
   {
     "category": "science",
-    "question": "I am invisible but I fill your lungs. What am I?",
+    "question": "You cannot see me, but without me life cannot exist. What am I?",
     "answers": ["air"]
   },
   {
-    "category": "science",
-    "question": "I pull everything toward the ground. What am I?",
-    "answers": ["gravity"]
+    "category": "nature",
+    "question": "White in winter, I melt under the sun. What am I?",
+    "answers": ["snow"]
   },
   {
-    "category": "science",
-    "question": "I am a giant ball of fire in space. What am I?",
-    "answers": ["sun"]
-  },
-  {
-    "category": "science",
-    "question": "I change from ice to water and then to vapor. What am I?",
-    "answers": ["water"]
-  },
-  {
-    "category": "history",
-    "question": "I keep ancient treasures safe for visitors. What am I?",
-    "answers": ["museum"]
-  },
-  {
-    "category": "history",
-    "question": "I am the study of people and events from long ago. What am I?",
-    "answers": ["history"]
-  },
-  {
-    "category": "history",
-    "question": "I am a clue left behind by people from the past. What am I?",
-    "answers": ["artifact"]
-  },
-  {
-    "category": "history",
-    "question": "I connect the past with the present. What am I?",
-    "answers": ["heritage"]
-  },
-  {
-    "category": "logic",
-    "question": "What has an eye but cannot see, and lives in the sea?",
-    "answers": ["needlefish"]
-  },
-  {
-    "category": "logic",
-    "question": "What has a face and two hands but no arms or legs?",
-    "answers": ["clock"]
-  },
-  {
-    "category": "logic",
-    "question": "What can you hold without using your hands?",
-    "answers": ["breath"]
-  },
-  {
-    "category": "logic",
-    "question": "What goes through towns and over hills but never moves?",
-    "answers": ["road"]
-  },
-  {
-    "category": "logic",
-    "question": "What has many words but never speaks?",
-    "answers": ["dictionary"]
-  },
-  {
-    "category": "logic",
+    "category": "humor",
     "question": "What can fill a room but takes up no space?",
     "answers": ["light"]
   },
   {
-    "category": "sea",
-    "question": "I have no voice, but sailors listen to me. What am I?",
-    "answers": ["wind"]
-  },
-  {
-    "category": "sea",
-    "question": "I can be gentle or powerful and I shape the coast. What am I?",
-    "answers": ["sea"]
-  },
-  {
-    "category": "sea",
-    "question": "I have a shore but no feet. What am I?",
-    "answers": ["sea"]
-  },
-  {
-    "category": "sea",
-    "question": "I dance under the moon and touch the sand. What am I?",
-    "answers": ["wave"]
-  },
-  {
-    "category": "sea",
-    "question": "I am a road for ships without asphalt. What am I?",
-    "answers": ["sea"]
-  },
-  {
-    "category": "island",
-    "question": "I am a piece of land surrounded by water. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "island",
-    "question": "My forests, stones and beaches tell stories of centuries. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "island",
-    "question": "I have no neighbors connected by roads. Who am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "island",
-    "question": "I am long, beautiful and located in Croatia. Who am I?",
-    "answers": ["Dugi Otok"]
-  },
-  {
-    "category": "island",
-    "question": "I am a village where fishermen and tradition meet. Who am I?",
-    "answers": ["Sali"]
-  },
-  {
-    "category": "nature",
-    "question": "I have roots underground and branches in the sky. What am I?",
-    "answers": ["tree"]
-  },
-  {
-    "category": "nature",
-    "question": "I can be heard but never seen. What am I?",
-    "answers": ["sound"]
-  },
-  {
-    "category": "nature",
-    "question": "I follow you during the day but disappear at night. What am I?",
-    "answers": ["shadow"]
-  },
-  {
-    "category": "nature",
-    "question": "I am born from clouds and fall to Earth. What am I?",
-    "answers": ["rain"]
-  },
-  {
-    "category": "nature",
-    "question": "I have no wings but I fly across the sky. What am I?",
-    "answers": ["cloud"]
-  },
-  {
-    "category": "animals",
-    "question": "I am small, I work together, and I build colonies. Who am I?",
-    "answers": ["ant"]
-  },
-  {
-    "category": "animals",
-    "question": "I sleep upside down and fly at night. Who am I?",
-    "answers": ["bat"]
-  },
-  {
-    "category": "animals",
-    "question": "I have a shell and live in the sea. Who am I?",
-    "answers": ["sea turtle"]
-  },
-  {
-    "category": "animals",
-    "question": "I have eight legs and hide in rocks. Who am I?",
-    "answers": ["octopus"]
-  },
-  {
-    "category": "animals",
-    "question": "I sing without words on summer evenings. Who am I?",
-    "answers": ["cicada"]
-  },
-  {
-    "category": "egypt",
-    "question": "I stand near the pyramids and guard ancient secrets. Who am I?",
-    "answers": ["sphinx"]
-  },
-  {
-    "category": "egypt",
-    "question": "I was a ruler wearing a crown beside the Nile. Who am I?",
-    "answers": ["pharaoh"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am a symbol of eternal life in ancient Egypt. What am I?",
-    "answers": ["ankh"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am a picture used as writing by ancient Egyptians. What am I?",
-    "answers": ["hieroglyph"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am a giant tomb made of stone. What am I?",
-    "answers": ["pyramid"]
-  },
-  {
     "category": "objects",
-    "question": "I protect you from rain but I am not a roof. What am I?",
-    "answers": ["umbrella"]
-  },
-  {
-    "category": "objects",
-    "question": "I have letters but I am not a book. What am I?",
-    "answers": ["keyboard"]
-  },
-  {
-    "category": "objects",
-    "question": "I can open and close but I am not a door. What am I?",
-    "answers": ["eye"]
-  },
-  {
-    "category": "objects",
-    "question": "I have a handle but I am not a door. What am I?",
-    "answers": ["cup"]
-  },
-  {
-    "category": "objects",
-    "question": "I can show the world but I am not a window. What am I?",
-    "answers": ["screen"]
-  },
-  {
-    "category": "humor",
-    "question": "Why did the bicycle fall over?",
-    "answers": ["because it was two tired"]
-  },
-  {
-    "category": "humor",
-    "question": "What has four wheels and flies?",
-    "answers": ["garbage truck"]
-  },
-  {
-    "category": "humor",
-    "question": "Why did the tomato turn red?",
-    "answers": ["because it saw the salad dressing"]
-  },
-  {
-    "category": "humor",
-    "question": "What animal is always late?",
-    "answers": ["snail"]
-  },
-  {
-    "category": "humor",
-    "question": "What room has no doors or windows?",
-    "answers": ["mushroom"]
-  },
-  {
-    "category": "science",
-    "question": "I am invisible but necessary for breathing. What am I?",
-    "answers": ["oxygen"]
-  },
-  {
-    "category": "science",
-    "question": "I am the force that keeps planets in orbit. What am I?",
-    "answers": ["gravity"]
-  },
-  {
-    "category": "science",
-    "question": "I am the center of our solar system. What am I?",
-    "answers": ["sun"]
-  },
-  {
-    "category": "science",
-    "question": "I cover most of Earth and contain life. What am I?",
-    "answers": ["water"]
-  },
-  {
-    "category": "history",
-    "question": "I protect old objects and stories. What am I?",
-    "answers": ["museum"]
-  },
-  {
-    "category": "history",
-    "question": "I tell stories from thousands of years ago. What am I?",
-    "answers": ["history"]
-  },
-  {
-    "category": "history",
-    "question": "I am a message left by people from the past. What am I?",
-    "answers": ["inscription"]
-  },
-  {
-    "category": "history",
-    "question": "I help us understand ancient civilizations. What am I?",
-    "answers": ["archaeology"]
-  },
-  {
-    "category": "logic",
-    "question": "What can you see once in a minute, twice in a moment, but never in a thousand years?",
-    "answers": ["letter m"]
-  },
-  {
-    "category": "logic",
-    "question": "What has many keys but cannot open a single lock?",
-    "answers": ["piano"]
-  },
-  {
-    "category": "logic",
-    "question": "What has a head and a tail but no body?",
-    "answers": ["coin"]
-  },
-  {
-    "category": "logic",
-    "question": "What has a bed but never sleeps?",
-    "answers": ["river"]
-  },
-  {
-    "category": "logic",
-    "question": "What can you break without touching it?",
-    "answers": ["promise"]
-  },
-  {
-    "category": "logic",
-    "question": "What has a neck but no head?",
-    "answers": ["bottle"]
-  },
-  {
-    "category": "sea",
-    "question": "I am home to fish, ships and waves. What am I?",
-    "answers": ["sea"]
-  },
-  {
-    "category": "sea",
-    "question": "I have no feet but I run along the shore. What am I?",
-    "answers": ["wave"]
-  },
-  {
-    "category": "sea",
-    "question": "I guide sailors with my light. What am I?",
-    "answers": ["lighthouse"]
-  },
-  {
-    "category": "sea",
-    "question": "I am blue, deep and full of mysteries. What am I?",
-    "answers": ["ocean"]
-  },
-  {
-    "category": "sea",
-    "question": "I rise before a storm and calm after it passes. What am I?",
-    "answers": ["waves"]
-  },
-  {
-    "category": "island",
-    "question": "I have beaches, forests and villages, but no roads to the mainland. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "island",
-    "question": "I am surrounded by water and touched by sunlight. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "island",
-    "question": "I am a Croatian island famous for Sali and Telašćica. Who am I?",
-    "answers": ["Dugi Otok"]
-  },
-  {
-    "category": "island",
-    "question": "I am a protected bay and nature park on Dugi Otok. What am I?",
-    "answers": ["Telašćica"]
-  },
-  {
-    "category": "island",
-    "question": "I am a traditional fishing village on Dugi Otok. What am I?",
-    "answers": ["Sali"]
-  },
-  {
-    "category": "nature",
-    "question": "I have roots but cannot move. I give shade in summer. What am I?",
-    "answers": ["tree"]
-  },
-  {
-    "category": "nature",
-    "question": "I have colors after rain but no paint. What am I?",
-    "answers": ["rainbow"]
-  },
-  {
-    "category": "nature",
-    "question": "I fly without wings and cry without eyes. What am I?",
-    "answers": ["cloud"]
-  },
-  {
-    "category": "nature",
-    "question": "I can be frozen, liquid or invisible. What am I?",
-    "answers": ["water"]
-  },
-  {
-    "category": "nature",
-    "question": "I whisper through trees but have no mouth. What am I?",
-    "answers": ["wind"]
-  },
-  {
-    "category": "animals",
-    "question": "I am a bird that lives near the sea and loves ships. Who am I?",
-    "answers": ["seagull"]
-  },
-  {
-    "category": "animals",
-    "question": "I have a hard shell and move slowly. Who am I?",
-    "answers": ["turtle"]
-  },
-  {
-    "category": "animals",
-    "question": "I live in the sea and have claws. Who am I?",
-    "answers": ["crab"]
-  },
-  {
-    "category": "animals",
-    "question": "I am small, I make honey and live in groups. Who am I?",
-    "answers": ["bee"]
-  },
-  {
-    "category": "animals",
-    "question": "I am the largest animal on Earth. Who am I?",
-    "answers": ["blue whale"]
-  },
-  {
-    "category": "egypt",
-    "question": "I have the body of a lion and the face of a human. Who am I?",
-    "answers": ["sphinx"]
-  },
-  {
-    "category": "egypt",
-    "question": "I was built by ancient Egyptians and still stand today. What am I?",
-    "answers": ["pyramid"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am the river that made Egypt possible. What am I?",
-    "answers": ["Nile"]
-  },
-  {
-    "category": "egypt",
-    "question": "I was the ruler of ancient Egypt. Who am I?",
-    "answers": ["pharaoh"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am a symbol of life in ancient Egypt. What am I?",
-    "answers": ["ankh"]
-  },
-  {
-    "category": "objects",
-    "question": "I have numbers and hands but no fingers. What am I?",
-    "answers": ["clock"]
-  },
-  {
-    "category": "objects",
-    "question": "I can hold water but I am full of holes. What am I?",
-    "answers": ["sponge"]
-  },
-  {
-    "category": "objects",
-    "question": "I have pages and contain knowledge. What am I?",
+    "question": "I have pages and covers, but I'm not a door. What am I?",
     "answers": ["book"]
   },
   {
+    "category": "logic",
+    "question": "What belongs to you but others use it more than you do?",
+    "answers": ["name"]
+  },
+  {
+    "category": "sea",
+    "question": "What has many eyes but cannot see?",
+    "answers": ["net"]
+  },
+  {
+    "category": "animals",
+    "question": "I have a shell, I move slowly and I carry my home. Who am I?",
+    "answers": ["turtle"]
+  },
+  {
     "category": "objects",
-    "question": "I show your reflection. What am I?",
-    "answers": ["mirror"]
-  },
-  {
-    "category": "objects",
-    "question": "I have wheels and move people from place to place. What am I?",
-    "answers": ["car"]
-  },
-  {
-    "category": "humor",
-    "question": "Why did the computer sneeze?",
-    "answers": ["it had a virus"]
-  },
-  {
-    "category": "humor",
-    "question": "What do you call a sleeping bull?",
-    "answers": ["bulldozer"]
-  },
-  {
-    "category": "humor",
-    "question": "Why was the math book sad?",
-    "answers": ["it had too many problems"]
-  },
-  {
-    "category": "humor",
-    "question": "What has a bottom at the top?",
-    "answers": ["leg"]
-  },
-  {
-    "category": "humor",
-    "question": "What is orange and sounds like a parrot?",
-    "answers": ["carrot"]
-  },
-  {
-    "category": "science",
-    "question": "I pull objects toward Earth. What am I?",
-    "answers": ["gravity"]
-  },
-  {
-    "category": "science",
-    "question": "I give energy to plants. What am I?",
-    "answers": ["sunlight"]
-  },
-  {
-    "category": "science",
-    "question": "I am the gas humans need to live. What am I?",
-    "answers": ["oxygen"]
-  },
-  {
-    "category": "science",
-    "question": "I cover most of our planet. What am I?",
-    "answers": ["water"]
-  },
-  {
-    "category": "history",
-    "question": "I protect ancient objects for people to see. What am I?",
-    "answers": ["museum"]
-  },
-  {
-    "category": "history",
-    "question": "I study ancient people and their remains. What am I?",
-    "answers": ["archaeology"]
-  },
-  {
-    "category": "history",
-    "question": "I am a story from the past. What am I?",
-    "answers": ["history"]
-  },
-  {
-    "category": "history",
-    "question": "I am a mark carved into stone from long ago. What am I?",
-    "answers": ["inscription"]
+    "question": "What has keys but is not clothing?",
+    "answers": ["keyboard"]
   },
   {
     "category": "logic",
-    "question": "What has four legs in the morning, two legs at noon and three legs in the evening?",
-    "answers": ["human", "man"]
-  },
-  {
-    "category": "logic",
-    "question": "What gets bigger the more you remove from it?",
-    "answers": ["hole"]
-  },
-  {
-    "category": "logic",
-    "question": "What has no life but can die?",
-    "answers": ["battery"]
-  },
-  {
-    "category": "logic",
-    "question": "What is always in front of you but cannot be seen?",
-    "answers": ["future"]
-  },
-  {
-    "category": "logic",
-    "question": "What disappears as soon as you say its name?",
-    "answers": ["silence"]
+    "question": "What can you break with a single word?",
+    "answers": ["a promise"]
   },
   {
     "category": "sea",
-    "question": "I have tides but no heartbeat. What am I?",
-    "answers": ["sea"]
-  },
-  {
-    "category": "sea",
-    "question": "I carry ships but have no hands. What am I?",
-    "answers": ["water"]
-  },
-  {
-    "category": "sea",
-    "question": "I am a road for sailors but have no pavement. What am I?",
-    "answers": ["sea"]
-  },
-  {
-    "category": "sea",
-    "question": "I shine at night and help ships find land. What am I?",
+    "question": "I help ships find their way at night. What am I?",
     "answers": ["lighthouse"]
   },
   {
     "category": "sea",
-    "question": "I touch the beach but never step on it. What am I?",
-    "answers": ["wave"]
+    "question": "I have no wheels but travel far; I have no legs but cross the seas. What am I?",
+    "answers": ["ship", "boat"]
   },
   {
     "category": "island",
-    "question": "I am land surrounded by water and full of stories. What am I?",
-    "answers": ["island"]
+    "question": "I have thousands of rocky stories; the sea surrounds me and every rock faces the open sea. Who am I?",
+    "answers": ["Kornati"]
   },
   {
-    "category": "island",
-    "question": "I have hidden bays, old stones and olive trees. What am I?",
-    "answers": ["island"]
-  },
-  {
-    "category": "island",
-    "question": "I am a Croatian island famous for Telašćica Nature Park. Who am I?",
-    "answers": ["Dugi Otok"]
-  },
-  {
-    "category": "island",
-    "question": "I am a place on Dugi Otok where the sea and tradition meet. Who am I?",
-    "answers": ["Sali"]
-  },
-  {
-    "category": "island",
-    "question": "I am protected by cliffs and the Adriatic Sea. What am I?",
-    "answers": ["Telašćica"]
-  },
-  {
-    "category": "nature",
-    "question": "I have no wings but I can fly. What am I?",
-    "answers": ["cloud"]
-  },
-  {
-    "category": "nature",
-    "question": "I have no mouth but I can roar. What am I?",
-    "answers": ["waterfall"]
-  },
-  {
-    "category": "nature",
-    "question": "I fall from the sky and help plants grow. What am I?",
-    "answers": ["rain"]
-  },
-  {
-    "category": "nature",
-    "question": "I am colorful and appear after rain. What am I?",
-    "answers": ["rainbow"]
-  },
-  {
-    "category": "nature",
-    "question": "I can be felt but not seen. What am I?",
-    "answers": ["wind"]
-  },
-  {
-    "category": "animals",
-    "question": "I am known as man's best friend. Who am I?",
-    "answers": ["dog"]
-  },
-  {
-    "category": "animals",
-    "question": "I have whiskers and like to chase mice. Who am I?",
-    "answers": ["cat"]
-  },
-  {
-    "category": "animals",
-    "question": "I am slow and carry my home. Who am I?",
-    "answers": ["snail"]
-  },
-  {
-    "category": "animals",
-    "question": "I can change colors to hide. Who am I?",
-    "answers": ["chameleon"]
-  },
-  {
-    "category": "animals",
-    "question": "I live in the ocean and have eight arms. Who am I?",
-    "answers": ["octopus"]
-  },
-  {
-    "category": "egypt",
-    "question": "I ask riddles and guard the entrance. Who am I?",
-    "answers": ["sphinx"]
-  },
-  {
-    "category": "egypt",
-    "question": "I was the home of ancient kings. What am I?",
-    "answers": ["palace"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am a famous ancient Egyptian symbol of life. What am I?",
-    "answers": ["ankh"]
-  },
-  {
-    "category": "egypt",
-    "question": "I was written on walls thousands of years ago. What am I?",
-    "answers": ["hieroglyphs"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am a giant monument built in the desert. What am I?",
-    "answers": ["pyramid"]
-  },
-  {
-    "category": "objects",
-    "question": "I have a screen and can connect people. What am I?",
-    "answers": ["phone"]
+    "category": "logic",
+    "question": "What appears once in a minute, twice in a moment, but never in a thousand years?",
+    "answers": ["the letter 'm'"]
   },
   {
     "category": "objects",
@@ -1355,328 +1195,283 @@
     "answers": ["book"]
   },
   {
-    "category": "objects",
-    "question": "I have teeth but cannot bite. What am I?",
-    "answers": ["comb"]
+    "category": "nature",
+    "question": "I appear after a storm and color the sky. What am I?",
+    "answers": ["rainbow"]
   },
   {
-    "category": "objects",
-    "question": "I have hands but cannot clap. What am I?",
-    "answers": ["clock"]
-  },
-  {
-    "category": "objects",
-    "question": "I protect you from the rain. What am I?",
-    "answers": ["umbrella"]
+    "category": "animals",
+    "question": "I sing in the trees in warm evenings. Who am I?",
+    "answers": ["cicada", "bird"]
   },
   {
     "category": "humor",
-    "question": "Why did the banana go to the doctor?",
-    "answers": ["because it was not peeling well"]
-  },
-  {
-    "category": "humor",
-    "question": "What do you call cheese that is not yours?",
-    "answers": ["nacho cheese"]
-  },
-  {
-    "category": "humor",
-    "question": "Why did the chicken join the band?",
-    "answers": ["because it had the drumsticks"]
-  },
-  {
-    "category": "humor",
-    "question": "Why don't skeletons fight each other?",
-    "answers": ["they have no guts"]
-  },
-  {
-    "category": "humor",
-    "question": "What kind of music do balloons hate?",
-    "answers": ["pop music"]
-  },
-  {
-    "category": "science",
-    "question": "What force keeps us on the ground?",
-    "answers": ["gravity"]
-  },
-  {
-    "category": "science",
-    "question": "What star is closest to Earth?",
-    "answers": ["Sun", "sun"]
-  },
-  {
-    "category": "science",
-    "question": "What gas do plants use?",
-    "answers": ["carbon dioxide"]
-  },
-  {
-    "category": "science",
-    "question": "What do humans need to breathe?",
-    "answers": ["oxygen"]
-  },
-  {
-    "category": "history",
-    "question": "Where can you see objects from ancient times?",
-    "answers": ["museum"]
-  },
-  {
-    "category": "history",
-    "question": "What tells us about people who lived before us?",
-    "answers": ["history"]
-  },
-  {
-    "category": "history",
-    "question": "What do archaeologists discover?",
-    "answers": ["artifacts"]
-  },
-  {
-    "category": "history",
-    "question": "What connects us with the past?",
-    "answers": ["heritage"]
-  },
-  {
-    "category": "sphinx",
-    "question": "I sit in the desert and ask questions without speaking. Who am I?",
-    "answers": ["sphinx"]
-  },
-  {
-    "category": "sphinx",
-    "question": "I have a lion's body and a human face. Who am I?",
-    "answers": ["sphinx"]
-  },
-  {
-    "category": "sphinx",
-    "question": "Travelers fear my question, but wise people solve it. Who am I?",
-    "answers": ["sphinx"]
-  },
-  {
-    "category": "logic",
-    "question": "What belongs to you but is used more by others?",
-    "answers": ["your name", "name"]
-  },
-  {
-    "category": "logic",
-    "question": "What can be seen once in a year, twice in a week and never in a day?",
-    "answers": ["letter e"]
-  },
-  {
-    "category": "logic",
-    "question": "What has a ring but no finger?",
-    "answers": ["telephone"]
-  },
-  {
-    "category": "logic",
-    "question": "What goes around the world but stays in a corner?",
-    "answers": ["stamp"]
-  },
-  {
-    "category": "logic",
-    "question": "What has a bottom at the top?",
-    "answers": ["leg"]
+    "question": "Which fish can write?",
+    "answers": ["cuttlefish", "squid"]
   },
   {
     "category": "nature",
-    "question": "I am born in the sky and die on the ground. What am I?",
-    "answers": ["rain"]
+    "question": "I have a face but cannot speak. I return your image. What am I?",
+    "answers": ["mirror"]
   },
   {
     "category": "nature",
-    "question": "I have a golden face and give warmth to Earth. What am I?",
-    "answers": ["sun"]
-  },
-  {
-    "category": "nature",
-    "question": "I disappear when you turn on the light. What am I?",
-    "answers": ["darkness"]
-  },
-  {
-    "category": "nature",
-    "question": "I have no bones but I can break trees. What am I?",
-    "answers": ["wind"]
-  },
-  {
-    "category": "nature",
-    "question": "I am silent but I can tell stories through rings. What am I?",
+    "question": "I have leaves but I don't live in the city. What am I?",
     "answers": ["tree"]
   },
   {
-    "category": "sea",
-    "question": "I have waves, fish and secrets beneath my surface. What am I?",
-    "answers": ["ocean"]
+    "category": "science",
+    "question": "What has no fixed shape but everyone needs it to live?",
+    "answers": ["water"]
+  },
+  {
+    "category": "animals",
+    "question": "I have a beak and feathers and often fly over the sea. What am I?",
+    "answers": ["bird"]
+  },
+  {
+    "category": "objects",
+    "question": "I have wheels and carry people. What am I?",
+    "answers": ["car"]
+  },
+  {
+    "category": "egypt",
+    "question": "I have been preserved for thousands of years. Once a person, now an ancient mystery. What am I?",
+    "answers": ["mummy"]
+  },
+  {
+    "category": "logic",
+    "question": "I have a face and two sides but no body. What am I?",
+    "answers": ["coin"]
   },
   {
     "category": "sea",
-    "question": "I guide ships safely home. What am I?",
+    "question": "What does a sailor see ahead but never reach?",
+    "answers": ["horizon"]
+  },
+  {
+    "category": "island",
+    "question": "I stand by the sea on Dugi Otok; my streets remember fishermen and my harbors welcome ships. Which place am I?",
+    "answers": ["Sali"]
+  },
+  {
+    "category": "sea",
+    "question": "By day I shine and at night I hide. I guide ships but I am not a star. What am I?",
     "answers": ["lighthouse"]
   },
   {
+    "category": "nature",
+    "question": "I fall from the sky but I never get hurt. What am I?",
+    "answers": ["rain"]
+  },
+  {
+    "category": "science",
+    "question": "You can't see me but you can feel me. I can be gentle or strong. What am I?",
+    "answers": ["wind"]
+  },
+  {
+    "category": "objects",
+    "question": "I have pages and covers; what am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "logic",
+    "question": "The more you take from me, the larger I become. What am I?",
+    "answers": ["hole"]
+  },
+  {
+    "category": "humor",
+    "question": "What has a neck but no head?",
+    "answers": ["bottle"]
+  },
+  {
     "category": "sea",
-    "question": "I am a mirror for the sky but I am not glass. What am I?",
+    "question": "I have a tail but I'm not an animal. I sail and carry people. What am I?",
+    "answers": ["boat", "ship"]
+  },
+  {
+    "category": "island",
+    "question": "Olive, stone and the sea are my friends. Where am I?",
+    "answers": ["Dalmatia", "island"]
+  },
+  {
+    "category": "logic",
+    "question": "What grows when shared?",
+    "answers": ["knowledge"]
+  },
+  {
+    "category": "nature",
+    "question": "I glow at night and disappear at dawn. What am I?",
+    "answers": ["moon"]
+  },
+  {
+    "category": "animals",
+    "question": "I have spines but I'm not a plant. Who am I?",
+    "answers": ["hedgehog"]
+  },
+  {
+    "category": "objects",
+    "question": "I have a screen and show pictures; I live in pockets. What am I?",
+    "answers": ["phone", "mobile"]
+  },
+  {
+    "category": "sea",
+    "question": "I help ships find their way. What am I?",
+    "answers": ["lighthouse"]
+  },
+  {
+    "category": "humor",
+    "question": "What can fill a room but takes up no space?",
+    "answers": ["light"]
+  },
+  {
+    "category": "nature",
+    "question": "I am white in winter and melt in the sun. What am I?",
+    "answers": ["snow"]
+  },
+  {
+    "category": "sea",
+    "question": "I can be calm as a mirror or wild as a storm. What am I?",
     "answers": ["sea"]
   },
   {
     "category": "sea",
-    "question": "I move constantly but never leave the sea. What am I?",
+    "question": "I have no legs but I come to the shore; I have no hands but I embrace the rocks. What am I?",
     "answers": ["wave"]
   },
   {
-    "category": "island",
-    "question": "I am surrounded by water and visited by travelers. What am I?",
-    "answers": ["island"]
+    "category": "egypt",
+    "question": "My secrets are carved in pictures; people have tried to decode me for centuries. What am I?",
+    "answers": ["hieroglyphs"]
+  },
+  {
+    "category": "nature",
+    "question": "I have roots but I don't drink like a person, I have a crown but no head. What am I?",
+    "answers": ["tree"]
+  },
+  {
+    "category": "animals",
+    "question": "I carry my house on my back and move slowly. Who am I?",
+    "answers": ["snail", "turtle"]
+  },
+  {
+    "category": "humor",
+    "question": "What has a neck but no head?",
+    "answers": ["bottle"]
+  },
+  {
+    "category": "objects",
+    "question": "I have keys but no locks. What am I?",
+    "answers": ["keyboard"]
+  },
+  {
+    "category": "logic",
+    "question": "What can you break without touching it?",
+    "answers": ["promise"]
+  },
+  {
+    "category": "sea",
+    "question": "I have a tail but I'm not an animal; I transport people across water. What am I?",
+    "answers": ["ship", "boat"]
   },
   {
     "category": "island",
-    "question": "I have olive trees, stone houses and the sound of the sea. What am I?",
-    "answers": ["Adriatic island"]
+    "question": "I have many stone stories and the sea around me; who am I?",
+    "answers": ["Kornati"]
+  },
+  {
+    "category": "logic",
+    "question": "If you have me you want to hide me; if you tell me I'm no longer what I am. What am I?",
+    "answers": ["secret"]
+  },
+  {
+    "category": "sea",
+    "question": "What has many eyes but cannot see?",
+    "answers": ["net"]
+  },
+  {
+    "category": "nature",
+    "question": "I have a face but cannot speak. I reflect your image. What am I?",
+    "answers": ["mirror"]
+  },
+  {
+    "category": "history",
+    "question": "I keep events of the past and teach people about what happened. What am I?",
+    "answers": ["history"]
+  },
+  {
+    "category": "animals",
+    "question": "I have eight arms and I'm clever at catching prey. Who am I?",
+    "answers": ["octopus"]
+  },
+  {
+    "category": "objects",
+    "question": "I have windows and programs but I'm not a building. What am I?",
+    "answers": ["computer"]
+  },
+  {
+    "category": "sea",
+    "question": "A white bird seen near ships — who am I?",
+    "answers": ["seagull"]
+  },
+  {
+    "category": "nature",
+    "question": "I have leaves that whisper in the wind. What am I?",
+    "answers": ["tree"]
+  },
+  {
+    "category": "humor",
+    "question": "What has teeth but doesn't eat?",
+    "answers": ["comb"]
+  },
+  {
+    "category": "history",
+    "question": "I write without a pen and keep the past of people. What am I?",
+    "answers": ["book"]
+  },
+  {
+    "category": "egypt",
+    "question": "I am not a mountain but I have a peak; not a house but I have chambers. Made of stone — what am I?",
+    "answers": ["pyramid"]
+  },
+  {
+    "category": "logic",
+    "question": "What has one eye but cannot see?",
+    "answers": ["needle"]
+  },
+  {
+    "category": "objects",
+    "question": "I have hands but I cannot hug. I have a face but cannot speak. What am I?",
+    "answers": ["clock"]
+  },
+  {
+    "category": "sea",
+    "question": "What can cross the ocean while staying in the same place?",
+    "answers": ["map"]
   },
   {
     "category": "island",
-    "question": "I am a Croatian island known for Sali and Telašćica. Who am I?",
+    "question": "A long island in the Adriatic known for nature, olives and Sali. What am I?",
     "answers": ["Dugi Otok"]
   },
   {
     "category": "island",
-    "question": "I protect nature with cliffs and a salt lake. What am I?",
-    "answers": ["Telašćica"]
-  },
-  {
-    "category": "island",
-    "question": "I am a traditional village where fishermen celebrate the sea. What am I?",
+    "question": "My name is short but my maritime history is long. I am on Dugi Otok. What place am I?",
     "answers": ["Sali"]
   },
   {
-    "category": "animals",
-    "question": "I have black and white stripes. Who am I?",
-    "answers": ["zebra"]
-  },
-  {
-    "category": "animals",
-    "question": "I am big, gray and have a trunk. Who am I?",
-    "answers": ["elephant"]
-  },
-  {
-    "category": "animals",
-    "question": "I live in the sea and have a hard shell. Who am I?",
-    "answers": ["turtle"]
-  },
-  {
-    "category": "animals",
-    "question": "I can fly and see in the dark. Who am I?",
-    "answers": ["bat"]
-  },
-  {
-    "category": "animals",
-    "question": "I am a bird that brings messages in stories. Who am I?",
-    "answers": ["pigeon"]
+    "category": "sea",
+    "question": "I have no legs but I dance; I have no voice but I sing by the shore. What am I?",
+    "answers": ["wave"]
   },
   {
     "category": "egypt",
-    "question": "I flow through Egypt and bring life to the desert. What am I?",
-    "answers": ["Nile"]
+    "question": "I guard the desert entrance and ask travelers riddles. I have the body of a lion and the head of a human. Who am I?",
+    "answers": ["sfinga"]
   },
   {
     "category": "egypt",
-    "question": "I was a ruler of ancient Egypt. Who am I?",
-    "answers": ["pharaoh"]
-  },
-  {
-    "category": "egypt",
-    "question": "I was a giant tomb for kings. What am I?",
+    "question": "A large stone structure from the pharaohs' time with a triangular shape. What am I?",
     "answers": ["pyramid"]
-  },
-  {
-    "category": "egypt",
-    "question": "I protect ancient secrets beside the pyramids. Who am I?",
-    "answers": ["sphinx"]
-  },
-  {
-    "category": "egypt",
-    "question": "I am ancient Egyptian writing. What am I?",
-    "answers": ["hieroglyphs"]
-  },
-  {
-    "category": "objects",
-    "question": "I have keys, space and letters. What am I?",
-    "answers": ["keyboard"]
-  },
-  {
-    "category": "objects",
-    "question": "I can show your face but I cannot smile. What am I?",
-    "answers": ["mirror"]
-  },
-  {
-    "category": "objects",
-    "question": "I have pages but no voice. What am I?",
-    "answers": ["book"]
-  },
-  {
-    "category": "objects",
-    "question": "I tell time but never move. What am I?",
-    "answers": ["clock"]
-  },
-  {
-    "category": "objects",
-    "question": "I protect you from sunlight and rain. What am I?",
-    "answers": ["umbrella"]
-  },
-  {
-    "category": "science",
-    "question": "I am the center of our solar system. What am I?",
-    "answers": ["Sun", "sun"]
-  },
-  {
-    "category": "science",
-    "question": "I keep the Moon around Earth. What am I?",
-    "answers": ["gravity"]
-  },
-  {
-    "category": "science",
-    "question": "I am needed for fire and breathing. What am I?",
-    "answers": ["oxygen"]
-  },
-  {
-    "category": "science",
-    "question": "I can freeze, flow and evaporate. What am I?",
-    "answers": ["water"]
-  },
-  {
-    "category": "history",
-    "question": "I preserve ancient treasures. What am I?",
-    "answers": ["museum"]
-  },
-  {
-    "category": "history",
-    "question": "I explain events from the past. What am I?",
-    "answers": ["history"]
-  },
-  {
-    "category": "history",
-    "question": "I am a discovery from ancient people. What am I?",
-    "answers": ["artifact"]
-  },
-  {
-    "category": "final",
-    "question": "I cannot be bought, but I can be gained. I guide people through life. What am I?",
-    "answers": ["knowledge"]
-  },
-  {
-    "category": "final",
-    "question": "The more you share me, the more I grow. What am I?",
-    "answers": ["knowledge"]
-  },
-  {
-    "category": "final",
-    "question": "I open doors without keys. What am I?",
-    "answers": ["knowledge"]
-  },
-  {
-    "category": "final",
-    "question": "I am the treasure that no thief can steal. What am I?",
-    "answers": ["knowledge"]
-  },
-  {
-    "category": "final",
-    "question": "A wise person collects me every day. What am I?",
-    "answers": ["knowledge"]
   }
-  ]
+]
