@@ -1,4 +1,4 @@
-// script.js — UI texts switch for HR/EN + logic unchanged
+// script.js — ispravljeno: koristi engleska pitanja kada su dostupna
 
 let language = "hr";
 let riddles_hr = [];
@@ -8,11 +8,8 @@ let isLoaded = false;
 
 const $ = id => document.getElementById(id);
 
-/* Update all UI text elements according to selected language */
 function updateUIText() {
-  // set html lang attribute
   try { document.documentElement.lang = (language === "en" ? "en" : "hr"); } catch(e){}
-
   const appTitle = $("appTitle");
   const subtitle = $("subtitle");
   const languageBoxTitle = $("languageBoxTitle");
@@ -52,7 +49,6 @@ function updateUIText() {
   }
 }
 
-/* Start game */
 function startGame(lang) {
   language = lang || language;
   try { localStorage.setItem("language", language); } catch (e) {}
@@ -71,7 +67,6 @@ function startGame(lang) {
   });
 }
 
-/* Loading UI */
 function setLoading(loading) {
   const res = $("result");
   const checkBtn = $("checkBtn");
@@ -88,7 +83,6 @@ function setLoading(loading) {
   }
 }
 
-/* Load both HR and EN JSONs; EN may fallback to HR answers if missing */
 async function loadRiddles() {
   isLoaded = false;
   const pathHr = `./data/riddles_hr.json`;
@@ -97,7 +91,7 @@ async function loadRiddles() {
   try {
     const [respHr, respEn] = await Promise.all([fetch(pathHr), fetch(pathEn)]);
     if (!respHr.ok) throw new Error(`Failed to load ${pathHr} (${respHr.status})`);
-    if (!respEn.ok) console.warn(`Warning: ${pathEn} returned ${respEn.status}. English answers will fallback to HR.`);
+    if (!respEn.ok) console.warn(`Warning: ${pathEn} returned ${respEn.status}. English entries will fallback to HR.`);
 
     const dataHr = await respHr.json();
     let dataEn = [];
@@ -133,9 +127,8 @@ async function loadRiddles() {
   }
 }
 
-/* Show daily riddle — question comes from HR list so texts are identical for HR/EN */
 function showDailyRiddle() {
-  updateUIText(); // ensure UI text matches selected language
+  updateUIText();
 
   if (!isLoaded || riddles_hr.length === 0) {
     const rEl = $("riddle");
@@ -149,8 +142,15 @@ function showDailyRiddle() {
   const day = Math.floor(diff / 86400000);
   const index = (day - 1) % riddles_hr.length;
 
-  const questionText = riddles_hr[index].question || "";
+  // QUESTION selection: use EN question if language==='en' and EN question exists at same index
+  let questionText = riddles_hr[index].question || "";
+  if (language === "en") {
+    if (riddles_en[index] && riddles_en[index].question && riddles_en[index].question.trim().length) {
+      questionText = riddles_en[index].question;
+    } // else keep HR question as fallback
+  }
 
+  // ANSWERS selection: prefer language-specific answers, fallback if missing
   let answersForLang = [];
   if (language === "hr") {
     answersForLang = riddles_hr[index].answers || [];
@@ -184,7 +184,6 @@ function showDailyRiddle() {
   if (title) title.innerHTML = language === "hr" ? "🏺 Sfingina zagonetka dana" : "🏺 Sphinx riddle of the day";
 }
 
-/* Check answer; show language-specific messages (including responsibility warning on wrong answer) */
 function checkAnswer() {
   if (!isLoaded || !currentRiddle) return;
 
@@ -219,7 +218,6 @@ function checkAnswer() {
   }
 }
 
-/* Visitor counter */
 function updateVisitors() {
   const counterUrl = (window.SPHINX_CONFIG && window.SPHINX_CONFIG.counterApiUrl) || "https://api.counterapi.dev/v1/sfingin-izazov/visits/up";
   fetch(counterUrl)
@@ -236,7 +234,6 @@ function updateVisitors() {
     });
 }
 
-/* Enter-to-submit */
 (function attachEnter() {
   document.addEventListener("keydown", function (e) {
     const target = e.target;
@@ -249,21 +246,13 @@ function updateVisitors() {
   });
 }());
 
-/* On load: restore language if set and update UI texts */
 window.onload = function () {
   try {
     const saved = localStorage.getItem("language");
-    if (saved) {
-      language = saved;
-    }
-  } catch (e) {
-    console.error("LocalStorage error:", e);
-  }
+    if (saved) language = saved;
+  } catch (e) { console.error("LocalStorage error:", e); }
   updateUIText();
-  // auto-start if language already chosen previously
   try {
-    if (localStorage.getItem("language")) {
-      startGame(language);
-    }
+    if (localStorage.getItem("language")) startGame(language);
   } catch (e) {}
 };
