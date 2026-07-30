@@ -1,4 +1,4 @@
-// script.js — ažurirana verzija: ista pitanja za HR/EN, jezično-specifični odgovori, poruka o odgovornosti
+// script.js — UI texts switch for HR/EN + logic unchanged
 
 let language = "hr";
 let riddles_hr = [];
@@ -8,10 +8,56 @@ let isLoaded = false;
 
 const $ = id => document.getElementById(id);
 
-// Pokretanje igre (poziva se iz index.html)
+/* Update all UI text elements according to selected language */
+function updateUIText() {
+  // set html lang attribute
+  try { document.documentElement.lang = (language === "en" ? "en" : "hr"); } catch(e){}
+
+  const appTitle = $("appTitle");
+  const subtitle = $("subtitle");
+  const languageBoxTitle = $("languageBoxTitle");
+  const btnHR = $("btnHR");
+  const btnEN = $("btnEN");
+  const visitorLabel = $("visitorLabel");
+  const answerEl = $("answer");
+  const checkBtn = $("checkBtn");
+  const dayTitle = $("dayTitle");
+  const pageTitle = $("pageTitle");
+  const footerText = $("footerText");
+
+  if (language === "en") {
+    if (pageTitle) pageTitle.textContent = "The Sphinx's Riddle";
+    if (appTitle) appTitle.textContent = "𓂀 The Sphinx's Riddle";
+    if (subtitle) subtitle.textContent = "Solve the riddle and discover the secret entrance";
+    if (languageBoxTitle) languageBoxTitle.textContent = "Choose language";
+    if (btnHR) btnHR.textContent = "🇭🇷 Croatian";
+    if (btnEN) btnEN.textContent = "🇬🇧 English";
+    if (visitorLabel) visitorLabel.textContent = "visitors today";
+    if (answerEl) answerEl.placeholder = "Type your answer";
+    if (checkBtn) checkBtn.textContent = "Check answer";
+    if (dayTitle) dayTitle.textContent = "🏺 Sphinx riddle of the day";
+    if (footerText) footerText.innerHTML = "𓆣  Only the wise pass the Sphinx 𓆣";
+  } else {
+    if (pageTitle) pageTitle.textContent = "Sfingin izazov";
+    if (appTitle) appTitle.textContent = "𓂀 Sfingin izazov";
+    if (subtitle) subtitle.textContent = "Riješi zagonetku i otkrij tajnu ulaza";
+    if (languageBoxTitle) languageBoxTitle.textContent = "Odaberi jezik";
+    if (btnHR) btnHR.textContent = "🇭🇷 Hrvatski";
+    if (btnEN) btnEN.textContent = "🇬🇧 English";
+    if (visitorLabel) visitorLabel.textContent = "posjetitelja danas";
+    if (answerEl) answerEl.placeholder = "Upiši odgovor";
+    if (checkBtn) checkBtn.textContent = "Provjeri odgovor";
+    if (dayTitle) dayTitle.textContent = "🏺 Sfingina zagonetka dana";
+    if (footerText) footerText.innerHTML = "𓆣  Samo mudri prolaze pokraj Sfinge 𓆣";
+  }
+}
+
+/* Start game */
 function startGame(lang) {
   language = lang || language;
   try { localStorage.setItem("language", language); } catch (e) {}
+  updateUIText();
+
   const langBox = $("languageBox");
   if (langBox) langBox.style.display = "none";
   const game = $("game");
@@ -25,10 +71,10 @@ function startGame(lang) {
   });
 }
 
-// UI loading state
+/* Loading UI */
 function setLoading(loading) {
   const res = $("result");
-  const checkBtn = document.querySelector("button.check");
+  const checkBtn = $("checkBtn");
   if (loading) {
     if (res) {
       res.className = "";
@@ -42,7 +88,7 @@ function setLoading(loading) {
   }
 }
 
-// Učitavanje obje baze (HR i EN)
+/* Load both HR and EN JSONs; EN may fallback to HR answers if missing */
 async function loadRiddles() {
   isLoaded = false;
   const pathHr = `./data/riddles_hr.json`;
@@ -50,49 +96,36 @@ async function loadRiddles() {
 
   try {
     const [respHr, respEn] = await Promise.all([fetch(pathHr), fetch(pathEn)]);
-
     if (!respHr.ok) throw new Error(`Failed to load ${pathHr} (${respHr.status})`);
-    // EN could be missing; handle gracefully
-    if (!respEn.ok) {
-      console.warn(`Warning: ${pathEn} returned ${respEn.status}. English answers will fallback to HR.`);
-    }
+    if (!respEn.ok) console.warn(`Warning: ${pathEn} returned ${respEn.status}. English answers will fallback to HR.`);
 
     const dataHr = await respHr.json();
     let dataEn = [];
-    try {
-      if (respEn.ok) dataEn = await respEn.json();
-    } catch (e) {
-      dataEn = [];
-    }
+    try { if (respEn.ok) dataEn = await respEn.json(); } catch(e){ dataEn = []; }
 
-    // Normaliziraj: pitanja i odgovore
     riddles_hr = (Array.isArray(dataHr) ? dataHr : []).map(r => ({
-      category: r.category || "",
-      question: r.question || "",
+      category: (r.category || ""),
+      question: (r.question || ""),
       answers: (Array.isArray(r.answers) ? r.answers : [r.answers || ""])
         .map(a => String(a).toLowerCase().trim())
         .filter(a => a.length > 0)
     }));
 
     riddles_en = (Array.isArray(dataEn) ? dataEn : []).map(r => ({
-      category: r.category || "",
-      // keep question but we will override display question with HR version so both are identical
-      question: r.question || "",
+      category: (r.category || ""),
+      question: (r.question || ""),
       answers: (Array.isArray(r.answers) ? r.answers : [r.answers || ""])
         .map(a => String(a).toLowerCase().trim())
         .filter(a => a.length > 0)
     }));
 
-    // If english list shorter or empty, we may fallback answers to HR later
     isLoaded = true;
   } catch (err) {
     console.error("Greška pri učitavanju baza:", err);
     const res = $("result");
     if (res) {
       res.className = "error";
-      res.innerHTML = language === "hr"
-        ? "Greška pri učitavanju zagonetki. Pokušaj ponovno kasnije."
-        : "Error loading riddles. Please try again later.";
+      res.innerHTML = language === "hr" ? "Greška pri učitavanju zagonetki. Pokušaj ponovno kasnije." : "Error loading riddles. Please try again later.";
     }
     riddles_hr = [];
     riddles_en = [];
@@ -100,8 +133,10 @@ async function loadRiddles() {
   }
 }
 
-// Prikaz dnevne zagonetke — ISTO pitanje za HR i EN (uzimamo tekst iz HR baze)
+/* Show daily riddle — question comes from HR list so texts are identical for HR/EN */
 function showDailyRiddle() {
+  updateUIText(); // ensure UI text matches selected language
+
   if (!isLoaded || riddles_hr.length === 0) {
     const rEl = $("riddle");
     if (rEl) rEl.innerHTML = language === "hr" ? "Nema dostupnih zagonetki." : "No riddles available.";
@@ -114,19 +149,15 @@ function showDailyRiddle() {
   const day = Math.floor(diff / 86400000);
   const index = (day - 1) % riddles_hr.length;
 
-  // Uzmi pitanje iz HR baze – time su HR i EN pitanja ista
   const questionText = riddles_hr[index].question || "";
 
-  // Odgovori zavise o jeziku; fallback na HR odgovore ako EN nema
   let answersForLang = [];
   if (language === "hr") {
     answersForLang = riddles_hr[index].answers || [];
   } else {
-    // ENG: prefer riddles_en if it has an entry at same index with answers
     if (riddles_en[index] && Array.isArray(riddles_en[index].answers) && riddles_en[index].answers.length) {
       answersForLang = riddles_en[index].answers;
     } else {
-      // fallback to HR answers if EN missing
       answersForLang = riddles_hr[index].answers || [];
     }
   }
@@ -141,13 +172,9 @@ function showDailyRiddle() {
   if (rEl) rEl.innerHTML = currentRiddle.question || "";
 
   const answerEl = $("answer");
-  if (answerEl) {
-    answerEl.value = "";
-    answerEl.disabled = false;
-    answerEl.focus();
-  }
+  if (answerEl) { answerEl.value = ""; answerEl.disabled = false; answerEl.focus(); }
 
-  const checkBtn = document.querySelector("button.check");
+  const checkBtn = $("checkBtn");
   if (checkBtn) checkBtn.disabled = false;
 
   const res = $("result");
@@ -157,13 +184,13 @@ function showDailyRiddle() {
   if (title) title.innerHTML = language === "hr" ? "🏺 Sfingina zagonetka dana" : "🏺 Sphinx riddle of the day";
 }
 
-// Provjera odgovora — ako netočno, dodaj poruku o odgovornosti (HR/EN)
+/* Check answer; show language-specific messages (including responsibility warning on wrong answer) */
 function checkAnswer() {
   if (!isLoaded || !currentRiddle) return;
 
   const answerEl = $("answer");
   const res = $("result");
-  const checkBtn = document.querySelector("button.check");
+  const checkBtn = $("checkBtn");
   const input = (answerEl && answerEl.value || "").toLowerCase().trim();
 
   const correct = (currentRiddle.answers || []).some(a => {
@@ -184,7 +211,6 @@ function checkAnswer() {
   } else {
     if (res) {
       res.className = "error";
-      // Poruka uključuje i upozorenje o vlastitoj odgovornosti za oba jezika
       res.innerHTML = language === "hr"
         ? `❌ Sfinga nije zadovoljna.<br><br>Pokušaj ponovno.<br>Ulazak na vlastitu odgovornost.`
         : `❌ The Sphinx is not convinced.<br><br>Try again.<br>Enter at your own risk.`;
@@ -193,7 +219,7 @@ function checkAnswer() {
   }
 }
 
-// Zajednički brojač posjeta (Counter API) — tolerantno parsiranje rezultata
+/* Visitor counter */
 function updateVisitors() {
   const counterUrl = (window.SPHINX_CONFIG && window.SPHINX_CONFIG.counterApiUrl) || "https://api.counterapi.dev/v1/sfingin-izazov/visits/up";
   fetch(counterUrl)
@@ -210,25 +236,34 @@ function updateVisitors() {
     });
 }
 
-// Enter-to-submit (kada je fokus u polju za odgovor)
+/* Enter-to-submit */
 (function attachEnter() {
   document.addEventListener("keydown", function (e) {
     const target = e.target;
     const answerEl = $("answer");
     if (e.key === "Enter" && (target === answerEl || document.activeElement === answerEl)) {
       e.preventDefault();
-      const checkBtn = document.querySelector("button.check");
+      const checkBtn = $("checkBtn");
       if (checkBtn && !checkBtn.disabled) checkAnswer();
     }
   });
 }());
 
-// Pri pokretanju stranice — restore jezika ako je spremljen
+/* On load: restore language if set and update UI texts */
 window.onload = function () {
   try {
     const saved = localStorage.getItem("language");
-    if (saved) startGame(saved);
+    if (saved) {
+      language = saved;
+    }
   } catch (e) {
     console.error("LocalStorage error:", e);
   }
+  updateUIText();
+  // auto-start if language already chosen previously
+  try {
+    if (localStorage.getItem("language")) {
+      startGame(language);
+    }
+  } catch (e) {}
 };
