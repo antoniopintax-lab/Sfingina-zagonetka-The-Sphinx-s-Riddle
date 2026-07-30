@@ -1,14 +1,14 @@
-// script.js — finalna verzija (zamijeni postojeći)
-/* Osnovne varijable */
+// script.js — ažurirana verzija: ista pitanja za HR/EN, jezično-specifični odgovori, poruka o odgovornosti
+
 let language = "hr";
-let riddles = [];
+let riddles_hr = [];
+let riddles_en = [];
 let currentRiddle = null;
 let isLoaded = false;
 
-/* Kratki selektor */
 const $ = id => document.getElementById(id);
 
-/* Pokretanje igre (poziva se iz index.html) */
+// Pokretanje igre (poziva se iz index.html)
 function startGame(lang) {
   language = lang || language;
   try { localStorage.setItem("language", language); } catch (e) {}
@@ -25,7 +25,7 @@ function startGame(lang) {
   });
 }
 
-/* UI loading state: poruka i onemogući gumb */
+// UI loading state
 function setLoading(loading) {
   const res = $("result");
   const checkBtn = document.querySelector("button.check");
@@ -42,25 +42,51 @@ function setLoading(loading) {
   }
 }
 
-/* Učitavanje JSON datoteke s riddles (relativna putanja za GH Pages) */
+// Učitavanje obje baze (HR i EN)
 async function loadRiddles() {
   isLoaded = false;
-  const path = `./data/riddles_${language}.json`;
+  const pathHr = `./data/riddles_hr.json`;
+  const pathEn = `./data/riddles_en.json`;
+
   try {
-    const resp = await fetch(path);
-    if (!resp.ok) throw new Error(`Failed to load ${path} (${resp.status})`);
-    const data = await resp.json();
-    // normalizacija answers (lowercase, trim)
-    riddles = (Array.isArray(data) ? data : []).map(r => ({
+    const [respHr, respEn] = await Promise.all([fetch(pathHr), fetch(pathEn)]);
+
+    if (!respHr.ok) throw new Error(`Failed to load ${pathHr} (${respHr.status})`);
+    // EN could be missing; handle gracefully
+    if (!respEn.ok) {
+      console.warn(`Warning: ${pathEn} returned ${respEn.status}. English answers will fallback to HR.`);
+    }
+
+    const dataHr = await respHr.json();
+    let dataEn = [];
+    try {
+      if (respEn.ok) dataEn = await respEn.json();
+    } catch (e) {
+      dataEn = [];
+    }
+
+    // Normaliziraj: pitanja i odgovore
+    riddles_hr = (Array.isArray(dataHr) ? dataHr : []).map(r => ({
       category: r.category || "",
       question: r.question || "",
       answers: (Array.isArray(r.answers) ? r.answers : [r.answers || ""])
         .map(a => String(a).toLowerCase().trim())
         .filter(a => a.length > 0)
     }));
+
+    riddles_en = (Array.isArray(dataEn) ? dataEn : []).map(r => ({
+      category: r.category || "",
+      // keep question but we will override display question with HR version so both are identical
+      question: r.question || "",
+      answers: (Array.isArray(r.answers) ? r.answers : [r.answers || ""])
+        .map(a => String(a).toLowerCase().trim())
+        .filter(a => a.length > 0)
+    }));
+
+    // If english list shorter or empty, we may fallback answers to HR later
     isLoaded = true;
   } catch (err) {
-    console.error("Greška pri učitavanju baze:", err);
+    console.error("Greška pri učitavanju baza:", err);
     const res = $("result");
     if (res) {
       res.className = "error";
@@ -68,31 +94,48 @@ async function loadRiddles() {
         ? "Greška pri učitavanju zagonetki. Pokušaj ponovno kasnije."
         : "Error loading riddles. Please try again later.";
     }
-    riddles = [];
+    riddles_hr = [];
+    riddles_en = [];
+    isLoaded = false;
   }
 }
 
-/* Odabir i prikaz dnevne zagonetke */
+// Prikaz dnevne zagonetke — ISTO pitanje za HR i EN (uzimamo tekst iz HR baze)
 function showDailyRiddle() {
-  if (!isLoaded || riddles.length === 0) {
+  if (!isLoaded || riddles_hr.length === 0) {
     const rEl = $("riddle");
     if (rEl) rEl.innerHTML = language === "hr" ? "Nema dostupnih zagonetki." : "No riddles available.";
     return;
   }
 
   const today = new Date();
-  const key = String(today.getMonth() + 1).padStart(2, "0") + "-" + String(today.getDate()).padStart(2, "0");
-
-  // (Opcionalno) provjera posebne zagonetke u skripti -- ostavljeno prazno ako ne koristite
-  // const special = specialRiddles && specialRiddles[key];
-
-  // Zadana rotacija po danu u godini
   const start = new Date(today.getFullYear(), 0, 0);
   const diff = today - start;
   const day = Math.floor(diff / 86400000);
-  const index = (day - 1) % riddles.length;
+  const index = (day - 1) % riddles_hr.length;
 
-  currentRiddle = riddles[index];
+  // Uzmi pitanje iz HR baze – time su HR i EN pitanja ista
+  const questionText = riddles_hr[index].question || "";
+
+  // Odgovori zavise o jeziku; fallback na HR odgovore ako EN nema
+  let answersForLang = [];
+  if (language === "hr") {
+    answersForLang = riddles_hr[index].answers || [];
+  } else {
+    // ENG: prefer riddles_en if it has an entry at same index with answers
+    if (riddles_en[index] && Array.isArray(riddles_en[index].answers) && riddles_en[index].answers.length) {
+      answersForLang = riddles_en[index].answers;
+    } else {
+      // fallback to HR answers if EN missing
+      answersForLang = riddles_hr[index].answers || [];
+    }
+  }
+
+  currentRiddle = {
+    index,
+    question: questionText,
+    answers: answersForLang
+  };
 
   const rEl = $("riddle");
   if (rEl) rEl.innerHTML = currentRiddle.question || "";
@@ -108,16 +151,13 @@ function showDailyRiddle() {
   if (checkBtn) checkBtn.disabled = false;
 
   const res = $("result");
-  if (res) {
-    res.innerHTML = "";
-    res.className = "";
-  }
+  if (res) { res.innerHTML = ""; res.className = ""; }
 
   const title = $("dayTitle");
   if (title) title.innerHTML = language === "hr" ? "🏺 Sfingina zagonetka dana" : "🏺 Sphinx riddle of the day";
 }
 
-/* Provjera unesenog odgovora — IZMJENA: ne ponavlja, zahvaljuje i onemogućava unos */
+// Provjera odgovora — ako netočno, dodaj poruku o odgovornosti (HR/EN)
 function checkAnswer() {
   if (!isLoaded || !currentRiddle) return;
 
@@ -128,12 +168,10 @@ function checkAnswer() {
 
   const correct = (currentRiddle.answers || []).some(a => {
     if (!a) return false;
-    // točno ili korisnik upisao frazu koja sadrži odgovor
     return input === a || input.includes(a);
   });
 
   if (correct) {
-    // Pozitivna poruka i zahvalnost (bez automatskog ponavljanja)
     if (res) {
       res.className = "success";
       res.innerHTML = language === "hr"
@@ -141,25 +179,21 @@ function checkAnswer() {
         : `🗝️ CORRECT ANSWER!<br><br>The Sphinx allows you to enter.<br><strong>Thank you for participating!</strong>`;
       res.style.color = "#7CFC00";
     }
-
-    // Onemogući daljnji unos
-    if (answerEl) { answerEl.disabled = true; }
-    if (checkBtn) { checkBtn.disabled = true; }
-
+    if (answerEl) answerEl.disabled = true;
+    if (checkBtn) checkBtn.disabled = true;
   } else {
-    // Neispravan odgovor — zadrži mogućnost ponovnog pokušaja
     if (res) {
-      // koristi poruku koja je bila u ranijim verzijama (Sfinga nije zadovoljna / pokušaj ponovno)
       res.className = "error";
+      // Poruka uključuje i upozorenje o vlastitoj odgovornosti za oba jezika
       res.innerHTML = language === "hr"
-        ? `❌ Sfinga nije zadovoljna.<br><br>Pokušaj ponovno.`
-        : `❌ The Sphinx is not convinced.<br><br>Try again.`;
+        ? `❌ Sfinga nije zadovoljna.<br><br>Pokušaj ponovno.<br>Ulazak na vlastitu odgovornost.`
+        : `❌ The Sphinx is not convinced.<br><br>Try again.<br>Enter at your own risk.`;
       res.style.color = "#ff5555";
     }
   }
 }
 
-/* Zajednički brojač posjeta koristeći Counter API */
+// Zajednički brojač posjeta (Counter API) — tolerantno parsiranje rezultata
 function updateVisitors() {
   const counterUrl = (window.SPHINX_CONFIG && window.SPHINX_CONFIG.counterApiUrl) || "https://api.counterapi.dev/v1/sfingin-izazov/visits/up";
   fetch(counterUrl)
@@ -176,7 +210,7 @@ function updateVisitors() {
     });
 }
 
-/* Enter-to-submit (kad je fokus u inputu) */
+// Enter-to-submit (kada je fokus u polju za odgovor)
 (function attachEnter() {
   document.addEventListener("keydown", function (e) {
     const target = e.target;
@@ -189,13 +223,11 @@ function updateVisitors() {
   });
 }());
 
-/* Pri učitavanju stranice — restore jezika ako je spremljen */
+// Pri pokretanju stranice — restore jezika ako je spremljen
 window.onload = function () {
   try {
     const saved = localStorage.getItem("language");
-    if (saved) {
-      startGame(saved);
-    }
+    if (saved) startGame(saved);
   } catch (e) {
     console.error("LocalStorage error:", e);
   }
