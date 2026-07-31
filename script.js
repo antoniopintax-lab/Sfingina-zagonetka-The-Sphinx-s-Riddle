@@ -223,34 +223,59 @@ async function loadRiddles() {
   }
 }
 
-/* Show daily riddle */
+/* --- UPDATED: Show daily riddle using UTC day to avoid timezone/DST issues --- */
 function showDailyRiddle() {
   updateUIText();
-  hasAttempted = false;
+
+  hasAttempted = false; // reset flag for new riddle
 
   const resEl = $("result");
-  if (!isLoaded || riddles_hr.length === 0) {
+  // ensure we have riddles loaded
+  if (!isLoaded || !riddles_hr || riddles_hr.length === 0) {
     const rEl = $("riddle");
     if (rEl) rEl.innerHTML = language === "hr" ? "Nema dostupnih zagonetki." : "No riddles available.";
+    console.debug('showDailyRiddle: no riddles available (isLoaded:', isLoaded, ', hr length:', riddles_hr && riddles_hr.length, ')');
     return;
   }
 
-  const today = new Date();
-  const start = new Date(today.getFullYear(), 0, 0);
-  const diff = today - start;
-  const day = Math.floor(diff / 86400000);
+  // --- compute day index using UTC to avoid timezone/DST issues ---
+  const now = new Date();
+  // UTC midnight for today and start of year
+  const todayUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  const startOfYearUTC = Date.UTC(now.getUTCFullYear(), 0, 0); // Jan 0 -> Dec 31 prev year
+  const day = Math.floor((todayUTC - startOfYearUTC) / 86400000); // day of year (1..)
+  // choose pool according to language and availability
   let pool = riddles_hr;
-  if (language === "en" && riddles_en.length > 0) pool = riddles_en;
+  if (language === "en" && Array.isArray(riddles_en) && riddles_en.length > 0) pool = riddles_en;
 
+  if (!Array.isArray(pool) || pool.length === 0) {
+    // fallback safety (should not normally happen)
+    const rEl = $("riddle");
+    if (rEl) rEl.innerHTML = language === "hr" ? "Nema dostupnih zagonetki u odabranom jeziku." : "No riddles available for selected language.";
+    console.debug('showDailyRiddle: selected pool empty for language', language);
+    return;
+  }
+
+  // allow force override if configured
   let index;
   const cfgIndex = (window.SPHINX_CONFIG && Number.isInteger(window.SPHINX_CONFIG.forceRiddleIndex)) ? window.SPHINX_CONFIG.forceRiddleIndex : null;
-  if (cfgIndex !== null) index = Math.abs(cfgIndex) % pool.length;
-  else index = ((day - 1) % pool.length + pool.length) % pool.length;
+  if (cfgIndex !== null) {
+    index = Math.abs(cfgIndex) % pool.length;
+    console.debug('showDailyRiddle: using forced index', cfgIndex, '=>', index);
+  } else {
+    // deterministic index per UTC day
+    index = ((day - 1) % pool.length + pool.length) % pool.length;
+    console.debug('showDailyRiddle: dayOfYear(UTC)=', day, 'pool.length=', pool.length, 'index=', index);
+  }
 
   const questionText = (pool[index] && pool[index].question) ? pool[index].question : "";
   const answersForLang = (pool[index] && Array.isArray(pool[index].answers)) ? pool[index].answers : [];
 
-  currentRiddle = { index, question: questionText, answers: answersForLang };
+  currentRiddle = {
+    index,
+    question: questionText,
+    answers: answersForLang
+  };
 
   const rEl = $("riddle");
   if (rEl) rEl.innerHTML = currentRiddle.question || "";
