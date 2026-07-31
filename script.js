@@ -1,6 +1,6 @@
 // script.js — HR/EN pools + UI switching + cache-bust for sphinx image
-// + show-answer button (hidden until first attempt) + localized confirmation
-// + visitor counter: total / daily (uses CountAPI and counts every visit)
+// + show-answer button + localized confirmation
+// + robust visitor counter: CountAPI primary, localStorage fallback (always shows numbers)
 
 let language = "hr";
 let riddles_hr = [];
@@ -11,7 +11,7 @@ let hasAttempted = false;
 
 const $ = id => document.getElementById(id);
 
-/* --- CountAPI settings (change namespace if desired) --- */
+/* --- CountAPI / local fallback settings --- */
 const COUNTAPI_NAMESPACE = 'antoniopintax_lab_sfinga';
 const TOTAL_KEY = 'total_visits';
 function dailyKeyForDate(date) {
@@ -20,6 +20,10 @@ function dailyKeyForDate(date) {
   const d = String(date.getDate()).padStart(2, '0');
   return `daily_${y}-${m}-${d}`;
 }
+// localStorage keys for fallback/last-known
+const LS_LAST_TOTAL = 'sphinx_last_total';
+function lsDailyKey(dateKey) { return `sphinx_last_${dateKey}`; }
+const LS_FALLBACK_FLAG = 'sphinx_use_local_fallback'; // optional flag
 
 /* fetch with timeout helper */
 function fetchWithTimeout(url, opts = {}, ms = 7000) {
@@ -35,17 +39,50 @@ function fetchWithTimeout(url, opts = {}, ms = 7000) {
   });
 }
 
-/* Fallback riddles if JSON files unavailable */
-const FALLBACK_HR = [
-  { question: "Što hoda četiri noge ujutro, dvije popodne i tri navečer?", answers: ["čovjek","covjek","clovjek"] },
-  { question: "Koja riječ postane kraća kad joj dodaš dva slova?", answers: ["kratko","shorter"] }
-];
-const FALLBACK_EN = [
-  { question: "What walks on four legs in the morning, two in the afternoon, and three at night?", answers: ["man","human"] },
-  { question: "What word becomes shorter when you add two letters to it?", answers: ["short"] }
-];
+/* CountAPI helpers */
+async function countapiHit(namespace, key) {
+  const url = `https://api.countapi.xyz/hit/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`;
+  try {
+    const resp = await fetchWithTimeout(url, { method: 'GET' }, 7000);
+    if (!resp || !resp.ok) {
+      console.debug('countapiHit non-ok', resp && resp.status, url);
+      return null;
+    }
+    const json = await resp.json();
+    if (json && typeof json.value === 'number') return json.value;
+    return null;
+  } catch (e) {
+    console.debug('countapiHit error', e.message, url);
+    return null;
+  }
+}
 
-/* Update UI texts according to language */
+async function countapiGet(namespace, key) {
+  const url = `https://api.countapi.xyz/get/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`;
+  try {
+    const resp = await fetchWithTimeout(url, { method: 'GET' }, 7000);
+    if (!resp || !resp.ok) {
+      console.debug('countapiGet non-ok', resp && resp.status, url);
+      return null;
+    }
+    const json = await resp.json();
+    if (json && typeof json.value === 'number') return json.value;
+    return null;
+  } catch (e) {
+    console.debug('countapiGet error', e.message, url);
+    return null;
+  }
+}
+
+/* LocalStorage helpers */
+function safeSetLS(key, value) {
+  try { localStorage.setItem(key, String(value)); } catch (e) { /* ignore */ }
+}
+function safeGetLSInt(key) {
+  try { const v = localStorage.getItem(key); return v === null ? null : parseInt(v, 10); } catch (e) { return null; }
+}
+
+/* --- Update UI texts according to language --- */
 function updateUIText() {
   try { document.documentElement.lang = (language === "en" ? "en" : "hr"); } catch(e){}
   const appTitle = $("appTitle");
@@ -90,7 +127,7 @@ function updateUIText() {
   }
 }
 
-/* Start game */
+/* --- Start / Loading / Riddles (unchanged) --- */
 function startGame(lang) {
   language = lang || language;
   try { localStorage.setItem("language", language); } catch (e) {}
@@ -109,7 +146,6 @@ function startGame(lang) {
   });
 }
 
-/* Loading UI */
 function setLoading(loading) {
   const res = $("result");
   const checkBtn = $("checkBtn");
@@ -128,7 +164,16 @@ function setLoading(loading) {
   }
 }
 
-/* Load HR and EN JSON files (EN optional) with fallback */
+/* Load riddles with fallback */
+const FALLBACK_HR = [
+  { question: "Što hoda četiri noge ujutro, dvije popodne i tri navečer?", answers: ["čovjek","covjek","clovjek"] },
+  { question: "Koja riječ postane kraća kad joj dodaš dva slova?", answers: ["kratko","shorter"] }
+];
+const FALLBACK_EN = [
+  { question: "What walks on four legs in the morning, two in the afternoon, and three at night?", answers: ["man","human"] },
+  { question: "What word becomes shorter when you add two letters to it?", answers: ["short"] }
+];
+
 async function loadRiddles() {
   isLoaded = false;
   const pathHr = `./data/riddles_hr.json`;
@@ -140,307 +185,5 @@ async function loadRiddles() {
     const [respHr, respEn] = await Promise.all([respHrPromise, respEnPromise]);
 
     let dataHr = null;
-    if (respHr && respHr.ok) {
-      try { dataHr = await respHr.json(); } catch(e){ dataHr = null; }
-    }
-    let dataEn = null;
-    if (respEn && respEn.ok) {
-      try { dataEn = await respEn.json(); } catch(e){ dataEn = null; }
-    }
-
-    if (!dataHr) dataHr = FALLBACK_HR;
-    if (!dataEn) dataEn = [];
-
-    riddles_hr = (Array.isArray(dataHr) ? dataHr : []).map(r => ({
-      category: (r.category || ""),
-      question: (r.question || r.q || ""),
-      answers: (Array.isArray(r.answers) ? r.answers : [r.answers || ""])
-        .map(a => String(a).toLowerCase().trim())
-        .filter(a => a.length > 0)
-    }));
-
-    riddles_en = (Array.isArray(dataEn) ? dataEn : []).map(r => ({
-      category: (r.category || ""),
-      question: (r.question || r.q || ""),
-      answers: (Array.isArray(r.answers) ? r.answers : [r.answers || ""])
-        .map(a => String(a).toLowerCase().trim())
-        .filter(a => a.length > 0)
-    }));
-
-    if (language === "en" && riddles_en.length === 0 && FALLBACK_EN.length) {
-      riddles_en = FALLBACK_EN.map(r => ({ question: r.question, answers: r.answers.map(a=>String(a).toLowerCase()) }));
-    }
-
-    isLoaded = true;
-  } catch (err) {
-    console.error("Error loading riddle files:", err);
-    const res = $("result");
-    if (res) {
-      res.className = "error";
-      res.innerHTML = language === "hr" ? "Greška pri učitavanju zagonetki. Pokušaj ponovno kasnije." : "Error loading riddles. Please try again later.";
-    }
-    riddles_hr = FALLBACK_HR.map(r => ({ question: r.question, answers: r.answers.map(a=>String(a).toLowerCase()) }));
-    riddles_en = (language === "en" ? FALLBACK_EN.map(r => ({ question: r.question, answers: r.answers.map(a=>String(a).toLowerCase()) })) : []);
-    isLoaded = true;
-  }
-}
-
-/* Show daily riddle */
-function showDailyRiddle() {
-  updateUIText();
-
-  hasAttempted = false;
-
-  const resEl = $("result");
-  if (!isLoaded || riddles_hr.length === 0) {
-    const rEl = $("riddle");
-    if (rEl) rEl.innerHTML = language === "hr" ? "Nema dostupnih zagonetki." : "No riddles available.";
-    return;
-  }
-
-  const today = new Date();
-  const start = new Date(today.getFullYear(), 0, 0);
-  const diff = today - start;
-  const day = Math.floor(diff / 86400000);
-  let pool = riddles_hr;
-  if (language === "en" && riddles_en.length > 0) pool = riddles_en;
-
-  let index;
-  const cfgIndex = (window.SPHINX_CONFIG && Number.isInteger(window.SPHINX_CONFIG.forceRiddleIndex)) ? window.SPHINX_CONFIG.forceRiddleIndex : null;
-  if (cfgIndex !== null) {
-    index = Math.abs(cfgIndex) % pool.length;
-  } else {
-    index = ((day - 1) % pool.length + pool.length) % pool.length;
-  }
-
-  const questionText = (pool[index] && pool[index].question) ? pool[index].question : "";
-  const answersForLang = (pool[index] && Array.isArray(pool[index].answers)) ? pool[index].answers : [];
-
-  currentRiddle = {
-    index,
-    question: questionText,
-    answers: answersForLang
-  };
-
-  const rEl = $("riddle");
-  if (rEl) rEl.innerHTML = currentRiddle.question || "";
-
-  const answerEl = $("answer");
-  if (answerEl) { answerEl.value = ""; answerEl.disabled = false; answerEl.focus(); }
-
-  const checkBtn = $("checkBtn");
-  if (checkBtn) checkBtn.disabled = false;
-
-  const showAnswerBtn = $("showAnswerBtn");
-  if (showAnswerBtn) {
-    showAnswerBtn.style.display = 'none';
-    showAnswerBtn.disabled = true;
-    showAnswerBtn.setAttribute('aria-expanded', 'false');
-  }
-
-  if (resEl) { resEl.innerHTML = ""; resEl.className = ""; }
-
-  const title = $("dayTitle");
-  if (title) title.innerHTML = language === "hr" ? "🏺 Sfingina zagonetka dana" : "🏺 Sphinx riddle of the day";
-}
-
-/* Confirm and show answer (localized) */
-function confirmShowAnswer() {
-  if (!currentRiddle) return;
-  const msg = language === "hr"
-    ? "Jeste li sigurni da želite prikazati odgovor? To će onemogućiti daljnje pokušaje."
-    : "Are you sure you want to show the answer? This will disable further attempts.";
-  if (window.confirm(msg)) {
-    showAnswer();
-  } else {
-    const a = $("answer");
-    if (a && !a.disabled) a.focus();
-    const showAnswerBtn = $("showAnswerBtn");
-    if (showAnswerBtn) showAnswerBtn.setAttribute('aria-expanded', 'false');
-  }
-}
-
-/* Show answer and lock input */
-function showAnswer() {
-  if (!currentRiddle) return;
-  const res = $("result");
-  const answers = (currentRiddle.answers && currentRiddle.answers.length) ? currentRiddle.answers : [];
-
-  if (!answers.length) {
-    if (res) {
-      res.className = "info";
-      res.innerHTML = language === "hr" ? "Nema dostupnog odgovora za ovu zagonetku." : "No answer available for this riddle.";
-    }
-    const showAnswerBtn = $("showAnswerBtn");
-    if (showAnswerBtn) showAnswerBtn.disabled = true;
-    return;
-  }
-
-  const display = answers.map(a => a.charAt(0).toUpperCase() + a.slice(1)).join(', ');
-
-  if (res) {
-    res.className = "info";
-    res.innerHTML = language === "hr"
-      ? `<strong>Odgovor:</strong> ${display}`
-      : `<strong>Answer:</strong> ${display}`;
-  }
-
-  const answerEl = $("answer");
-  if (answerEl) { answerEl.value = ''; answerEl.disabled = true; }
-
-  const checkBtn = $("checkBtn");
-  if (checkBtn) checkBtn.disabled = true;
-
-  const showAnswerBtn = $("showAnswerBtn");
-  if (showAnswerBtn) {
-    showAnswerBtn.disabled = true;
-    showAnswerBtn.setAttribute('aria-expanded', 'true');
-  }
-}
-
-/* Check answer */
-function checkAnswer() {
-  if (!isLoaded || !currentRiddle) return;
-
-  hasAttempted = true;
-  const answerEl = $("answer");
-  const res = $("result");
-  const checkBtn = $("checkBtn");
-  const showAnswerBtn = $("showAnswerBtn");
-  const input = (answerEl && answerEl.value || "").toLowerCase().trim();
-
-  if (showAnswerBtn) {
-    showAnswerBtn.style.display = '';
-    showAnswerBtn.disabled = false;
-    showAnswerBtn.setAttribute('aria-expanded', 'false');
-  }
-
-  const correct = (currentRiddle.answers || []).some(a => {
-    if (!a) return false;
-    return input === a || input.includes(a);
-  });
-
-  if (correct) {
-    if (res) {
-      res.className = "success";
-      res.innerHTML = language === "hr"
-        ? `🗝️ TOČAN ODGOVOR!<br><br>Sfinga ti dopušta prolaz.<br><strong>Hvala što si sudjelovao/la!</strong>`
-        : `🗝️ CORRECT ANSWER!<br><br>The Sphinx allows you to enter.<br><strong>Thank you for participating!</strong>`;
-      res.style.color = "#7CFC00";
-    }
-    if (answerEl) answerEl.disabled = true;
-    if (checkBtn) checkBtn.disabled = true;
-    if (showAnswerBtn) showAnswerBtn.disabled = true;
-  } else {
-    if (res) {
-      res.className = "error";
-      res.innerHTML = language === "hr"
-        ? `❌ Sfinga nije zadovoljna.<br><br>Pokušaj ponovno.<br>Ulazak na vlastitu odgovornost.`
-        : `❌ The Sphinx is not convinced.<br><br>Try again.<br>Enter at your own risk.`;
-      res.style.color = "#ff5555";
-    }
-  }
-}
-
-/* --- Visitor counter: robust parallel hits + GET fallback --- */
-async function countapiHit(namespace, key) {
-  const url = `https://api.countapi.xyz/hit/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`;
-  try {
-    const resp = await fetchWithTimeout(url, { method: 'GET' }, 7000);
-    if (!resp.ok) return null;
-    const json = await resp.json();
-    return (json && typeof json.value === 'number') ? json.value : null;
-  } catch (e) {
-    console.debug('countapiHit error', e.message, url);
-    return null;
-  }
-}
-
-async function countapiGet(namespace, key) {
-  const url = `https://api.countapi.xyz/get/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`;
-  try {
-    const resp = await fetchWithTimeout(url, { method: 'GET' }, 7000);
-    if (!resp.ok) return null;
-    const json = await resp.json();
-    return (json && typeof json.value === 'number') ? json.value : null;
-  } catch (e) {
-    console.debug('countapiGet error', e.message, url);
-    return null;
-  }
-}
-
-async function updateVisitors() {
-  const visitorEl = $("visitorCount");
-  if (!visitorEl) return;
-
-  const today = new Date();
-  const dailyKey = dailyKeyForDate(today);
-
-  let totalValue = null;
-  let dailyValue = null;
-
-  // Start both hits in parallel
-  const pTotal = countapiHit(COUNTAPI_NAMESPACE, TOTAL_KEY);
-  const pDaily = countapiHit(COUNTAPI_NAMESPACE, dailyKey);
-
-  const [resTotal, resDaily] = await Promise.allSettled([pTotal, pDaily]);
-
-  if (resTotal.status === 'fulfilled' && typeof resTotal.value === 'number') {
-    totalValue = resTotal.value;
-  }
-  if (resDaily.status === 'fulfilled' && typeof resDaily.value === 'number') {
-    dailyValue = resDaily.value;
-  }
-
-  // For any missing values, try GET to fetch current counters
-  if (totalValue === null) {
-    const tv = await countapiGet(COUNTAPI_NAMESPACE, TOTAL_KEY);
-    if (typeof tv === 'number') totalValue = tv;
-  }
-  if (dailyValue === null) {
-    const dv = await countapiGet(COUNTAPI_NAMESPACE, dailyKey);
-    if (typeof dv === 'number') dailyValue = dv;
-  }
-
-  // Display fallback if needed
-  const totText = (typeof totalValue === 'number') ? String(totalValue) : '-';
-  const dayText = (typeof dailyValue === 'number') ? String(dailyValue) : '-';
-  visitorEl.textContent = `${totText}/${dayText}`;
-}
-
-/* Cache-bust for sphinx image */
-function bustSphinxCache() {
-  const img = document.getElementById('sphinxImg') || document.querySelector('.sphinx img');
-  if (!img) return;
-  const base = (img.getAttribute('data-src') || img.getAttribute('src') || '').split('?')[0];
-  if (!base) return;
-  if (!img.getAttribute('data-src')) img.setAttribute('data-src', base);
-  img.src = base + '?v=' + Date.now();
-}
-
-/* Enter-to-submit when focus is on input */
-(function attachEnter() {
-  document.addEventListener("keydown", function (e) {
-    const target = e.target;
-    const answerEl = $("answer");
-    if (e.key === "Enter" && (target === answerEl || document.activeElement === answerEl)) {
-      e.preventDefault();
-      const checkBtn = $("checkBtn");
-      if (checkBtn && !checkBtn.disabled) checkAnswer();
-    }
-  });
-}());
-
-/* On load: restore language if saved, bust cache for sphinx image, update UI & auto-start if needed */
-window.onload = function () {
-  try {
-    const saved = localStorage.getItem("language");
-    if (saved) language = saved;
-  } catch (e) { console.error("LocalStorage error:", e); }
-
-  updateUIText();
-  try { bustSphinxCache(); } catch (e) {}
-  try {
-    if (localStorage.getItem("language")) startGame(language);
-  } catch (e) {}
-};
+    if (respHr && respHr.ok) {*
+
