@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title id="pageTitle">Sfingin izazov</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Sfingin izazov</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
+<div class="sand"></div>
+<header>
     <h1 id="appTitle">𓂀 Sfingin izazov</h1>
     <p id="subtitle">Riješi zagonetku i otkrij tajnu ulaza</p>
-  </header>
+</header>
 
-  <section id="languageBox" aria-label="Language selection">
+<section id="languageBox">
     <h2 id="languageBoxTitle">Odaberi jezik</h2>
     <button id="btnHR" onclick="startGame('hr')">🇭🇷 Hrvatski</button>
     <button id="btnEN" onclick="startGame('en')">🇬🇧 English</button>
-  </section>
+</section>
 
-  <main id="game" class="hidden" aria-live="polite">
+<main id="game" class="hidden">
     <div class="sphinx">
-      <img id="sphinxImg" src="images/sphinx.svg" alt="Sfinga">
+        <img id="sphinxImg" src="images/sphinx.svg" alt="Sfinga">
     </div>
 
-    <aside class="visitor">
-      👤 <span id="visitorCount">0</span>
-      <div id="visitorLabel">posjetitelja danas</div>
-    </aside>
+    <div class="visitor">
+        👤 <span id="visitorCount">0</span>
+        <p id="visitorLabel">posjetitelja danas</p>
+    </div>
 
-    <section class="riddleBox" role="region" aria-labelledby="dayTitle">
-      <h2 id="dayTitle">Današnja zagonetka</h2>
-      <p id="riddle" aria-live="polite"></p>
+    <div class="riddleBox">
+        <h2 id="dayTitle">Današnja zagonetka</h2>
+        <p id="riddle"></p>
 
-      <input id="answer" type="text" placeholder="Upiši odgovor" aria-label="Odgovor na zagonetku" />
-      <div class="buttons">
-        <button id="checkBtn" class="check" onclick="checkAnswer()">Provjeri odgovor</button>
-        <button id="showAnswerBtn" class="small" onclick="confirmShowAnswer()" style="display:none;">Prikaži odgovor</button>
-      </div>
+        <input id="answer" type="text" placeholder="Upiši odgovor" aria-label="Odgovor na zagonetku">
+        <div class="buttons">
+          <button id="checkBtn" onclick="checkAnswer()" class="check">Provjeri odgovor</button>
+          <!-- initially hidden; shown after first attempt -->
+          <button id="showAnswerBtn" class="small" onclick="confirmShowAnswer()" style="display:none;">Prikaži odgovor</button>
+        </div>
 
-      <div id="result" aria-live="polite"></div>
-    </section>
-  </main>
+        <div id="result" aria-live="polite"></div>
+    </div>
+</main>
 
-  <footer>
-    <p id="footerText">𓆣  Samo mudri prolaze pokraj Sfinge 𓆣</p>
-  </footer>
+<footer>
+<p id="footerText">𓆣  Samo mudri prolaze pokraj Sfinge 𓆣</p>
+</footer>
 
-  <script src="config.js"></script>
-  <script src="script.js"></script>
+<script src="config.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
