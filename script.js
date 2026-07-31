@@ -60,7 +60,7 @@ function updateUIText() {
     if (languageBoxTitle) languageBoxTitle.textContent = "Choose language";
     if (btnHR) btnHR.textContent = "🇭🇷 Croatian";
     if (btnEN) btnEN.textContent = "🇬🇧 English";
-    if (visitorLabel) visitorLabel.textContent = "visitors today";
+    if (visitorLabel) visitorLabel.textContent = "visitors all/today";
     if (answerEl) answerEl.placeholder = "Type your answer";
     if (checkBtn) checkBtn.textContent = "Check answer";
     if (showAnswerBtn) showAnswerBtn.textContent = "Show answer";
@@ -73,7 +73,7 @@ function updateUIText() {
     if (languageBoxTitle) languageBoxTitle.textContent = "Odaberi jezik";
     if (btnHR) btnHR.textContent = "🇭🇷 Hrvatski";
     if (btnEN) btnEN.textContent = "🇬🇧 English";
-    if (visitorLabel) visitorLabel.textContent = "posjetitelja danas";
+    if (visitorLabel) visitorLabel.textContent = "posjetitelja ukupno/danas";
     if (answerEl) answerEl.placeholder = "Upiši odgovor";
     if (checkBtn) checkBtn.textContent = "Provjeri odgovor";
     if (showAnswerBtn) showAnswerBtn.textContent = "Prikaži odgovor";
