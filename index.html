@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="pageTitle">Sfingin izazov</title>
+<meta name="description" content="Riješi Sfinginu zagonetku — svakodnevna zagonetka i izazov za mudre.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,8 +26,8 @@
     </div>
 
     <div class="visitor">
-        👤 <span id="visitorCount">0</span>
-        <p id="visitorLabel">posjetitelja ukupno/danas</p>
+        👤 <span id="visitorCount">-/-</span>
+        <p id="visitorLabel">posjetitelja danas</p>
     </div>
 
     <div class="riddleBox">
@@ -36,7 +37,6 @@
         <input id="answer" type="text" placeholder="Upiši odgovor" aria-label="Odgovor na zagonetku">
         <div class="buttons">
           <button id="checkBtn" onclick="checkAnswer()" class="check">Provjeri odgovor</button>
-          <!-- initially hidden; shown after first attempt -->
           <button id="showAnswerBtn" class="small" onclick="confirmShowAnswer()" style="display:none;">Prikaži odgovor</button>
         </div>
 
@@ -48,7 +48,6 @@
 <p id="footerText">𓆣  Samo mudri prolaze pokraj Sfinge 𓆣</p>
 </footer>
 
-<!-- config.js is optional; script.js handles missing config safely -->
 <script src="config.js"></script>
 <script src="script.js"></script>
 </body>
