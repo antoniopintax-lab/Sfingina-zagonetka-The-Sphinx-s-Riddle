@@ -1,10 +1,11 @@
-// script.js — HR/EN pools + UI text switching + cache-bust for sphinx image
+// script.js — HR/EN pools + UI text switching + cache-bust + show answer with confirmation + show-answer hidden until first attempt
 
 let language = "hr";
 let riddles_hr = [];
 let riddles_en = [];
 let currentRiddle = null;
 let isLoaded = false;
+let hasAttempted = false;
 
 const $ = id => document.getElementById(id);
 
@@ -19,6 +20,7 @@ function updateUIText() {
   const visitorLabel = $("visitorLabel");
   const answerEl = $("answer");
   const checkBtn = $("checkBtn");
+  const showAnswerBtn = $("showAnswerBtn");
   const dayTitle = $("dayTitle");
   const pageTitle = $("pageTitle");
   const footerText = $("footerText");
@@ -33,6 +35,7 @@ function updateUIText() {
     if (visitorLabel) visitorLabel.textContent = "visitors today";
     if (answerEl) answerEl.placeholder = "Type your answer";
     if (checkBtn) checkBtn.textContent = "Check answer";
+    if (showAnswerBtn) showAnswerBtn.textContent = "Show answer";
     if (dayTitle) dayTitle.textContent = "🏺 Sphinx riddle of the day";
     if (footerText) footerText.innerHTML = "𓆣  Only the wise pass the Sphinx 𓆣";
   } else {
@@ -45,6 +48,7 @@ function updateUIText() {
     if (visitorLabel) visitorLabel.textContent = "posjetitelja danas";
     if (answerEl) answerEl.placeholder = "Upiši odgovor";
     if (checkBtn) checkBtn.textContent = "Provjeri odgovor";
+    if (showAnswerBtn) showAnswerBtn.textContent = "Prikaži odgovor";
     if (dayTitle) dayTitle.textContent = "🏺 Sfingina zagonetka dana";
     if (footerText) footerText.innerHTML = "𓆣  Samo mudri prolaze pokraj Sfinge 𓆣";
   }
@@ -73,6 +77,7 @@ function startGame(lang) {
 function setLoading(loading) {
   const res = $("result");
   const checkBtn = $("checkBtn");
+  const showAnswerBtn = $("showAnswerBtn");
   if (loading) {
     if (res) {
       res.className = "";
@@ -80,9 +85,11 @@ function setLoading(loading) {
       res.setAttribute("aria-live", "polite");
     }
     if (checkBtn) checkBtn.disabled = true;
+    if (showAnswerBtn) { showAnswerBtn.disabled = true; showAnswerBtn.style.display = 'none'; }
   } else {
     if (res) res.innerHTML = "";
     if (checkBtn) checkBtn.disabled = false;
+    // keep showAnswerBtn controlled by hasAttempted / showDailyRiddle
   }
 }
 
@@ -102,6 +109,7 @@ async function loadRiddles() {
     let dataEn = [];
     try { if (respEn.ok) dataEn = await respEn.json(); } catch(e){ dataEn = []; }
 
+    // keep answers normalized (lowercase) for checking
     riddles_hr = (Array.isArray(dataHr) ? dataHr : []).map(r => ({
       category: (r.category || ""),
       question: (r.question || ""),
@@ -138,6 +146,8 @@ async function loadRiddles() {
 */
 function showDailyRiddle() {
   updateUIText();
+
+  hasAttempted = false; // reset attempt flag for new riddle
 
   const resEl = $("result");
   if (!isLoaded || riddles_hr.length === 0) {
@@ -179,20 +189,101 @@ function showDailyRiddle() {
   const checkBtn = $("checkBtn");
   if (checkBtn) checkBtn.disabled = false;
 
+  const showAnswerBtn = $("showAnswerBtn");
+  if (showAnswerBtn) {
+    showAnswerBtn.style.display = 'none'; // hide until first attempt
+    showAnswerBtn.disabled = true;
+    showAnswerBtn.setAttribute('aria-expanded', 'false');
+  }
+
   if (resEl) { resEl.innerHTML = ""; resEl.className = ""; }
 
   const title = $("dayTitle");
   if (title) title.innerHTML = language === "hr" ? "🏺 Sfingina zagonetka dana" : "🏺 Sphinx riddle of the day";
 }
 
-/* Check answer: success disables input; wrong shows message + responsibility warning */
+/* Helper: pretty-capitalize answer for display */
+function pretty(a) {
+  if (!a) return a;
+  return a.charAt(0).toUpperCase() + a.slice(1);
+}
+
+/* Confirm then show the correct answer(s) */
+function confirmShowAnswer() {
+  const showAnswerBtn = $("showAnswerBtn");
+  if (!currentRiddle) return;
+
+  const msg = language === "hr"
+    ? "Jeste li sigurni da želite prikazati odgovor? To će onemogućiti daljnje pokušaje."
+    : "Are you sure you want to show the answer? This will disable further attempts.";
+
+  // use native confirm for simplicity; if user confirms, reveal
+  if (window.confirm(msg)) {
+    showAnswer();
+  } else {
+    // optional: refocus input
+    const answerEl = $("answer");
+    if (answerEl && !answerEl.disabled) answerEl.focus();
+    if (showAnswerBtn) showAnswerBtn.setAttribute('aria-expanded', 'false');
+  }
+}
+
+/* Show the correct answer(s) */
+function showAnswer() {
+  if (!currentRiddle) return;
+  const res = $("result");
+  const answerEl = $("answer");
+  const checkBtn = $("checkBtn");
+  const showAnswerBtn = $("showAnswerBtn");
+
+  const answers = (currentRiddle.answers && currentRiddle.answers.length) ? currentRiddle.answers : [];
+
+  if (!answers.length) {
+    if (res) {
+      res.className = "info";
+      res.innerHTML = language === "hr" ? "Nema dostupnog odgovora za ovu zagonetku." : "No answer available for this riddle.";
+    }
+    if (showAnswerBtn) showAnswerBtn.disabled = true;
+    return;
+  }
+
+  const display = answers.map(a => pretty(a)).join(', ');
+
+  if (res) {
+    res.className = "info";
+    res.innerHTML = language === "hr"
+      ? `<strong>Odgovor:</strong> ${display}`
+      : `<strong>Answer:</strong> ${display}`;
+  }
+
+  // disable further input / checks
+  if (answerEl) { answerEl.value = ''; answerEl.disabled = true; }
+  if (checkBtn) checkBtn.disabled = true;
+  if (showAnswerBtn) {
+    showAnswerBtn.disabled = true;
+    showAnswerBtn.setAttribute('aria-expanded', 'true');
+  }
+}
+
+/* Check answer: success disables input; wrong shows message + responsibility warning.
+   Also reveals the 'show answer' button after first attempt.
+*/
 function checkAnswer() {
   if (!isLoaded || !currentRiddle) return;
 
+  hasAttempted = true;
   const answerEl = $("answer");
   const res = $("result");
   const checkBtn = $("checkBtn");
+  const showAnswerBtn = $("showAnswerBtn");
   const input = (answerEl && answerEl.value || "").toLowerCase().trim();
+
+  // reveal show-answer button after first attempt
+  if (showAnswerBtn) {
+    showAnswerBtn.style.display = '';
+    showAnswerBtn.disabled = false;
+    showAnswerBtn.setAttribute('aria-expanded', 'false');
+  }
 
   const correct = (currentRiddle.answers || []).some(a => {
     if (!a) return false;
@@ -209,6 +300,7 @@ function checkAnswer() {
     }
     if (answerEl) answerEl.disabled = true;
     if (checkBtn) checkBtn.disabled = true;
+    if (showAnswerBtn) showAnswerBtn.disabled = true; // no need to show answer after correct
   } else {
     if (res) {
       res.className = "error";
@@ -217,6 +309,7 @@ function checkAnswer() {
         : `❌ The Sphinx is not convinced.<br><br>Try again.<br>Enter at your own risk.`;
       res.style.color = "#ff5555";
     }
+    // keep showAnswerBtn enabled so user can choose to reveal after confirming
   }
 }
 
