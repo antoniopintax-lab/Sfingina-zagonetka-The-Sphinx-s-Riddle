@@ -1,7 +1,6 @@
-// script.js — HR/EN pools + UI text switching + cache-bust for sphinx image
+// script.js — HR/EN pools + UI switching + cache-bust for sphinx image
 // + show-answer button (hidden until first attempt) + localized confirmation
-// + visitor counter: total / daily (uses CountAPI: https://api.countapi.xyz)
-// NOTE: counts every page visit, even from the same browser
+// + visitor counter: total / daily (uses CountAPI and counts every visit)
 
 let language = "hr";
 let riddles_hr = [];
@@ -12,8 +11,8 @@ let hasAttempted = false;
 
 const $ = id => document.getElementById(id);
 
-/* --- utility for visitor counting --- */
-const COUNTAPI_NAMESPACE = 'antoniopintax_lab_sfinga'; // unique namespace
+/* --- CountAPI settings (change namespace if desired) --- */
+const COUNTAPI_NAMESPACE = 'antoniopintax_lab_sfinga';
 const TOTAL_KEY = 'total_visits';
 function dailyKeyForDate(date) {
   const y = date.getFullYear();
@@ -22,6 +21,7 @@ function dailyKeyForDate(date) {
   return `daily_${y}-${m}-${d}`;
 }
 
+/* fetch with timeout helper */
 function fetchWithTimeout(url, opts = {}, ms = 7000) {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => reject(new Error('timeout')), ms);
@@ -35,7 +35,17 @@ function fetchWithTimeout(url, opts = {}, ms = 7000) {
   });
 }
 
-/* --- Update UI texts according to language --- */
+/* Fallback riddles if JSON files unavailable */
+const FALLBACK_HR = [
+  { question: "Što hoda četiri noge ujutro, dvije popodne i tri navečer?", answers: ["čovjek","covjek","clovjek"] },
+  { question: "Koja riječ postane kraća kad joj dodaš dva slova?", answers: ["kratko","shorter"] }
+];
+const FALLBACK_EN = [
+  { question: "What walks on four legs in the morning, two in the afternoon, and three at night?", answers: ["man","human"] },
+  { question: "What word becomes shorter when you add two letters to it?", answers: ["short"] }
+];
+
+/* Update UI texts according to language */
 function updateUIText() {
   try { document.documentElement.lang = (language === "en" ? "en" : "hr"); } catch(e){}
   const appTitle = $("appTitle");
@@ -58,7 +68,7 @@ function updateUIText() {
     if (languageBoxTitle) languageBoxTitle.textContent = "Choose language";
     if (btnHR) btnHR.textContent = "🇭🇷 Croatian";
     if (btnEN) btnEN.textContent = "🇬🇧 English";
-    if (visitorLabel) visitorLabel.textContent = "visitors all/today";
+    if (visitorLabel) visitorLabel.textContent = "visitors today";
     if (answerEl) answerEl.placeholder = "Type your answer";
     if (checkBtn) checkBtn.textContent = "Check answer";
     if (showAnswerBtn) showAnswerBtn.textContent = "Show answer";
@@ -71,7 +81,7 @@ function updateUIText() {
     if (languageBoxTitle) languageBoxTitle.textContent = "Odaberi jezik";
     if (btnHR) btnHR.textContent = "🇭🇷 Hrvatski";
     if (btnEN) btnEN.textContent = "🇬🇧 English";
-    if (visitorLabel) visitorLabel.textContent = "posjetitelja ukupno/danas";
+    if (visitorLabel) visitorLabel.textContent = "posjetitelja danas";
     if (answerEl) answerEl.placeholder = "Upiši odgovor";
     if (checkBtn) checkBtn.textContent = "Provjeri odgovor";
     if (showAnswerBtn) showAnswerBtn.textContent = "Prikaži odgovor";
@@ -80,7 +90,7 @@ function updateUIText() {
   }
 }
 
-/* --- Start / Loading / Riddles (unchanged) --- */
+/* Start game */
 function startGame(lang) {
   language = lang || language;
   try { localStorage.setItem("language", language); } catch (e) {}
@@ -99,6 +109,7 @@ function startGame(lang) {
   });
 }
 
+/* Loading UI */
 function setLoading(loading) {
   const res = $("result");
   const checkBtn = $("checkBtn");
@@ -117,16 +128,7 @@ function setLoading(loading) {
   }
 }
 
-/* Load riddles with fallback */
-const FALLBACK_HR = [
-  { question: "Što hoda četiri noge ujutro, dvije popodne i tri navečer?", answers: ["čovjek","covjek","clovjek"] },
-  { question: "Koja riječ postane kraća kad joj dodaš dva slova?", answers: ["kratko","shorter"] }
-];
-const FALLBACK_EN = [
-  { question: "What walks on four legs in the morning, two in the afternoon, and three at night?", answers: ["man","human"] },
-  { question: "What word becomes shorter when you add two letters to it?", answers: ["short"] }
-];
-
+/* Load HR and EN JSON files (EN optional) with fallback */
 async function loadRiddles() {
   isLoaded = false;
   const pathHr = `./data/riddles_hr.json`;
@@ -242,7 +244,7 @@ function showDailyRiddle() {
   if (title) title.innerHTML = language === "hr" ? "🏺 Sfingina zagonetka dana" : "🏺 Sphinx riddle of the day";
 }
 
-/* Show confirmation then answer (localized) */
+/* Confirm and show answer (localized) */
 function confirmShowAnswer() {
   if (!currentRiddle) return;
   const msg = language === "hr"
@@ -340,16 +342,16 @@ function checkAnswer() {
   }
 }
 
-/* --- Visitor counter logic using CountAPI (counts every visit) --- */
+/* --- Visitor counter: robust parallel hits + GET fallback --- */
 async function countapiHit(namespace, key) {
   const url = `https://api.countapi.xyz/hit/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`;
   try {
     const resp = await fetchWithTimeout(url, { method: 'GET' }, 7000);
-    if (!resp.ok) throw new Error('countapi hit failed');
+    if (!resp.ok) return null;
     const json = await resp.json();
     return (json && typeof json.value === 'number') ? json.value : null;
   } catch (e) {
-    console.warn('countapi hit error', e);
+    console.debug('countapiHit error', e.message, url);
     return null;
   }
 }
@@ -358,10 +360,11 @@ async function countapiGet(namespace, key) {
   const url = `https://api.countapi.xyz/get/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`;
   try {
     const resp = await fetchWithTimeout(url, { method: 'GET' }, 7000);
-    if (!resp.ok) throw new Error('countapi get failed');
+    if (!resp.ok) return null;
     const json = await resp.json();
     return (json && typeof json.value === 'number') ? json.value : null;
   } catch (e) {
+    console.debug('countapiGet error', e.message, url);
     return null;
   }
 }
@@ -376,39 +379,36 @@ async function updateVisitors() {
   let totalValue = null;
   let dailyValue = null;
 
-  // Always increment total
-  try {
-    const v = await countapiHit(COUNTAPI_NAMESPACE, TOTAL_KEY);
-    if (typeof v === 'number') totalValue = v;
-  } catch (e) { /* ignore */ }
+  // Start both hits in parallel
+  const pTotal = countapiHit(COUNTAPI_NAMESPACE, TOTAL_KEY);
+  const pDaily = countapiHit(COUNTAPI_NAMESPACE, dailyKey);
 
-  // Always increment daily
-  try {
-    const v2 = await countapiHit(COUNTAPI_NAMESPACE, dailyKey);
-    if (typeof v2 === 'number') dailyValue = v2;
-  } catch (e) { /* ignore */ }
+  const [resTotal, resDaily] = await Promise.allSettled([pTotal, pDaily]);
 
-  // If values not returned from hits (API issue), fetch current values
-  try {
-    if (totalValue === null) {
-      const tv = await countapiGet(COUNTAPI_NAMESPACE, TOTAL_KEY);
-      totalValue = (tv === null) ? 0 : tv;
-    }
-  } catch (e) { totalValue = totalValue ?? '-'; }
+  if (resTotal.status === 'fulfilled' && typeof resTotal.value === 'number') {
+    totalValue = resTotal.value;
+  }
+  if (resDaily.status === 'fulfilled' && typeof resDaily.value === 'number') {
+    dailyValue = resDaily.value;
+  }
 
-  try {
-    if (dailyValue === null) {
-      const dv = await countapiGet(COUNTAPI_NAMESPACE, dailyKey);
-      dailyValue = (dv === null) ? 0 : dv;
-    }
-  } catch (e) { dailyValue = dailyValue ?? '-'; }
+  // For any missing values, try GET to fetch current counters
+  if (totalValue === null) {
+    const tv = await countapiGet(COUNTAPI_NAMESPACE, TOTAL_KEY);
+    if (typeof tv === 'number') totalValue = tv;
+  }
+  if (dailyValue === null) {
+    const dv = await countapiGet(COUNTAPI_NAMESPACE, dailyKey);
+    if (typeof dv === 'number') dailyValue = dv;
+  }
 
+  // Display fallback if needed
   const totText = (typeof totalValue === 'number') ? String(totalValue) : '-';
   const dayText = (typeof dailyValue === 'number') ? String(dailyValue) : '-';
   visitorEl.textContent = `${totText}/${dayText}`;
 }
 
-/* --- rest unchanged: cache-bust, enter, onload --- */
+/* Cache-bust for sphinx image */
 function bustSphinxCache() {
   const img = document.getElementById('sphinxImg') || document.querySelector('.sphinx img');
   if (!img) return;
@@ -418,6 +418,7 @@ function bustSphinxCache() {
   img.src = base + '?v=' + Date.now();
 }
 
+/* Enter-to-submit when focus is on input */
 (function attachEnter() {
   document.addEventListener("keydown", function (e) {
     const target = e.target;
@@ -430,6 +431,7 @@ function bustSphinxCache() {
   });
 }());
 
+/* On load: restore language if saved, bust cache for sphinx image, update UI & auto-start if needed */
 window.onload = function () {
   try {
     const saved = localStorage.getItem("language");
