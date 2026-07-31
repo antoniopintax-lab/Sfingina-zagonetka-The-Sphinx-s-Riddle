@@ -10,6 +10,16 @@ let hasAttempted = false;
 
 const $ = id => document.getElementById(id);
 
+/* small local fallback pool used if JSON files unavailable */
+const FALLBACK_HR = [
+  { question: "Što hoda četiri noge ujutro, dvije popodne i tri navečer?", answers: ["čovjek", "clovjek", "covjek"] },
+  { question: "Koja riječ postaje kraća kad joj dodaš dva slova?", answers: ["kratko", "kraće", "kratko?"] }
+];
+const FALLBACK_EN = [
+  { question: "What walks on four legs in the morning, two in the afternoon, and three at night?", answers: ["man", "human"] },
+  { question: "What word becomes shorter when you add two letters to it?", answers: ["short"] }
+];
+
 /* Update UI texts according to language */
 function updateUIText() {
   try { document.documentElement.lang = (language === "en" ? "en" : "hr"); } catch(e){}
@@ -21,7 +31,7 @@ function updateUIText() {
   const visitorLabel = $("visitorLabel");
   const answerEl = $("answer");
   const checkBtn = $("checkBtn");
-  const showAnswerBtn = $("showAnswerBtn"); // ADDED
+  const showAnswerBtn = $("showAnswerBtn");
   const dayTitle = $("dayTitle");
   const pageTitle = $("pageTitle");
   const footerText = $("footerText");
@@ -36,7 +46,7 @@ function updateUIText() {
     if (visitorLabel) visitorLabel.textContent = "visitors today";
     if (answerEl) answerEl.placeholder = "Type your answer";
     if (checkBtn) checkBtn.textContent = "Check answer";
-    if (showAnswerBtn) showAnswerBtn.textContent = "Show answer"; // ADDED
+    if (showAnswerBtn) showAnswerBtn.textContent = "Show answer";
     if (dayTitle) dayTitle.textContent = "🏺 Sphinx riddle of the day";
     if (footerText) footerText.innerHTML = "𓆣  Only the wise pass the Sphinx 𓆣";
   } else {
@@ -49,7 +59,7 @@ function updateUIText() {
     if (visitorLabel) visitorLabel.textContent = "posjetitelja danas";
     if (answerEl) answerEl.placeholder = "Upiši odgovor";
     if (checkBtn) checkBtn.textContent = "Provjeri odgovor";
-    if (showAnswerBtn) showAnswerBtn.textContent = "Prikaži odgovor"; // ADDED
+    if (showAnswerBtn) showAnswerBtn.textContent = "Prikaži odgovor";
     if (dayTitle) dayTitle.textContent = "🏺 Sfingina zagonetka dana";
     if (footerText) footerText.innerHTML = "𓆣  Samo mudri prolaze pokraj Sfinge 𓆣";
   }
@@ -78,7 +88,7 @@ function startGame(lang) {
 function setLoading(loading) {
   const res = $("result");
   const checkBtn = $("checkBtn");
-  const showAnswerBtn = $("showAnswerBtn"); // ADDED
+  const showAnswerBtn = $("showAnswerBtn");
   if (loading) {
     if (res) {
       res.className = "";
@@ -90,29 +100,41 @@ function setLoading(loading) {
   } else {
     if (res) res.innerHTML = "";
     if (checkBtn) checkBtn.disabled = false;
-    // showAnswerBtn stays controlled by hasAttempted/showDailyRiddle
   }
 }
 
-/* Load HR and EN JSON files (EN optional) */
+/* Load HR and EN JSON files (EN optional) with fallback */
 async function loadRiddles() {
   isLoaded = false;
   const pathHr = `./data/riddles_hr.json`;
   const pathEn = `./data/riddles_en.json`;
 
   try {
-    const [respHr, respEn] = await Promise.all([fetch(pathHr), fetch(pathEn).catch(()=>({ ok: false }))]);
+    const respHrPromise = fetch(pathHr).catch(()=>({ ok:false }));
+    const respEnPromise = fetch(pathEn).catch(()=>({ ok:false }));
+    const [respHr, respEn] = await Promise.all([respHrPromise, respEnPromise]);
 
-    if (!respHr.ok) throw new Error(`Failed to load ${pathHr} (${respHr.status})`);
-    if (!respEn.ok) console.warn(`Warning: ${pathEn} not available or returned ${respEn.status}. English pool will fallback to HR.`);
+    let dataHr = null;
+    if (respHr && respHr.ok) {
+      try { dataHr = await respHr.json(); } catch(e){ dataHr = null; }
+    }
+    let dataEn = null;
+    if (respEn && respEn.ok) {
+      try { dataEn = await respEn.json(); } catch(e){ dataEn = null; }
+    }
 
-    const dataHr = await respHr.json();
-    let dataEn = [];
-    try { if (respEn.ok) dataEn = await respEn.json(); } catch(e){ dataEn = []; }
+    if (!dataHr) {
+      console.warn("Using fallback HR riddles");
+      dataHr = FALLBACK_HR;
+    }
+    if (!dataEn) {
+      // EN optional — we'll fallback to HR if EN pool not available
+      dataEn = [];
+    }
 
     riddles_hr = (Array.isArray(dataHr) ? dataHr : []).map(r => ({
       category: (r.category || ""),
-      question: (r.question || ""),
+      question: (r.question || r.q || ""),
       answers: (Array.isArray(r.answers) ? r.answers : [r.answers || ""])
         .map(a => String(a).toLowerCase().trim())
         .filter(a => a.length > 0)
@@ -120,11 +142,16 @@ async function loadRiddles() {
 
     riddles_en = (Array.isArray(dataEn) ? dataEn : []).map(r => ({
       category: (r.category || ""),
-      question: (r.question || ""),
+      question: (r.question || r.q || ""),
       answers: (Array.isArray(r.answers) ? r.answers : [r.answers || ""])
         .map(a => String(a).toLowerCase().trim())
         .filter(a => a.length > 0)
     }));
+
+    // If en pool empty but we have fallback EN constants, use them
+    if (language === "en" && riddles_en.length === 0 && FALLBACK_EN.length) {
+      riddles_en = FALLBACK_EN.map(r => ({ question: r.question, answers: r.answers.map(a=>String(a).toLowerCase()) }));
+    }
 
     isLoaded = true;
   } catch (err) {
@@ -134,9 +161,9 @@ async function loadRiddles() {
       res.className = "error";
       res.innerHTML = language === "hr" ? "Greška pri učitavanju zagonetki. Pokušaj ponovno kasnije." : "Error loading riddles. Please try again later.";
     }
-    riddles_hr = [];
-    riddles_en = [];
-    isLoaded = false;
+    riddles_hr = FALLBACK_HR.map(r => ({ question: r.question, answers: r.answers.map(a=>String(a).toLowerCase()) }));
+    riddles_en = (language === "en" ? FALLBACK_EN.map(r => ({ question: r.question, answers: r.answers.map(a=>String(a).toLowerCase()) })) : []);
+    isLoaded = true;
   }
 }
 
@@ -278,6 +305,7 @@ function checkAnswer() {
 
   const correct = (currentRiddle.answers || []).some(a => {
     if (!a) return false;
+    // accept exact match or contains (allows multiword matches)
     return input === a || input.includes(a);
   });
 
@@ -351,5 +379,17 @@ function bustSphinxCache() {
 
 /* On load: restore language if saved, bust cache for sphinx image, update UI & auto-start if needed */
 window.onload = function () {
-  try {*
-
+  try {
+    const saved = localStorage.getItem("language");
+    if (saved) language = saved;
+  } catch (e) { console.error("LocalStorage error:", e); }
+
+  updateUIText();
+  // Ensure we load fresh SVG/PNG for the sphinx image
+  try { bustSphinxCache(); } catch (e) { /* ignore */ }
+
+  // If language previously selected, auto-start
+  try {
+    if (localStorage.getItem("language")) startGame(language);
+  } catch (e) {}
+};
