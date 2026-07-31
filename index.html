@@ -8,47 +8,49 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="sand"></div>
-<header>
+  <div class="sand" aria-hidden="true"></div>
+
+  <header>
     <h1 id="appTitle">𓂀 Sfingin izazov</h1>
     <p id="subtitle">Riješi zagonetku i otkrij tajnu ulaza</p>
-</header>
+  </header>
 
-<section id="languageBox">
+  <section id="languageBox" aria-label="Odabir jezika">
     <h2 id="languageBoxTitle">Odaberi jezik</h2>
     <button id="btnHR" type="button" onclick="startGame('hr')">🇭🇷 Hrvatski</button>
     <button id="btnEN" type="button" onclick="startGame('en')">🇬🇧 English</button>
-</section>
+  </section>
 
-<main id="game" class="hidden">
-    <div class="sphinx">
-        <img id="sphinxImg" src="images/sphinx.svg" alt="Sfinga">
+  <main id="game" class="hidden" aria-live="polite">
+    <div class="sphinx" aria-hidden="false">
+      <img id="sphinxImg" src="images/sphinx.svg" alt="Sfinga">
     </div>
 
-    <div class="visitor">
-        👤 <span id="visitorCount">-/-</span>
-        <p id="visitorLabel">posjetitelja danas</p>
+    <div class="visitor" aria-label="Posjetitelji">
+      👤 <span id="visitorCount">-/-</span>
+      <p id="visitorLabel">posjetitelja danas</p>
     </div>
 
-    <div class="riddleBox">
-        <h2 id="dayTitle">Današnja zagonetka</h2>
-        <p id="riddle"></p>
+    <section class="riddleBox" role="region" aria-labelledby="dayTitle">
+      <h2 id="dayTitle">Današnja zagonetka</h2>
+      <p id="riddle" aria-live="polite"></p>
 
-        <input id="answer" type="text" placeholder="Upiši odgovor" aria-label="Odgovor na zagonetku">
-        <div class="buttons">
-          <button id="checkBtn" onclick="checkAnswer()" class="check">Provjeri odgovor</button>
-          <button id="showAnswerBtn" class="small" onclick="confirmShowAnswer()" style="display:none;">Prikaži odgovor</button>
-        </div>
+      <input id="answer" type="text" placeholder="Upiši odgovor" aria-label="Odgovor na zagonetku">
+      <div class="buttons" aria-hidden="false">
+        <button id="checkBtn" class="check" onclick="checkAnswer()">Provjeri odgovor</button>
+        <button id="showAnswerBtn" class="small" onclick="confirmShowAnswer()" style="display:none;">Prikaži odgovor</button>
+      </div>
 
-        <div id="result" aria-live="polite"></div>
-    </div>
-</main>
+      <div id="result" aria-live="polite"></div>
+    </section>
+  </main>
 
-<footer>
-<p id="footerText">𓆣  Samo mudri prolaze pokraj Sfinge 𓆣</p>
-</footer>
+  <footer>
+    <p id="footerText">𓆣  Samo mudri prolaze pokraj Sfinge 𓆣</p>
+  </footer>
 
-<script src="config.js"></script>
-<script src="script.js"></script>
+  <!-- optional config.js may define SPHINX_CONFIG; script.js handles missing config safely -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
