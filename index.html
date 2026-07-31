@@ -15,8 +15,8 @@
 
 <section id="languageBox">
     <h2 id="languageBoxTitle">Odaberi jezik</h2>
-    <button id="btnHR" onclick="startGame('hr')">🇭🇷 Hrvatski</button>
-    <button id="btnEN" onclick="startGame('en')">🇬🇧 English</button>
+    <button id="btnHR" type="button" onclick="startGame('hr')">🇭🇷 Hrvatski</button>
+    <button id="btnEN" type="button" onclick="startGame('en')">🇬🇧 English</button>
 </section>
 
 <main id="game" class="hidden">
@@ -48,6 +48,7 @@
 <p id="footerText">𓆣  Samo mudri prolaze pokraj Sfinge 𓆣</p>
 </footer>
 
+<!-- config.js is optional; script.js handles missing config safely -->
 <script src="config.js"></script>
 <script src="script.js"></script>
 </body>
