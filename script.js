@@ -1,4 +1,4 @@
-// script.js — HR/EN pools + UI text switching + cache-bust + show answer with confirmation + show-answer hidden until first attempt
+// script.js — simple UI + HR/EN pools + show-answer with confirmation + cache-bust
 
 let language = "hr";
 let riddles_hr = [];
@@ -9,9 +9,10 @@ let hasAttempted = false;
 
 const $ = id => document.getElementById(id);
 
-/* Update UI texts according to language */
+/* Update UI text for language */
 function updateUIText() {
   try { document.documentElement.lang = (language === "en" ? "en" : "hr"); } catch(e){}
+  const pageTitle = $("pageTitle");
   const appTitle = $("appTitle");
   const subtitle = $("subtitle");
   const languageBoxTitle = $("languageBoxTitle");
@@ -22,7 +23,6 @@ function updateUIText() {
   const checkBtn = $("checkBtn");
   const showAnswerBtn = $("showAnswerBtn");
   const dayTitle = $("dayTitle");
-  const pageTitle = $("pageTitle");
   const footerText = $("footerText");
 
   if (language === "en") {
@@ -73,115 +73,82 @@ function startGame(lang) {
   });
 }
 
-/* Loading UI */
 function setLoading(loading) {
   const res = $("result");
   const checkBtn = $("checkBtn");
   const showAnswerBtn = $("showAnswerBtn");
   if (loading) {
-    if (res) {
-      res.className = "";
-      res.innerHTML = language === "hr" ? "Učitavanje zagonetki..." : "Loading riddles...";
-      res.setAttribute("aria-live", "polite");
-    }
+    if (res) res.textContent = language === "hr" ? "Učitavanje zagonetki..." : "Loading riddles...";
     if (checkBtn) checkBtn.disabled = true;
-    if (showAnswerBtn) { showAnswerBtn.disabled = true; showAnswerBtn.style.display = 'none'; }
+    if (showAnswerBtn) { showAnswerBtn.style.display = 'none'; showAnswerBtn.disabled = true; }
   } else {
-    if (res) res.innerHTML = "";
+    if (res) res.textContent = "";
     if (checkBtn) checkBtn.disabled = false;
-    // keep showAnswerBtn controlled by hasAttempted / showDailyRiddle
   }
 }
 
-/* Load HR and EN JSON files (EN optional) */
+/* Load riddles HR and EN (EN optional) */
 async function loadRiddles() {
   isLoaded = false;
-  const pathHr = `./data/riddles_hr.json`;
-  const pathEn = `./data/riddles_en.json`;
-
+  const pathHr = './data/riddles_hr.json';
+  const pathEn = './data/riddles_en.json';
   try {
-    const [respHr, respEn] = await Promise.all([fetch(pathHr), fetch(pathEn).catch(()=>({ ok: false }))]);
-
-    if (!respHr.ok) throw new Error(`Failed to load ${pathHr} (${respHr.status})`);
-    if (!respEn.ok) console.warn(`Warning: ${pathEn} not available or returned ${respEn.status}. English pool will fallback to HR.`);
-
+    const [respHr, respEn] = await Promise.all([
+      fetch(pathHr),
+      fetch(pathEn).catch(()=>({ ok:false }))
+    ]);
+    if (!respHr.ok) throw new Error('Failed to load hr riddles');
     const dataHr = await respHr.json();
     let dataEn = [];
-    try { if (respEn.ok) dataEn = await respEn.json(); } catch(e){ dataEn = []; }
-
-    // keep answers normalized (lowercase) for checking
+    if (respEn.ok) {
+      try { dataEn = await respEn.json(); } catch(e){ dataEn = []; }
+    }
     riddles_hr = (Array.isArray(dataHr) ? dataHr : []).map(r => ({
-      category: (r.category || ""),
-      question: (r.question || ""),
+      question: r.question || "",
       answers: (Array.isArray(r.answers) ? r.answers : [r.answers || ""])
-        .map(a => String(a).toLowerCase().trim())
-        .filter(a => a.length > 0)
+        .map(a => String(a).toLowerCase().trim()).filter(a=>a)
     }));
-
     riddles_en = (Array.isArray(dataEn) ? dataEn : []).map(r => ({
-      category: (r.category || ""),
-      question: (r.question || ""),
+      question: r.question || "",
       answers: (Array.isArray(r.answers) ? r.answers : [r.answers || ""])
-        .map(a => String(a).toLowerCase().trim())
-        .filter(a => a.length > 0)
+        .map(a => String(a).toLowerCase().trim()).filter(a=>a)
     }));
-
     isLoaded = true;
   } catch (err) {
-    console.error("Error loading riddle files:", err);
+    console.error(err);
     const res = $("result");
-    if (res) {
-      res.className = "error";
-      res.innerHTML = language === "hr" ? "Greška pri učitavanju zagonetki. Pokušaj ponovno kasnije." : "Error loading riddles. Please try again later.";
-    }
+    if (res) res.textContent = language === "hr" ? "Greška pri učitavanju zagonetki." : "Error loading riddles.";
     riddles_hr = [];
     riddles_en = [];
     isLoaded = false;
   }
 }
 
-/* Show daily riddle:
-   - if language === 'en' and riddles_en available -> select from EN pool
-   - else select from HR pool
-*/
+/* Show daily riddle from chosen pool */
 function showDailyRiddle() {
   updateUIText();
-
-  hasAttempted = false; // reset attempt flag for new riddle
-
-  const resEl = $("result");
+  hasAttempted = false;
+  const res = $("result");
   if (!isLoaded || riddles_hr.length === 0) {
     const rEl = $("riddle");
-    if (rEl) rEl.innerHTML = language === "hr" ? "Nema dostupnih zagonetki." : "No riddles available.";
+    if (rEl) rEl.textContent = language === "hr" ? "Nema dostupnih zagonetki." : "No riddles available.";
     return;
   }
 
   const today = new Date();
   const start = new Date(today.getFullYear(), 0, 0);
-  const diff = today - start;
-  const day = Math.floor(diff / 86400000);
+  const day = Math.floor((today - start) / 86400000);
   let pool = riddles_hr;
   if (language === "en" && riddles_en.length > 0) pool = riddles_en;
-
-  let index;
-  const cfgIndex = (window.SPHINX_CONFIG && Number.isInteger(window.SPHINX_CONFIG.forceRiddleIndex)) ? window.SPHINX_CONFIG.forceRiddleIndex : null;
-  if (cfgIndex !== null) {
-    index = Math.abs(cfgIndex) % pool.length;
-  } else {
-    index = ((day - 1) % pool.length + pool.length) % pool.length;
-  }
-
-  const questionText = (pool[index] && pool[index].question) ? pool[index].question : "";
-  const answersForLang = (pool[index] && Array.isArray(pool[index].answers)) ? pool[index].answers : [];
+  const index = ((day - 1) % pool.length + pool.length) % pool.length;
 
   currentRiddle = {
-    index,
-    question: questionText,
-    answers: answersForLang
+    question: pool[index].question || "",
+    answers: pool[index].answers || []
   };
 
   const rEl = $("riddle");
-  if (rEl) rEl.innerHTML = currentRiddle.question || "";
+  if (rEl) rEl.textContent = currentRiddle.question || "";
 
   const answerEl = $("answer");
   if (answerEl) { answerEl.value = ""; answerEl.disabled = false; answerEl.focus(); }
@@ -190,100 +157,48 @@ function showDailyRiddle() {
   if (checkBtn) checkBtn.disabled = false;
 
   const showAnswerBtn = $("showAnswerBtn");
-  if (showAnswerBtn) {
-    showAnswerBtn.style.display = 'none'; // hide until first attempt
-    showAnswerBtn.disabled = true;
-    showAnswerBtn.setAttribute('aria-expanded', 'false');
-  }
+  if (showAnswerBtn) { showAnswerBtn.style.display = 'none'; showAnswerBtn.disabled = true; showAnswerBtn.setAttribute('aria-expanded','false'); }
 
-  if (resEl) { resEl.innerHTML = ""; resEl.className = ""; }
-
-  const title = $("dayTitle");
-  if (title) title.innerHTML = language === "hr" ? "🏺 Sfingina zagonetka dana" : "🏺 Sphinx riddle of the day";
+  if (res) res.textContent = "";
 }
 
-/* Helper: pretty-capitalize answer for display */
-function pretty(a) {
-  if (!a) return a;
-  return a.charAt(0).toUpperCase() + a.slice(1);
-}
-
-/* Confirm then show the correct answer(s) */
+/* Show confirmation then answer */
 function confirmShowAnswer() {
-  const showAnswerBtn = $("showAnswerBtn");
   if (!currentRiddle) return;
-
   const msg = language === "hr"
     ? "Jeste li sigurni da želite prikazati odgovor? To će onemogućiti daljnje pokušaje."
     : "Are you sure you want to show the answer? This will disable further attempts.";
-
-  // use native confirm for simplicity; if user confirms, reveal
-  if (window.confirm(msg)) {
-    showAnswer();
-  } else {
-    // optional: refocus input
-    const answerEl = $("answer");
-    if (answerEl && !answerEl.disabled) answerEl.focus();
-    if (showAnswerBtn) showAnswerBtn.setAttribute('aria-expanded', 'false');
+  if (window.confirm(msg)) showAnswer();
+  else {
+    const a = $("answer");
+    if (a && !a.disabled) a.focus();
   }
 }
 
-/* Show the correct answer(s) */
+/* Show answer */
 function showAnswer() {
   if (!currentRiddle) return;
   const res = $("result");
-  const answerEl = $("answer");
-  const checkBtn = $("checkBtn");
-  const showAnswerBtn = $("showAnswerBtn");
-
-  const answers = (currentRiddle.answers && currentRiddle.answers.length) ? currentRiddle.answers : [];
-
-  if (!answers.length) {
-    if (res) {
-      res.className = "info";
-      res.innerHTML = language === "hr" ? "Nema dostupnog odgovora za ovu zagonetku." : "No answer available for this riddle.";
-    }
-    if (showAnswerBtn) showAnswerBtn.disabled = true;
-    return;
-  }
-
-  const display = answers.map(a => pretty(a)).join(', ');
-
-  if (res) {
-    res.className = "info";
-    res.innerHTML = language === "hr"
-      ? `<strong>Odgovor:</strong> ${display}`
-      : `<strong>Answer:</strong> ${display}`;
-  }
-
-  // disable further input / checks
-  if (answerEl) { answerEl.value = ''; answerEl.disabled = true; }
-  if (checkBtn) checkBtn.disabled = true;
-  if (showAnswerBtn) {
-    showAnswerBtn.disabled = true;
-    showAnswerBtn.setAttribute('aria-expanded', 'true');
-  }
+  const answers = currentRiddle.answers || [];
+  const display = answers.map(a => a.charAt(0).toUpperCase()+a.slice(1)).join(', ');
+  if (res) res.innerHTML = language === "hr" ? `<strong>Odgovor:</strong> ${display}` : `<strong>Answer:</strong> ${display}`;
+  const answerEl = $("answer"); if (answerEl) { answerEl.value = ''; answerEl.disabled = true; }
+  const checkBtn = $("checkBtn"); if (checkBtn) checkBtn.disabled = true;
+  const showAnswerBtn = $("showAnswerBtn"); if (showAnswerBtn) { showAnswerBtn.disabled = true; showAnswerBtn.setAttribute('aria-expanded','true'); }
 }
 
-/* Check answer: success disables input; wrong shows message + responsibility warning.
-   Also reveals the 'show answer' button after first attempt.
-*/
+/* Check answer */
 function checkAnswer() {
   if (!isLoaded || !currentRiddle) return;
-
   hasAttempted = true;
   const answerEl = $("answer");
+  const input = (answerEl && answerEl.value || "").toLowerCase().trim();
   const res = $("result");
   const checkBtn = $("checkBtn");
   const showAnswerBtn = $("showAnswerBtn");
-  const input = (answerEl && answerEl.value || "").toLowerCase().trim();
 
-  // reveal show-answer button after first attempt
-  if (showAnswerBtn) {
-    showAnswerBtn.style.display = '';
-    showAnswerBtn.disabled = false;
-    showAnswerBtn.setAttribute('aria-expanded', 'false');
-  }
+  // reveal show-answer after first attempt
+  if (showAnswerBtn) { showAnswerBtn.style.display = ''; showAnswerBtn.disabled = false; showAnswerBtn.setAttribute('aria-expanded','false'); }
 
   const correct = (currentRiddle.answers || []).some(a => {
     if (!a) return false;
@@ -291,86 +206,46 @@ function checkAnswer() {
   });
 
   if (correct) {
-    if (res) {
-      res.className = "success";
-      res.innerHTML = language === "hr"
-        ? `🗝️ TOČAN ODGOVOR!<br><br>Sfinga ti dopušta prolaz.<br><strong>Hvala što si sudjelovao/la!</strong>`
-        : `🗝️ CORRECT ANSWER!<br><br>The Sphinx allows you to enter.<br><strong>Thank you for participating!</strong>`;
-      res.style.color = "#7CFC00";
-    }
+    if (res) res.innerHTML = language === "hr" ? `🗝️ TOČAN ODGOVOR!<br><strong>Hvala što si sudjelovao/la!</strong>` : `🗝️ CORRECT ANSWER!<br><strong>Thank you for participating!</strong>`;
     if (answerEl) answerEl.disabled = true;
     if (checkBtn) checkBtn.disabled = true;
-    if (showAnswerBtn) showAnswerBtn.disabled = true; // no need to show answer after correct
+    if (showAnswerBtn) showAnswerBtn.disabled = true;
   } else {
-    if (res) {
-      res.className = "error";
-      res.innerHTML = language === "hr"
-        ? `❌ Sfinga nije zadovoljna.<br><br>Pokušaj ponovno.<br>Ulazak na vlastitu odgovornost.`
-        : `❌ The Sphinx is not convinced.<br><br>Try again.<br>Enter at your own risk.`;
-      res.style.color = "#ff5555";
-    }
-    // keep showAnswerBtn enabled so user can choose to reveal after confirming
+    if (res) res.innerHTML = language === "hr" ? `❌ Pogrešno. Pokušaj ponovno.` : `❌ Incorrect. Try again.`;
   }
 }
 
-/* Visitor counter (tolerant parsing) */
+/* Visitor counter (optional) */
 function updateVisitors() {
   const counterUrl = (window.SPHINX_CONFIG && window.SPHINX_CONFIG.counterApiUrl) || "https://api.counterapi.dev/v1/sfingin-izazov/visits/up";
-  fetch(counterUrl)
-    .then(r => r.json())
-    .then(data => {
-      const count = (data && (data.count ?? data.value ?? data)) || "-";
-      const el = $("visitorCount");
-      if (el) el.innerHTML = String(count);
-    })
-    .catch(err => {
-      console.warn("Counter API error:", err);
-      const el = $("visitorCount");
-      if (el) el.innerHTML = "-";
-    });
+  fetch(counterUrl).then(r=>r.json()).then(data=>{
+    const count = (data && (data.count ?? data.value ?? data)) || "-";
+    const el = $("visitorCount"); if (el) el.textContent = String(count);
+  }).catch(()=>{ const el = $("visitorCount"); if (el) el.textContent = "-"; });
 }
 
-/* Cache-bust for sphinx image: forces browser to fetch the latest file */
+/* Simple cache-bust for sphinx image */
 function bustSphinxCache() {
-  const img = document.getElementById('sphinxImg') || document.querySelector('.sphinx img');
+  const img = $("sphinxImg") || document.querySelector('.sphinx img');
   if (!img) return;
-
-  // get base path (strip existing query)
   const base = (img.getAttribute('data-src') || img.getAttribute('src') || '').split('?')[0];
   if (!base) return;
-
-  // store original base once
   if (!img.getAttribute('data-src')) img.setAttribute('data-src', base);
-
-  // set src with timestamp to bypass cache
   img.src = base + '?v=' + Date.now();
 }
 
-/* Enter-to-submit when focus is on input */
-(function attachEnter() {
-  document.addEventListener("keydown", function (e) {
-    const target = e.target;
-    const answerEl = $("answer");
-    if (e.key === "Enter" && (target === answerEl || document.activeElement === answerEl)) {
-      e.preventDefault();
-      const checkBtn = $("checkBtn");
-      if (checkBtn && !checkBtn.disabled) checkAnswer();
-    }
-  });
-}());
+/* Enter to submit */
+document.addEventListener('keydown', function(e){
+  const answerEl = $("answer");
+  if (e.key === 'Enter' && (document.activeElement === answerEl)) {
+    e.preventDefault(); checkAnswer();
+  }
+});
 
-/* On load: restore language if saved, bust cache for sphinx image, update UI & auto-start if needed */
-window.onload = function () {
-  try {
-    const saved = localStorage.getItem("language");
-    if (saved) language = saved;
-  } catch (e) { console.error("LocalStorage error:", e); }
-
+/* On load */
+window.onload = function() {
+  try { const saved = localStorage.getItem('language'); if (saved) language = saved; } catch(e){}
   updateUIText();
-  // Ensure we load fresh SVG/PNG for the sphinx image
-  try { bustSphinxCache(); } catch (e) { /* ignore */ }
-
-  try {
-    if (localStorage.getItem("language")) startGame(language);
-  } catch (e) {}
+  try { bustSphinxCache(); } catch(e){}
+  try { if (localStorage.getItem('language')) startGame(language); } catch(e){}
 };
