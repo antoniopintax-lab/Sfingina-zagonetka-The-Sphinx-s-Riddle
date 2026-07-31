@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title id="pageTitle">Sfingin izazov</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="sand" aria-hidden="true"></div>
-
   <header>
     <h1 id="appTitle">𓂀 Sfingin izazov</h1>
     <p id="subtitle">Riješi zagonetku i otkrij tajnu ulaza</p>
@@ -21,32 +19,27 @@
   </section>
 
   <main id="game" class="hidden" aria-live="polite">
-    <div class="sphinx" aria-hidden="false">
-      <picture>
-        <source srcset="images/sphinx.svg" type="image/svg+xml" />
-        <img id="sphinxImg" src="images/sphinx.png" alt="Sfinga" />
-      </picture>
+    <div class="sphinx">
+      <img id="sphinxImg" src="images/sphinx.svg" alt="Sfinga">
     </div>
 
-    <div class="visitor" aria-label="Visitor counter">
+    <aside class="visitor">
       👤 <span id="visitorCount">0</span>
-      <p id="visitorLabel">posjetitelja danas</p>
-    </div>
+      <div id="visitorLabel">posjetitelja danas</div>
+    </aside>
 
-    <div class="riddleBox" role="region" aria-labelledby="dayTitle">
+    <section class="riddleBox" role="region" aria-labelledby="dayTitle">
       <h2 id="dayTitle">Današnja zagonetka</h2>
       <p id="riddle" aria-live="polite"></p>
 
-      <label for="answer" class="sr-only">Odgovor</label>
       <input id="answer" type="text" placeholder="Upiši odgovor" aria-label="Odgovor na zagonetku" />
-      <div style="margin-top:0.5em;">
-        <button id="checkBtn" onclick="checkAnswer()" class="check">Provjeri odgovor</button>
-        <!-- initially hidden; will appear after first attempt -->
-        <button id="showAnswerBtn" class="small" onclick="confirmShowAnswer()" aria-controls="result" aria-expanded="false" style="display:none;">Prikaži odgovor</button>
+      <div class="buttons">
+        <button id="checkBtn" class="check" onclick="checkAnswer()">Provjeri odgovor</button>
+        <button id="showAnswerBtn" class="small" onclick="confirmShowAnswer()" style="display:none;">Prikaži odgovor</button>
       </div>
 
-      <div id="result" aria-live="polite" style="margin-top:0.8em;"></div>
-    </div>
+      <div id="result" aria-live="polite"></div>
+    </section>
   </main>
 
   <footer>
