@@ -1,5 +1,6 @@
-// script.js — HR/EN + show-answer + cache-bust + robust visitor counter with local fallback
-// Note: page will NOT auto-start the game on load; user must click a language button.
+// script.js — HR/EN + show-answer + cache-bust + visitor counter (total only, counts every page load)
+// Note: page will NOT auto-start the game on load; user must click a language button to enter the game.
+// The visitor counter, however, increments on every page load.
 
 let language = "hr";
 let riddles_hr = [];
@@ -13,14 +14,7 @@ const $ = id => document.getElementById(id);
 /* --- CountAPI / local fallback settings --- */
 const COUNTAPI_NAMESPACE = 'antoniopintax_lab_sfinga';
 const TOTAL_KEY = 'total_visits';
-function dailyKeyForDate(date) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, '0');
-  const d = String(date.getDate()).padStart(2, '0');
-  return `daily_${y}-${m}-${d}`;
-}
 const LS_LAST_TOTAL = 'sphinx_last_total';
-function lsDailyKey(dateKey) { return `sphinx_last_${dateKey}`; }
 const LS_FALLBACK_FLAG = 'sphinx_use_local_fallback';
 
 /* fetch with timeout helper */
@@ -105,7 +99,7 @@ function updateUIText() {
     if (languageBoxTitle) languageBoxTitle.textContent = "Choose language";
     if (btnHR) btnHR.textContent = "🇭🇷 Croatian";
     if (btnEN) btnEN.textContent = "🇬🇧 English";
-    if (visitorLabel) visitorLabel.textContent = "visitors today";
+    if (visitorLabel) visitorLabel.textContent = "total visitors";
     if (answerEl) answerEl.placeholder = "Type your answer";
     if (checkBtn) checkBtn.textContent = "Check answer";
     if (showAnswerBtn) showAnswerBtn.textContent = "Show answer";
@@ -118,7 +112,7 @@ function updateUIText() {
     if (languageBoxTitle) languageBoxTitle.textContent = "Odaberi jezik";
     if (btnHR) btnHR.textContent = "🇭🇷 Hrvatski";
     if (btnEN) btnEN.textContent = "🇬🇧 English";
-    if (visitorLabel) visitorLabel.textContent = "posjetitelja danas";
+    if (visitorLabel) visitorLabel.textContent = "posjetitelja ukupno";
     if (answerEl) answerEl.placeholder = "Upiši odgovor";
     if (checkBtn) checkBtn.textContent = "Provjeri odgovor";
     if (showAnswerBtn) showAnswerBtn.textContent = "Prikaži odgovor";
@@ -143,7 +137,7 @@ function startGame(lang) {
   loadRiddles().then(() => {
     setLoading(false);
     showDailyRiddle();
-    updateVisitors();
+    // do NOT call updateVisitors here to avoid double-counting (we count on load)
   });
 }
 
@@ -223,7 +217,7 @@ async function loadRiddles() {
   }
 }
 
-/* --- UPDATED: Show daily riddle using UTC day to avoid timezone/DST issues --- */
+/* --- Show daily riddle (UTC day index) --- */
 function showDailyRiddle() {
   updateUIText();
 
@@ -240,16 +234,14 @@ function showDailyRiddle() {
 
   // --- compute day index using UTC to avoid timezone/DST issues ---
   const now = new Date();
-  // UTC midnight for today and start of year
   const todayUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-  const startOfYearUTC = Date.UTC(now.getUTCFullYear(), 0, 0); // Jan 0 -> Dec 31 prev year
+  const startOfYearUTC = Date.UTC(now.getUTCFullYear(), 0, 0);
   const day = Math.floor((todayUTC - startOfYearUTC) / 86400000); // day of year (1..)
-  // choose pool according to language and availability
+
   let pool = riddles_hr;
   if (language === "en" && Array.isArray(riddles_en) && riddles_en.length > 0) pool = riddles_en;
 
   if (!Array.isArray(pool) || pool.length === 0) {
-    // fallback safety (should not normally happen)
     const rEl = $("riddle");
     if (rEl) rEl.innerHTML = language === "hr" ? "Nema dostupnih zagonetki u odabranom jeziku." : "No riddles available for selected language.";
     console.debug('showDailyRiddle: selected pool empty for language', language);
@@ -263,7 +255,6 @@ function showDailyRiddle() {
     index = Math.abs(cfgIndex) % pool.length;
     console.debug('showDailyRiddle: using forced index', cfgIndex, '=>', index);
   } else {
-    // deterministic index per UTC day
     index = ((day - 1) % pool.length + pool.length) % pool.length;
     console.debug('showDailyRiddle: dayOfYear(UTC)=', day, 'pool.length=', pool.length, 'index=', index);
   }
@@ -387,18 +378,14 @@ function checkAnswer() {
   }
 }
 
-/* --- Visitor counter with CountAPI primary + local fallback --- */
+/* --- Visitor counter: total only (CountAPI primary, local fallback) --- */
 async function updateVisitors() {
   const visitorEl = $("visitorCount");
   if (!visitorEl) return;
 
-  const today = new Date();
-  const dailyKey = dailyKeyForDate(today);
-
   let totalValue = null;
-  let dailyValue = null;
 
-  // Try CountAPI for total
+  // Try CountAPI hit for total
   try {
     const t = await countapiHit(COUNTAPI_NAMESPACE, TOTAL_KEY);
     if (typeof t === 'number') {
@@ -407,52 +394,28 @@ async function updateVisitors() {
       console.debug('CountAPI total hit ->', t);
     } else {
       const tv = await countapiGet(COUNTAPI_NAMESPACE, TOTAL_KEY);
-      if (typeof tv === 'number') { totalValue = tv; safeSetLS(LS_LAST_TOTAL, tv); console.debug('CountAPI total get ->', tv); }
+      if (typeof tv === 'number') {
+        totalValue = tv;
+        safeSetLS(LS_LAST_TOTAL, tv);
+        console.debug('CountAPI total get ->', tv);
+      }
     }
-  } catch (e) { console.debug('CountAPI total error', e && e.message); }
+  } catch (e) {
+    console.debug('CountAPI total error', e && e.message);
+  }
 
-  // Try CountAPI for daily
-  try {
-    const d = await countapiHit(COUNTAPI_NAMESPACE, dailyKey);
-    if (typeof d === 'number') {
-      dailyValue = d;
-      safeSetLS(lsDailyKey(dailyKey), d);
-      console.debug('CountAPI daily hit ->', d);
-    } else {
-      const dv = await countapiGet(COUNTAPI_NAMESPACE, dailyKey);
-      if (typeof dv === 'number') { dailyValue = dv; safeSetLS(lsDailyKey(dailyKey), dv); console.debug('CountAPI daily get ->', dv); }
-    }
-  } catch (e) { console.debug('CountAPI daily error', e && e.message); }
-
-  // If CountAPI unavailable for both, use and increment local fallback so user sees numbers
-  if (totalValue === null && dailyValue === null) {
-    console.debug('CountAPI unavailable — using local fallback/increment');
+  // If CountAPI failed, fallback to localStorage and increment locally so user sees change
+  if (totalValue === null) {
+    console.debug('CountAPI unavailable — using local fallback/increment for total');
     const lastTotal = safeGetLSInt(LS_LAST_TOTAL) ?? 0;
-    const lastDaily = safeGetLSInt(lsDailyKey(dailyKey)) ?? 0;
     const newTotal = lastTotal + 1;
-    const newDaily = lastDaily + 1;
     safeSetLS(LS_LAST_TOTAL, newTotal);
-    safeSetLS(lsDailyKey(dailyKey), newDaily);
     try { localStorage.setItem(LS_FALLBACK_FLAG, '1'); } catch(e){}
     totalValue = newTotal;
-    dailyValue = newDaily;
-  } else {
-    // fill missing with last-known values from localStorage
-    if (totalValue === null) {
-      const lastTotal = safeGetLSInt(LS_LAST_TOTAL);
-      totalValue = (typeof lastTotal === 'number') ? lastTotal : 0;
-      console.debug('Using last-known total from localStorage ->', totalValue);
-    }
-    if (dailyValue === null) {
-      const lastDaily = safeGetLSInt(lsDailyKey(dailyKey));
-      dailyValue = (typeof lastDaily === 'number') ? lastDaily : 0;
-      console.debug('Using last-known daily from localStorage ->', dailyValue);
-    }
   }
 
   const totText = (typeof totalValue === 'number') ? String(totalValue) : '-';
-  const dayText = (typeof dailyValue === 'number') ? String(dailyValue) : '-';
-  visitorEl.textContent = `${totText}/${dayText}`;
+  visitorEl.textContent = totText;
 }
 
 /* Cache-bust for sphinx image */
@@ -478,7 +441,7 @@ function bustSphinxCache() {
   });
 }());
 
-/* On load: do NOT auto-start game. Restore language pref for labels only and bust cache. */
+/* On load: restore language pref for labels only, bust cache, and increment total visitor counter */
 window.onload = function () {
   try {
     const saved = localStorage.getItem("language");
@@ -487,5 +450,7 @@ window.onload = function () {
 
   updateUIText();
   try { bustSphinxCache(); } catch (e) {}
-  // Note: user must click a language button to call startGame(lang)
+  // Count this page load for total visits:
+  try { updateVisitors(); } catch(e) { console.debug('updateVisitors failed on load', e && e.message); }
+  // Note: user still must click language button to enter the game
 };
