@@ -1,6 +1,6 @@
-// script.js — HR/EN + show-answer + cache-bust + visitor counter (total only, counts every page load)
+// script.js — HR/EN + show-answer + cache-bust + visitor counter (total only, single number)
 // Note: page will NOT auto-start the game on load; user must click a language button to enter the game.
-// The visitor counter, however, increments on every page load.
+// The visitor counter increments on every page load.
 
 let language = "hr";
 let riddles_hr = [];
@@ -127,7 +127,6 @@ function startGame(lang) {
   try { localStorage.setItem("language", language); } catch (e) {}
   updateUIText();
 
-  // hide language box, show game area
   const langBox = $("languageBox");
   if (langBox) langBox.style.display = "none";
   const game = $("game");
@@ -137,7 +136,7 @@ function startGame(lang) {
   loadRiddles().then(() => {
     setLoading(false);
     showDailyRiddle();
-    // do NOT call updateVisitors here to avoid double-counting (we count on load)
+    // do not call updateVisitors here (we count on load)
   });
 }
 
@@ -217,14 +216,12 @@ async function loadRiddles() {
   }
 }
 
-/* --- Show daily riddle (UTC day index) --- */
+/* Show daily riddle (UTC day index) */
 function showDailyRiddle() {
   updateUIText();
-
-  hasAttempted = false; // reset flag for new riddle
+  hasAttempted = false;
 
   const resEl = $("result");
-  // ensure we have riddles loaded
   if (!isLoaded || !riddles_hr || riddles_hr.length === 0) {
     const rEl = $("riddle");
     if (rEl) rEl.innerHTML = language === "hr" ? "Nema dostupnih zagonetki." : "No riddles available.";
@@ -232,11 +229,10 @@ function showDailyRiddle() {
     return;
   }
 
-  // --- compute day index using UTC to avoid timezone/DST issues ---
   const now = new Date();
   const todayUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
   const startOfYearUTC = Date.UTC(now.getUTCFullYear(), 0, 0);
-  const day = Math.floor((todayUTC - startOfYearUTC) / 86400000); // day of year (1..)
+  const day = Math.floor((todayUTC - startOfYearUTC) / 86400000);
 
   let pool = riddles_hr;
   if (language === "en" && Array.isArray(riddles_en) && riddles_en.length > 0) pool = riddles_en;
@@ -248,7 +244,6 @@ function showDailyRiddle() {
     return;
   }
 
-  // allow force override if configured
   let index;
   const cfgIndex = (window.SPHINX_CONFIG && Number.isInteger(window.SPHINX_CONFIG.forceRiddleIndex)) ? window.SPHINX_CONFIG.forceRiddleIndex : null;
   if (cfgIndex !== null) {
@@ -262,11 +257,7 @@ function showDailyRiddle() {
   const questionText = (pool[index] && pool[index].question) ? pool[index].question : "";
   const answersForLang = (pool[index] && Array.isArray(pool[index].answers)) ? pool[index].answers : [];
 
-  currentRiddle = {
-    index,
-    question: questionText,
-    answers: answersForLang
-  };
+  currentRiddle = { index, question: questionText, answers: answersForLang };
 
   const rEl = $("riddle");
   if (rEl) rEl.innerHTML = currentRiddle.question || "";
@@ -414,6 +405,7 @@ async function updateVisitors() {
     totalValue = newTotal;
   }
 
+  // Set single number (no slash)
   const totText = (typeof totalValue === 'number') ? String(totalValue) : '-';
   visitorEl.textContent = totText;
 }
@@ -450,7 +442,5 @@ window.onload = function () {
 
   updateUIText();
   try { bustSphinxCache(); } catch (e) {}
-  // Count this page load for total visits:
   try { updateVisitors(); } catch(e) { console.debug('updateVisitors failed on load', e && e.message); }
-  // Note: user still must click language button to enter the game
 };
